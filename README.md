@@ -63,6 +63,9 @@ MVPリリース
   - ツーリングや整備履歴等を車種別にカレンダー表示
 
 ■ 機能の実装方針予定
+- 駐車場情報
+  - 都内オートバイ駐車場MAP 2024
+    https://www.tmpc.or.jp/01_news/news.html?itemid=703&dispmid=741
 - 地図埋め込み・走行距離計算
   - GoogleMapApi：https://developers.google.com/maps?hl=ja
 - 天気取得
