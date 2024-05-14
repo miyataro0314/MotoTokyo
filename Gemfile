@@ -68,6 +68,7 @@ group :development do
 
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener_web'
   
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
@@ -81,4 +82,8 @@ group :test do
   gem 'selenium-webdriver'
 
   gem 'rspec-rails'
+end
+
+group :production do
+  gem 'aws-sdk-s3'
 end

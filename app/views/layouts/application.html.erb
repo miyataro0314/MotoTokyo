@@ -11,8 +11,13 @@
   </head>
 
   <body>
-     <%= notice %>
-		 <%= alert %>
+    <%= notice %>
+		<%= alert %>
+    
     <%= yield %>
+
+    <% if user_signed_in? %>
+      <%= render 'share/navbar' %>
+    <% end %>
   </body>
 </html>
