@@ -1,0 +1,38 @@
+require: rubocop-rails
+
+# RuboCopの全体的な設定
+AllCops:
+  # 対象とするRubyのバージョン
+  TargetRubyVersion: 3.3
+  # 対象外とするファイルやディレクトリ
+  Exclude:
+    # /*とするとそのディレクトリのみが対象となる 
+    # /**/*とするとそのディレクトリとサブディレクトリ以下が対象となる。
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+    - 'Gemfile'
+    - 'db/migrate/*'
+
+# 特定のCopの設定
+Layout/LineLength:
+  # 1行の最大文字数を80から100に変更
+  Max: 100
+
+Documentation:
+  # すべてのクラスとモジュールの先頭にドキュメントのコメントを要求するルールを無効にする
+  Enabled: false
+  
+Style/FrozenStringLiteralComment:
+  # frozen_string_literalマジックコメントを要求するルールを無効にする
+  Enabled: false
+
+# # Rails固有のCopを有効にする
+# Rails:
+#   Enabled: true
+
+# # RSpecのCopを有効にする
+# RSpec:
+#   Enabled: false
