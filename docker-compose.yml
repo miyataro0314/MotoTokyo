@@ -1,0 +1,43 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/MotoTokyo
+      - bundle_data:/usr/local/bundle:cached
+      - /MotoTokyo/node_modules
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
+    environment:
+      TZ: Asia/Tokyo
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - chrome
+  chrome:
+    image: seleniarm/standalone-chromium:latest
+    shm_size: 528m
+    ports:
+      - 4444:4444
+  db:
+    image: mysql:8.0.35
+    platform: linux/amd64
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3307:3306
+volumes:
+  mysql_data:
+  bundle_data:
