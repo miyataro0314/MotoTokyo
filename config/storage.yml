@@ -8,7 +8,7 @@ local:
 
 amazon:
   service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:rds, :access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:rds, :secret_access_key) %>
-  region: <%= Rails.application.credentials.dig(:rds, :region) %>
-  bucket: <%= Rails.application.credentials.dig(:rds, :bucket) %>
+  access_key_id: <%= Rails.application.credentials.dig(:s3, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:s3, :secret_access_key) %>
+  region: <%= Rails.application.credentials.dig(:s3, :region) %>
+  bucket: <%= Rails.application.credentials.dig(:s3, :bucket) %>

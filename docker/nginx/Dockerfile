@@ -14,6 +14,9 @@ COPY /docker/nginx/certbot-renew /etc/cron.d/certbot-renew
 # cronジョブファイルのパーミッションを設定
 RUN chmod 644 /etc/cron.d/certbot-renew
 
+# entrypoint.shに実行権限を付与
+RUN chmod +x /entrypoint.sh
+
 # entrypoint.shを実行（初回証明書取得、cron起動、nginx起動）
 ENTRYPOINT ["/entrypoint.sh"]
 
