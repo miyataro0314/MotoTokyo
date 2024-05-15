@@ -98,22 +98,22 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address:              Rails.application.credentials.dif(:smtp, :address),
-    port:                 Rails.application.credentials.dif(:smtp, :port),
-    domain:               Rails.application.credentials.dif(:smtp, :domain),
-    user_name:            Rails.application.credentials.dif(:smtp, :user_name),
-    password:             Rails.application.credentials.dif(:smtp, :password),
+    address:              Rails.application.credentials.dig(:smtp, :address),
+    port:                 Rails.application.credentials.dig(:smtp, :port),
+    domain:               Rails.application.credentials.dig(:smtp, :domain),
+    user_name:            Rails.application.credentials.dig(:smtp, :user_name),
+    password:             Rails.application.credentials.dig(:smtp, :password),
     authentication:       'plain',
     enable_starttls_auto: true
   }
 
   config.action_mailer.default_url_options = {
-    host: Rails.application.credentials.dif(:app, :host),
+    host: Rails.application.credentials.dig(:app, :host),
     protocol: 'https'
   }
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.default_options = {
-    from: Rails.application.credentials.dif(:smtp, :from)
+    from: Rails.application.credentials.dig(:smtp, :from)
   }
 end

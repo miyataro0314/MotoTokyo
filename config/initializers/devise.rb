@@ -24,7 +24,14 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  Devise.setup do |config|
+    config.mailer_sender = if Rails.env.production?
+      Rails.application.credentials.dig(:smtp, :from)
+    else
+      'no-reply@localhost'
+    end
+    config.mailer.default_url_options = { host: 'moto-tokyo.com', protocol: 'https' }
+  end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
