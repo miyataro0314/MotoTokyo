@@ -37,7 +37,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -94,4 +94,26 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              Rails.application.credentials.dif(:smtp, :address),
+    port:                 Rails.application.credentials.dif(:smtp, :port),
+    domain:               Rails.application.credentials.dif(:smtp, :domain),
+    user_name:            Rails.application.credentials.dif(:smtp, :user_name),
+    password:             Rails.application.credentials.dif(:smtp, :password),
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = {
+    host: Rails.application.credentials.dif(:app, :host),
+    protocol: 'https'
+  }
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.default_options = {
+    from: Rails.application.credentials.dif(:smtp, :from)
+  }
 end
