@@ -1,7 +1,7 @@
 FROM nginx:latest
 
 RUN apt-get update -qq && \
-    apt-get install -y cerbot python3-cerbot-nginx cron
+    apt-get install -y certbot python3-certbot-nginx cron
 
 # デフォルトで用意されている個別設定ファイルを削除
 RUN rm -f /etc/nginx/conf.d/*

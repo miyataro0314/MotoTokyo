@@ -1,4 +1,4 @@
-# 0 0 * * * root certbot renew：毎日0時0分にrootユーザによって'cerbot renew'を実行
+# 0 0 * * * root certbot renew：毎日0時0分にrootユーザによって'certbot renew'を実行
 # --nginx：更新時に設定ファイルを自動更新
 # /var/log/cron.log：ログファイルパス
 # 2>&1：エラーメッセージも標準出力と同じファイルに出力
