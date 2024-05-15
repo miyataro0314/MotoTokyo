@@ -37,5 +37,12 @@ RUN bundle install
 COPY package.json yarn.lock ./
 RUN yarn install
 
+# entrypoint.shのコピーと実行権限の付与
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+
+# エントリポイントを設定
+ENTRYPOINT ["entrypoint.sh"]
+
 # アプリケーションのコードをコピー
 COPY . /MotoTokyo
