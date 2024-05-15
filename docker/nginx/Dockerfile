@@ -9,7 +9,7 @@ RUN rm -f /etc/nginx/conf.d/*
 # ホストマシン上の/docker/nginx/nginx.confを使用（コンテナにコピー）
 COPY /docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY /docker/nginx/entrypoint.sh /entrypoint.sh
-COPY /docker/nginx/cerbot-renew /etc/cron.d/certbot-renew
+COPY /docker/nginx/certbot-renew /etc/cron.d/certbot-renew
 
 # cronジョブファイルのパーミッションを設定
 RUN chmod 644 /etc/cron.d/certbot-renew
