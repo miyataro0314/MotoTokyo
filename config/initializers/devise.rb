@@ -33,14 +33,6 @@ Devise.setup do |config|
     end
   end
 
-  Rails.application.configure do
-    if Rails.env.production?
-      config.action_mailer.default_url_options = { host: 'moto-tokyo.com', protocol: 'https' }
-    else
-      config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-    end
-  end
-
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
