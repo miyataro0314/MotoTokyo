@@ -24,13 +24,21 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
+
   Devise.setup do |config|
-    config.mailer_sender = if Rails.env.production?
-      Rails.application.credentials.dig(:smtp, :from)
+    if Rails.env.production?
+      config.mailer_sender = Rails.application.credentials.dig(:smtp, :from)
     else
-      'no-reply@localhost'
+      config.mailer_sender = 'no-reply@localhost'
     end
-    config.mailer.default_url_options = { host: 'moto-tokyo.com', protocol: 'https' }
+  end
+
+  Rails.application.configure do
+    if Rails.env.production?
+      config.action_mailer.default_url_options = { host: 'moto-tokyo.com', protocol: 'https' }
+    else
+      config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+    end
   end
 
   # Configure the class responsible to send e-mails.
@@ -41,7 +49,7 @@ Devise.setup do |config|
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
-  # :mongoid (bson_ext recommended) by default. Other ORMs may be
+  # :mongoid (bson_ext recommended) by default. Other ORMs may be:
   # available as additional gems.
   require 'devise/orm/active_record'
 

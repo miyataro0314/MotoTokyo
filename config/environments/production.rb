@@ -111,6 +111,7 @@ Rails.application.configure do
     host: Rails.application.credentials.dig(:app, :host),
     protocol: 'https'
   }
+
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.default_options = {
