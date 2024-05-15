@@ -27,9 +27,12 @@ services:
       dockerfile: docker/nginx/Dockerfile
     ports:
       - 80:80
-      # - 443:443
+      - 443:443
     volumes:
+      - .:/MotoTokyo
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./certs:/etc/letsencrypt  # SSL証明書ディレクトリをマウント
+      - ./certbot/www:/var/www/certbot  # Certbotのウェブルートディレクトリをマウント
       - puma_sockets:/MotoTokyo/tmp/sockets
     depends_on:
       - web
