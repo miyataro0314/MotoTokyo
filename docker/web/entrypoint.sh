@@ -18,4 +18,4 @@ fi
 bundle exec rails assets:precompile
 
 # サーバーを起動
-exec "$@"
+rails server  # 'bundle exec puma -C config/puma.rb'だとうまく行かない"

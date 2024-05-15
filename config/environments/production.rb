@@ -104,7 +104,9 @@ Rails.application.configure do
     user_name:            Rails.application.credentials.dig(:smtp, :user_name),
     password:             Rails.application.credentials.dig(:smtp, :password),
     authentication:       'plain',
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
+    ssl:                  true,
+    tls:                  true
   }
 
   config.action_mailer.default_url_options = {

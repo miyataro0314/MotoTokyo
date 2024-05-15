@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: docker/web/Dockerfile
-    command: ["entrypoint.sh", "rails", "server"]
-            # 'bundle exec puma -C config/puma.rb'だとうまく行かない"
     tty: true
     stdin_open: true
     volumes:
