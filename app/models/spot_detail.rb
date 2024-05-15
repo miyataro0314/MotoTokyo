@@ -1,0 +1,2 @@
+class SpotDetail < ApplicationRecord
+end
