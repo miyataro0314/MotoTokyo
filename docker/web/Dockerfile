@@ -38,8 +38,8 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 # entrypoint.shのコピーと実行権限の付与
-COPY docker/web/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY docker/web/entrypoint.sh /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh
 
 # エントリポイントを設定
 ENTRYPOINT ["entrypoint.sh"]
