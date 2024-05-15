@@ -8,6 +8,7 @@ RUN rm -f /etc/nginx/conf.d/*
 
 # 必要ファイルのコピー
 COPY /docker/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY /docker/nginx/nginx_permanent.conf /etc/nginx/nginx_permanent.conf
 COPY /docker/nginx/entrypoint.sh /entrypoint.sh
 COPY /docker/nginx/certbot-renew /etc/cron.d/certbot-renew
 
