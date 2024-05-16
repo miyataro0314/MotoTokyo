@@ -86,3 +86,5 @@ ja:
           hachijo: '八丈町'
           aogashima: '青ヶ島村'
           ogasawara: '小笠原村'
+    errors:
+      models:

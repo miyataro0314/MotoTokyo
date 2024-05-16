@@ -4,6 +4,8 @@
   <div>エラー発生源：<%= object.class.name %></div>
   <div>
     エラー内容：
-    <%= object.errors.full_messages %>
+    <% object.errors.each do |attribute, message| %>
+      <div><%= attribute %>: <%= message %></div>
+    <% end %>
   </div>
 <% end %>

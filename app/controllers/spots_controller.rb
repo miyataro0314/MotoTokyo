@@ -5,10 +5,8 @@ class SpotsController < ApplicationController
 
   def create
     @spot = build_spot
-    spot_details = build_spot_details(@spot)
-    difficulty = build_difficulty(@spot)
 
-    save_spot(@spot, spot_details, difficulty)
+    save_spot
 
     if @spot.persisted?
       @count = Spot.all.count
@@ -69,19 +67,25 @@ class SpotsController < ApplicationController
     )
   end
 
-  def save_spot(spot, spot_details, difficulty)
+  def save_spot
     ActiveRecord::Base.transaction do
-      unless spot.save && spot_details.save && difficulty.save
-        flash[:error] = '登録に失敗しました'
-        mail_error_message([@spot, spot_details, difficulty])
+      unless @spot.save
+        handle_save_error
+        raise ActiveRecord::Rollback
+      end
+
+      @spot_details = build_spot_details(@spot)
+      @difficulty = build_difficulty(@spot)
+
+      unless @spot_details.save && @difficulty.save
+        handle_save_error
         raise ActiveRecord::Rollback
       end
     end
   end
 
-  def mail_error_message(objects)
-    @error_objects = []
-    objects.each { |object| @error_objects << object if object.errors }
+  def handle_save_error
+    @error_objects = [@spot, @spot_details, @difficulty].select { |object| object.errors.any? }
     ErrorMailer.registration_error(@error_objects).deliver_now
   end
 end
