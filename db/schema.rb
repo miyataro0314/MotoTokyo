@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_15_144517) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_022007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "spot_details", id: :string, force: :cascade do |t|
-    t.bigint "spot_id"
+    t.bigint "spot_id", null: false
     t.string "postal_code"
     t.string "region"
     t.string "street_address"
     t.string "phone_number"
-    t.decimal "lat", precision: 10, scale: 7
-    t.decimal "lng", precision: 10, scale: 7
-    t.text "weekday_text"
+    t.geography "coordinate", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.string "weekday_text", default: [], array: true
     t.float "rating"
     t.integer "user_rating_total"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["id"], name: "index_spot_details_on_id", unique: true
+    t.index ["coordinate"], name: "index_spot_details_on_coordinate", using: :gist
     t.index ["spot_id"], name: "index_spot_details_on_spot_id"
   end
 
@@ -69,5 +69,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_15_144517) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "spot_details", "spots"
   add_foreign_key "spots", "users"
 end
