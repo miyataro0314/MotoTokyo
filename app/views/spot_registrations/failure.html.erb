@@ -1,0 +1,15 @@
+<div class="container mx-auto text-center">
+  <h1 class="pt-12 p-3 text-2xl">スポット登録失敗...</h1>
+  <p class="p-3 text-sm">
+    エラー発生によりスポットの登録に失敗しました。<br>
+    エラー内容は管理者に送信されています。<br>
+    修正までしばらくお待ちいただくようお願いいたします。<br>
+    ご迷惑をおかけし大変申し訳ございません。<br>
+  </p>
+
+  <div class="base-s mt-16 mx-auto bg-primary text-primary-content">
+    <p class ="p-1 text-sm">下記のリンクより<br>再度お試しいただけます。</p>
+    <%= link_to '再度登録する', new_spot_path,
+        class: 'daisy-btn saisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm' %>
+  </div>
+</div>

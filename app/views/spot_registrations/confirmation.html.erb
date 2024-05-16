@@ -1,0 +1,67 @@
+<%= turbo_frame_tag 'wizard' do %>
+
+  <div class="mt-5">
+    <p class="text-base font-semibold text-primary-content">
+      この内容で登録してよろしいでしょうか？
+    </p>
+  </div>
+  <div>
+    <div class="m-3">
+      <p class="text-base font-semibold text-primary-content">
+        スポット名
+      </p>
+      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <%= session[:name] %>
+      </div>
+    </div>
+    <div class="m-3">
+      <p class="text-base font-semibold text-primary-content">
+        駐輪場
+      </p>
+      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <%= i18n('spot', 'parking', session[:parking]) %>
+      </div>
+    </div>
+    <div class="m-3">
+      <p class=" text-base font-semibold text-primary-content">
+        駐輪場制限
+      </p>
+      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <%= i18n('spot', 'parking_limitation', session[:parking_limitation]) %>
+      </div>
+    </div>
+    <div class="m-3">
+      <p class="text-base font-semibold text-primary-content">
+        行きやすさ
+      </p>
+      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <%= i18n('difficulty', 'level', session[:difficulty_level]) %>
+      </div>
+    </div>
+    <div class="m-3">
+      <p class="text-base font-semibold text-primary-content">
+        カテゴリ
+      </p>
+      <div class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <%= i18n('spot', 'category', session[:category]) %>
+      </div>
+    </div>
+    <div class="m-3">
+      <p class="text-base font-semibold text-primary-content">
+        おすすめポイント
+      </p>
+      <div  class="w-64 h-fit mx-auto mt-1 p-2 rounded-2xl content-center break-words bg-base-100">
+        <%= session[:comment_content].present? ? session[:comment_content] : '未入力' %>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-row absolute bottom-3 left-1/2 -translate-x-1/2">
+    <%= link_to '戻る', step4_spot_registrations_path(from_confirmation: true),
+        data: { modal_target: 'toForm', action: 'click->modal#contractModal' },
+        class: 'daisy-btn daisy-btn-secondary w-20 h-10 mr-10 rounded-full text-base' %>
+    <%= button_to '登録', spots_path, method: :post,
+        data: { turbo: false, wizard_target: 'toRegistration', action: 'click->wizard#removeSessionStorage' },
+        class: 'daisy-btn daisy-btn-secondary w-20 h-10 ml-10 rounded-full text-base' %>
+  </div>
+
+<% end %>

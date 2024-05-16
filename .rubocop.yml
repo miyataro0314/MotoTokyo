@@ -17,9 +17,14 @@ AllCops:
     - 'db/migrate/*'
 
 # 特定のCopの設定
-Layout/LineLength:
-  # 1行の最大文字数を80から100に変更
-  Max: 100
+
+Metrics/AbcSize:
+  # ABCサイズの設定
+  Max: 20
+
+Metrics/MethodLength:
+  # メソッドの行数設定
+  Max: 20
 
 Documentation:
   # すべてのクラスとモジュールの先頭にドキュメントのコメントを要求するルールを無効にする

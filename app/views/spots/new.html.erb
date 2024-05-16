@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+<%= stylesheet_link_tag 'animations/wizard', data: { turbolinks_track: 'reload' } %>
+<%= javascript_include_tag "spots/new", "data-turbo-track": "reload", async: true %>
+
+<div class="container mx-auto text-center">
+  
+  <%= turbo_frame_tag 'modal' %>
+
+  <h1 class="pt-12 p-3 text-2xl">スポット登録</h1>
+  <p class="text-sm">
+    お気に入りのスポットを登録しましょう！<br>
+    登録したスポットは検索内容に反映されます。
+  </p>
+  
+  <div class="base-s h-80 mt-14 mx-auto bg-primary">
+    <p class="p-3 text-sm text-primary-content">4STEPで簡単登録</p>
+    <div class="w-44 h-44 m-auto rounded-2xl bg-white">画像いれる</div>
+    <%= link_to 'スポット登録', step1_spot_registrations_path,
+        class: 'daisy-btn saisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm',
+        data: { turbo_frame: 'modal' } %>
+  </div>
+
+  <div class="base-s mt-16 mx-auto bg-primary text-primary-content">
+    <p class ="p-1 text-sm">以下の禁止事項をお読みください</p>
+    <ul class="list-dixc list-inside text-xs primary">
+      <li class="p-0.5">私有地の登録はしないでください</li>
+      <li class="p-0.5">虚偽の申告はしないでください</li>
+    </ul>
+  </div>
+</div>

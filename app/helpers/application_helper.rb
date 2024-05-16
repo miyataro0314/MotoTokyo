@@ -12,4 +12,8 @@ module ApplicationHelper
       content_tag(:div, 'svg not found')
     end
   end
+
+  def i18n(model, attr, key)
+    I18n.t("activerecord.enums.#{model}.#{attr}.#{key}")
+  end
 end

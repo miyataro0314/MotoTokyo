@@ -1,0 +1,27 @@
+@keyframes slide-from-right {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-from-left {
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slide-from-left-animation {
+  animation-name: slide-from-left;
+  animation-duration: 150ms;
+}
+
+.slide-from-right-animation {
+  animation-name: slide-from-right;
+  animation-duration: 150ms;
+}
