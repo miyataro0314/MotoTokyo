@@ -44,6 +44,8 @@ class SpotsController < ApplicationController
   end
 
   def build_spot_details(spot)
+    factory = RGeo::Geographic.spherical_factory(srid: 4326)
+
     SpotDetail.new(
       id: session[:place_id],
       spot_id: spot.id,
@@ -51,7 +53,7 @@ class SpotsController < ApplicationController
       region: session[:region],
       street_address: session[:street_address],
       phone_number: session[:phone_number],
-      coordinate: "POINT(#{session[:lat]} #{session[:lng]})",
+      coordinate: factory.point(session[:lng], session[:lat]),
       weekday_text: session[:weekday_text],
       rating: session[:rating],
       user_rating_total: session[:user_rating_total],
