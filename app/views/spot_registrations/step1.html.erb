@@ -1,0 +1,65 @@
+<%= turbo_frame_tag 'modal' do %>
+
+  <div class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20'
+       data-controller="modal"
+       data-modal-target="background"
+       data-action="click->modal#closeModal">
+    <div class="flex flex-col overflow-hidden w-80 h-112 rounded-3xl bg-primary"
+         data-modal-target="modal">
+      <%= turbo_frame_tag 'wizard', class: 'flex flex-col grow relative text-center' do %>
+        
+        <%= javascript_include_tag 'spot_registrations/step1', 'data-turbo-track': 'reload', async: true %>
+
+        <div class="w-52 h-24 m-auto mt-3 rounded-2xl content-center bg-base-100">
+          <p class="text-2xl font-semibold">かんたん登録</p>
+          <p class="text-xl font-semibold">STEP 1/4</p>
+        </div>
+        <%= form_with model: @spot,
+                      url: step2_spot_registrations_path,
+                      method: :get,
+                      data: { controller: 'wizard', wizard_target: 'contents' },
+                      class: 'grow' do |f| %>
+          <div>
+            <p class="m-3 text-base font-semibold text-primary-content">
+              登録するスポットを教えてください
+            </p>
+            <%= f.text_field :name,
+                autocomplete: 'off',
+                data: { wizard_target: 'input' },
+                id: 'place-autocomplete-input',
+                class: 'w-64 h-10 p-3 drop-shadow-md rounded-full' %>             
+          </div>
+          <div id="place-check-result"></div>
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2">
+            <%= f.submit '次へ',
+                disabled: true,
+                data: { wizard_target: 'next', action: 'click->wizard#next' },
+                id: 'go-to-step2-button',
+                class: 'daisy-btn daisy-btn-secondary w-20 h-10 rounded-full text-base' %>
+          </div>
+        <% end %>
+
+      <% end %>
+    </div>
+  </div>
+
+  <script>
+    connectGoogleMapApi()
+
+    function connectGoogleMapApi() {
+      let modal = document.getElementById('modal');
+      let widget = document.body.querySelector('.pac-container.pac-logo.hdpi');
+
+      // apiが毎回ウィジェットを生成するため、再初期化時にクリーンアップ
+      if (widget) {
+        document.body.removeChild(widget)
+        initAutocomplete();
+      } else {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&libraries=places&callback=initAutocomplete`;
+        modal.appendChild(script)
+      }
+    }
+  </script>
+
+<% end %>

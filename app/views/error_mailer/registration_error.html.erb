@@ -1,0 +1,9 @@
+<h1>スポット登録時エラー</h1>
+
+<% @error_objects.each do |object| %>
+  <div>エラー発生源：<%= object.class.name %></div>
+  <div>
+    エラー内容：
+    <%= object.errors.full_messages %>
+  </div>
+<% end %>

@@ -1,0 +1,50 @@
+<%= turbo_frame_tag 'wizard' do %>
+
+  <%= javascript_include_tag 'spot_registrations/step3', 'data-turbo-track': 'reload', async: true %>
+
+  <div class="w-52 h-24 m-auto mt-3 rounded-2xl content-center bg-base-100">
+    <p class="text-2xl font-semibold">かんたん登録</p>
+    <p class="text-xl font-semibold">STEP 3/4</p>
+  </div>
+  <%= form_with url: step4_spot_registrations_path,
+                model: @spot,
+                method: :get,
+                data: { controller: 'wizard', wizard_target: 'contents' },
+                class: 'grow' do |f| %>
+    <%= fields_for :difficulty, @difficulty do |f| %>
+      <div>
+        <p class="m-3 text-base font-semibold text-primary-content">
+          目的地は行きやすかったですか？
+        </p>
+        <%= f.select :level,
+            Difficulty.levels.keys.map { |key| [i18n('difficulty', 'level', key), key] },
+            { include_blank: true },
+            { id: 'difficulty-select',
+              class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>           
+      </div>
+    <% end %>
+    <div>
+      <p class="m-3 text-base font-semibold text-primary-content">
+        カテゴリーを選択してください
+      </p>
+      <%= f.select :category,
+          Spot.categories.keys.map { |key| [i18n('spot', 'category', key), key] },
+          { include_blank: true },
+          { id: 'category-select',
+            class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>
+    </div>
+    <div class="flex flex-row absolute bottom-3 left-1/2 -translate-x-1/2">
+      <%= f.submit '戻る',
+          name: 'back',
+          data: { wizard_target: 'back', action: 'click->wizard#back' },
+          class: 'daisy-btn daisy-btn-secondary w-20 h-10 mr-10 rounded-full text-base' %>
+      <%= f.submit '次へ',
+          name: 'next',
+          disabled: true,
+          data: { wizard_target: 'next', action: 'click->wizard#next' },
+          id: 'go-to-step4-button',
+          class: 'daisy-btn daisy-btn-secondary w-20 h-10 ml-10 rounded-full text-base' %>
+    </div>
+  <% end %>
+
+<% end %>

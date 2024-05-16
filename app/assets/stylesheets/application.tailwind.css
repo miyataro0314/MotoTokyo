@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.base-s {
+  @apply w-64 rounded-3xl
+}
+
+.base-m {
+  @apply w-80 rounded-3xl
+}
+
+/* .base-c {
+
+} */

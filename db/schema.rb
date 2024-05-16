@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_16_022007) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_061137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_comments_on_spot_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "difficulties", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.integer "level", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_difficulties_on_spot_id"
+    t.index ["user_id"], name: "index_difficulties_on_user_id"
+  end
 
   create_table "spot_details", id: :string, force: :cascade do |t|
     t.bigint "spot_id", null: false
@@ -33,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_022007) do
   end
 
   create_table "spots", force: :cascade do |t|
-    t.string "user_id", null: false
+    t.string "user_id"
     t.string "name", null: false
     t.integer "parking", null: false
     t.integer "parking_limitation", null: false
@@ -44,6 +64,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_022007) do
     t.index ["area"], name: "index_spots_on_area"
     t.index ["category"], name: "index_spots_on_category"
     t.index ["name"], name: "index_spots_on_name", unique: true
+    t.index ["parking"], name: "index_spots_on_parking"
+    t.index ["parking_limitation"], name: "index_spots_on_parking_limitation"
     t.index ["user_id"], name: "index_spots_on_user_id"
   end
 
@@ -69,6 +91,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_022007) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "spots"
+  add_foreign_key "comments", "users"
+  add_foreign_key "difficulties", "spots"
+  add_foreign_key "difficulties", "users"
   add_foreign_key "spot_details", "spots"
-  add_foreign_key "spots", "users"
+  add_foreign_key "spots", "users", on_delete: :nullify
 end
