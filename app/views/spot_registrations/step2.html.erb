@@ -16,7 +16,7 @@
         駐車場はありましたか？
       </p>
       <%= f.select :parking,
-          Spot.parkings.keys.map { |key| [i18n('spot', 'parking', key), key] },
+          Spot.parkings.keys.map { |key| [t_enum('spot', 'parking', key), key] },
           { include_blank: true },
           { id: 'parking-select',
             class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>           
@@ -26,7 +26,7 @@
         駐車場に制限はありましたか？
       </p>
       <%= f.select :parking_limitation,
-          Spot.parking_limitations.keys.map { |key| [i18n('spot', 'parking_limitation', key), key] },
+          Spot.parking_limitations.keys.map { |key| [t_enum('spot', 'parking_limitation', key), key] },
           { include_blank: true },
           { id: 'parking-limitaiton-select',
             class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>

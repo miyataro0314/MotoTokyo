@@ -1,0 +1,16 @@
+<div class="base-container">
+
+  <%= turbo_frame_tag 'modal' %>
+  <div class="base-l mt-3">
+    <div class="pane-a">
+      検索ワード
+    </div>
+  </div>
+
+  <div class="base-l mt-3 h-full">
+    <% @spots.each do |spot| %>
+      <%= render partial: 'searches/search_spot_card', locals: { spot: spot } %>
+    <% end %>
+  </div>
+
+</div>

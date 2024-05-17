@@ -1,0 +1,46 @@
+<div class="base-container">
+
+  <%= turbo_frame_tag 'modal' %>
+  
+  <div class="base-l mt-3 p-3 text-sm">
+    <div class="pane-a text-base">
+      <%= @spot.name %>
+    </div>
+    <div class="pane-a h-40 mt-3">MAP</div>
+    <div class="pane-a h-full mt-3">
+      <div class="text-left">
+        <%= @spot_detail.postal_code %><br>
+        <%= @spot_detail.address %>
+      </div>
+      <div class="flex">
+        <div class="flex flex-col mx-auto text-left">
+          <div>
+            カテゴリ：<%= t_enum('spot', 'category', @spot.category) %>
+          </div>
+        </div>
+        <div class="flex flex-col mx-auto text-right">
+          <div>
+            <%= @spot_detail.opening_hours %>
+          </div>
+          <div>
+            駐車場：<%= t_enum('spot', 'parking', @spot.parking) %>
+          </div>
+          <div>
+            投稿者：<%= @spot.user.id %>
+          </div>
+        </div>
+      </div>
+      <div class="pane-a h-32">天気情報</div>
+      <div class="flex items-center">
+        <div class="w-10 h-10 mx-3 rounded-full bg-primary">画</div>
+        <div class="flex-grow mr-3 rounded-full bg-primary">
+          コメント<br>
+          sadghsg<br>
+          dfasdg
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>近くの駐車場</div>
+</div>

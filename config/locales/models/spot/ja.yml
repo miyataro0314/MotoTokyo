@@ -9,8 +9,8 @@ ja:
     enums:
       spot:
         parking:
-          free: 'あり（無料）'
-          paid: 'あり（有料）'
+          free: 'あり(無料)'
+          paid: 'あり(有料)'
           nothing: '無し'
         parking_limitation:
           all_ok: '全排気量可'

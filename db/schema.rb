@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_061137) do
     t.string "user_id"
     t.string "name", null: false
     t.integer "parking", null: false
-    t.integer "parking_limitation", null: false
+    t.integer "parking_limitation"
     t.integer "category", null: false
     t.integer "area", null: false
     t.datetime "created_at", null: false

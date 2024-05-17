@@ -1,0 +1,25 @@
+<div class="base-container">
+
+  <h1 class="pt-12 p-3 text-2xl">スポット検索</h1>
+  <p class="text-sm">
+    新しいスポットを見つけましょう！<br>
+    ユーザーが登録したスポットを閲覧できます。<br>
+  </p>
+  
+  <div class="base-m mt-16 mx-auto text-primary-content">
+    <p class ="p-1 text-sm">
+      条件を指定して検索する
+    </p>
+    <%= link_to 'スポット検索', search_spot_searches_path,
+        class: 'daisy-btn saisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm' %>
+  </div>
+
+  <div class="base-m mt-16 mx-auto text-primary-content">
+    <p class ="p-1 text-sm">
+      もしくは<br>
+      検索条件を指定しないで一覧を見る
+    </p>
+    <%= link_to 'スポット一覧', spots_path,
+        class: 'daisy-btn saisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm' %>
+  </div>
+</div>
