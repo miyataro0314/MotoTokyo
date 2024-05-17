@@ -1,0 +1,38 @@
+<%= turbo_frame_tag 'modal' do %>
+
+  <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+
+  <div class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20'
+       data-controller="modal"
+       data-modal-target="background"
+       data-action="click->modal#closeModal">
+    <div class="base-l"
+         data-modal-target="modal">
+      <%= form_with model: @spot do |f| %>
+        <div class="mt-3 text-lg">
+          <%= f.label :area, 'エリア' %>
+          <%= f.select :area,
+              Spot.areas.keys.map { |key| [t_enum('spot', 'area', key), key] },
+              { include_blank: true },
+              { class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>
+        </div>
+        <div class="mt-3">
+          <%= f.label :category, 'カテゴリー' %>
+          <%= f.select :category,
+              Spot.categories.keys.map { |key| [t_enum('spot', 'category', key), key] },
+              { include_blank: true },
+              { class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>
+        </div>
+        <div class="mt-3">
+          <%= f.label :parking, '駐車場' %>
+          <%= f.select :parking,
+                Spot.parkings.keys.map { |key| [t_enum('spot', 'parking', key), key] },
+                { include_blank: true },
+                { class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>
+        </div>
+        <%= f.submit '検索', class:'daisy-btn daisy-btn-secondary w-20 h-10 mt-3 rounded-full text-base' %>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
