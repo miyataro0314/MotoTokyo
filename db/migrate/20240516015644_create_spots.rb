@@ -4,7 +4,7 @@ class CreateSpots < ActiveRecord::Migration[7.1]
       t.string :user_id    # user削除後もspotは残すため'null: false'は無し
       t.string :name, null: false
       t.integer :parking, null: false
-      t.integer :parking_limitation, null: false
+      t.integer :parking_limitation
       t.integer :category, null: false
       t.integer :area, null: false
       

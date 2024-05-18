@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get '/home', to: 'homes#top', as: :home
 
-  resources :spots, only: %i[new create show]
+  resources :spots, only: %i[new create show index]
 
   resources :spot_registrations, only: [] do
     collection do
@@ -13,6 +13,13 @@ Rails.application.routes.draw do
       get 'step3'
       get 'step4'
       get 'confirmation'
+    end
+  end
+
+  resources :searches, only: %i[new] do
+    collection do
+      get 'search_spots_modal'
+      get 'search_spots'
     end
   end
 

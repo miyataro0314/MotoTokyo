@@ -16,6 +16,15 @@ class SpotsController < ApplicationController
     end
   end
 
+  def show
+    @spot = Spot.find(params[:id])
+    @spot_detail = @spot.spot_detail
+  end
+
+  def index
+    @spots = Spot.all.includes(:spot_detail).page(params[:page])
+  end
+
   private
 
   def clear_session

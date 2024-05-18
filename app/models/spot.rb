@@ -22,4 +22,8 @@ class Spot < ApplicationRecord
     toshima_vil: 270, niijima: 275, kozushima: 280, miyake: 285, mikurajima: 290, hachijo: 295,
     aogashima: 300, ogasawara: 305
   }
+
+  scope :by_area, ->(area) { where(area:) }
+  scope :by_category, ->(category) { where(category:) }
+  scope :by_parking, ->(parking) { where(parking:) }
 end

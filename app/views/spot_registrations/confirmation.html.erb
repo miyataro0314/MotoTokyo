@@ -19,7 +19,7 @@
         駐輪場
       </p>
       <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= i18n('spot', 'parking', session[:parking]) %>
+        <%= t_enum('spot', 'parking', session[:parking]) %>
       </div>
     </div>
     <div class="m-3">
@@ -27,7 +27,7 @@
         駐輪場制限
       </p>
       <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= i18n('spot', 'parking_limitation', session[:parking_limitation]) %>
+        <%= session[:parking_limitation] ? t_enum('spot', 'parking_limitation', session[:parking_limitation]) : 'ー' %>
       </div>
     </div>
     <div class="m-3">
@@ -35,7 +35,7 @@
         行きやすさ
       </p>
       <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= i18n('difficulty', 'level', session[:difficulty_level]) %>
+        <%= t_enum('difficulty', 'level', session[:difficulty_level]) %>
       </div>
     </div>
     <div class="m-3">
@@ -43,7 +43,7 @@
         カテゴリ
       </p>
       <div class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= i18n('spot', 'category', session[:category]) %>
+        <%= t_enum('spot', 'category', session[:category]) %>
       </div>
     </div>
     <div class="m-3">

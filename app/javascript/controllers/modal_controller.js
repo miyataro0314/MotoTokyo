@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ['background', 'modal', 'toConfirmation', 'toForm'];
+  loadCount = 0;
 
   connect() {
     this.openModal();
@@ -40,8 +41,6 @@ export default class extends Controller {
         this.modalTarget.classList.remove('contract-modal-animation');
       }
       this.modalTarget.classList.add('expand-modal-animation');
-    } else {
-      console.log('ミスってる',event.target)
     }
   }
 
@@ -52,5 +51,18 @@ export default class extends Controller {
       }
       this.modalTarget.classList.add('contract-modal-animation');
     }
+  }
+
+  closeModalBySubmit() {
+    this.modalTarget.classList.add('end-modal-animation');
+    this.backgroundTarget.classList.add('end-bg-animation');
+    this.backgroundTarget.classList.remove('z-50');
+
+    this.modalTarget.addEventListener('animationend', () => {
+      this.modalTarget.style.display = 'none';
+    }, { once: true });
+    this.backgroundTarget.addEventListener('animationend', () => {
+      this.backgroundTarget.style.display = 'none';
+    }, { once: true });
   }
 }

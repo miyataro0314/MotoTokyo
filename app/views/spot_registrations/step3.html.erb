@@ -17,7 +17,7 @@
           目的地は行きやすかったですか？
         </p>
         <%= f.select :level,
-            Difficulty.levels.keys.map { |key| [i18n('difficulty', 'level', key), key] },
+            Difficulty.levels.keys.map { |key| [t_enum('difficulty', 'level', key), key] },
             { include_blank: true },
             { id: 'difficulty-select',
               class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>           
@@ -28,7 +28,7 @@
         カテゴリーを選択してください
       </p>
       <%= f.select :category,
-          Spot.categories.keys.map { |key| [i18n('spot', 'category', key), key] },
+          Spot.categories.keys.map { |key| [t_enum('spot', 'category', key), key] },
           { include_blank: true },
           { id: 'category-select',
             class: 'w-64 h-10 px-3 drop-shadow-md rounded-full' } %>

@@ -25,7 +25,8 @@ module Api
         session[:phone_number] = params[:formatted_phone_number]
         session[:lat] = params.dig(:geometry, :location, :lat)
         session[:lng] = params.dig(:geometry, :location, :lng)
-        session[:weekday_text] = params.dig(:opening_hours, :weekday_text)
+        session[:weekday_text] =
+          params.dig(:opening_hours, :weekday_text) || params.dig(:current_opening_hours, :weekday_text)
         session[:rating] = params[:rating]
         session[:user_rating_total] = params[:user_rating_total]
         session[:url] = params[:url]
