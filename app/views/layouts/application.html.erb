@@ -11,9 +11,7 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= render 'share/header' %>
-    <% end %>
+    <%= render 'shared/header' %>
 
     <%= notice %>
 		<%= alert %>
@@ -21,7 +19,8 @@
     <%= yield %>
 
     <% if user_signed_in? %>
-      <%= render 'share/navbar' %>
+      <div class="h-20 bg-base-100"></div>
+      <%= render 'shared/navbar' %>
     <% end %>
   </body>
 </html>

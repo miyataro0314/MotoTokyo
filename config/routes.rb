@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'static_pages#top'
-  get '/home', to: 'homes#top', as: :home
-
+  get 'home', to: 'homes#top', as: :home
+  
   resources :spots, only: %i[new create show index]
 
   resources :spot_registrations, only: [] do
@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'spots/check', to: 'spots#check'
     end
+  end
+
+  namespace :admin do
+    get 'login', to: 'sessions#new'
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

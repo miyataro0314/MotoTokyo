@@ -8,8 +8,8 @@ module.exports = {
 
   theme: {
     extend: {
-      textColor: {
-        'base': '#292d32', // 基本のフォントカラー（黒系）text-base
+      colors: {
+        'base': '#4d4d4d', // 基本のフォントカラー（黒系）text-base
         'reverse': '#f5f2e9', // 反転フォントカラー（白色） text-reverse
       },
       height: {

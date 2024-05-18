@@ -27,7 +27,7 @@ Devise.setup do |config|
 
   Devise.setup do |config|
     if Rails.env.production?
-      config.mailer_sender = Rails.application.credentials.dig(:smtp, :from)
+      config.mailer_sender = Rails.application.credentials.smtp[:from]
     else
       config.mailer_sender = 'no-reply@localhost'
     end

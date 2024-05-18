@@ -1,0 +1,10 @@
+<div class="m-3 text-left text-sm">
+  <% if params[:from] %>
+    <% case params[:from] %>
+    <% when 'spot_search' %>
+      <%= link_to '＜ スポット検索結果に戻る', search_spots_searches_path %>
+    <% when 'spot_registration'  %>
+      <%= link_to '＜ スポット登録画面に戻る', new_spots_registrations_path %>
+    <% end %>
+  <% end %>
+  </div>

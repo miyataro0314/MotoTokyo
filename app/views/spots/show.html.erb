@@ -1,16 +1,16 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta" async defer></script>
+
 <div class="base-container">
 
   <%= turbo_frame_tag 'modal' %>
 
-  <div>
-    <%= link_to '検索画面に戻る', search_spots_searches_path %>
-  </div>
+  <%= render 'shared/breadcrumb' %>
   
   <div class="base-l mt-3 p-3 text-sm">
     <div class="pane-a text-base">
       <%= @spot.name %>
     </div>
-    <div class="pane-a h-40 mt-3">MAP</div>
+    <div class="pane-a h-40 mt-3" id="map"></div>
     <div class="pane-a h-full mt-3">
       <div class="text-left">
         <%= @spot_detail.postal_code %><br>
@@ -46,5 +46,40 @@
     </div>
   </div>
 
-  <div>近くの駐車場</div>
+  <div class='flex w-80 mx-auto mt-5 items-center space-x-3'>
+    <span>近くの駐車場</span>
+    <div class="flex-1 border border-base"></div>
+  </div>
+
+  <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap">
+    <% 5.times do %>
+      <%= render 'spots/parking_card' %>
+    <% end %>
+  </div>
+
+
 </div>
+
+<script>
+  function initMap() {
+    const spotPosition = { lat: <%= @spot_detail.coordinate.latitude %>,
+                            lng: <%= @spot_detail.coordinate.longitude %> };
+    
+    const map = new google.maps.Map(document.getElementById('map'), {
+      mapId: "b716b462cb5d8846", 
+      center: spotPosition,
+      zoom: 13
+    });
+
+    const scaledMarker = new google.maps.marker.PinView({
+      scale: 1.2,
+    });
+
+    const spotMarker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: spotPosition,
+      content: scaledMarker.element,
+    });
+  }
+</script>
+

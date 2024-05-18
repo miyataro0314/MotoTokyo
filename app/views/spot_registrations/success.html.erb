@@ -10,7 +10,7 @@
 
   <div class="base-m mt-16 h-32 mx-auto text-primary-content">
     <p class ="p-1 text-sm">登録したスポットを...</p>
-    <%= link_to '確認する！', spot_path(@spot),
+    <%= link_to '確認する！', spot_path(@spot, from: 'spot_registration'),
         class: 'daisy-btn daisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm' %>
   </div>
 </div>
