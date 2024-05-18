@@ -18,8 +18,8 @@ Rails.application.routes.draw do
 
   resources :searches, only: %i[new] do
     collection do
-      get 'search_spot'
-      post 'search_spot'
+      get 'search_spots_modal'
+      get 'search_spots'
     end
   end
 

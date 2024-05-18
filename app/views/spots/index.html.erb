@@ -1,18 +1,26 @@
-<div class="base-container">
+<%= turbo_frame_tag 'modal' %>
 
-  <%= turbo_frame_tag 'modal' %>
+<%= turbo_frame_tag 'contents' do %>
 
-  <div class="base-l mt-3">
-    <div class="pane-a">
-      <%= link_to '検索ワード', search_spot_searches_path,
-          data: { turbo_frame: 'modal' }%>
+  <div class="base-container">
+    <div class="base-l mt-3">
+      <div class="pane-a">
+        <%= link_to '検索ワード', search_spots_modal_searches_path,
+            data: { turbo_frame: 'modal' }%>
+      </div>
+    </div>
+
+    <div class="base-l mt-3 h-full">
+      <% if @spots.nil? %>
+        <div class="pane-a flex flex-col my-2 text-left text-xs">
+          該当するスポットがありませんでした
+        </div>
+      <% end %>
+      <% @spots.each do |spot| %>
+        <%= render partial: 'spots/spot_info', locals: { spot: spot } %>
+      <% end %>
+      <%= paginate @spots %>
     </div>
   </div>
 
-  <div class="base-l mt-3 h-full">
-    <% @spots.each do |spot| %>
-      <%= render partial: 'searches/spot_info', locals: { spot: spot } %>
-    <% end %>
-  </div>
-
-</div>
+<% end %>

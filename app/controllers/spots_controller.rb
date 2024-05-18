@@ -22,7 +22,7 @@ class SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.all.includes(:spot_detail)
+    @spots = Spot.all.includes(:spot_detail).page(params[:page])
   end
 
   private

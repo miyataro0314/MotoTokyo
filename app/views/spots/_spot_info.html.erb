@@ -1,7 +1,8 @@
 <div class="pane-a flex flex-col my-2 text-left text-xs">
   <div class="flex">
     <div class="w-1/2 text-base ">
-      <%= link_to spot.name, spot_path(spot) %>
+      <%= link_to spot.name, spot_path(spot),
+          data: { turbo: false } %>
     </div>
     <div class="w-1/2 text-right">
       <div>
