@@ -30,7 +30,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'login', to: 'sessions#new'
+    devise_scope :user do
+      get "/", to: "dashboards#new", as: "root"
+      get 'sign_in', to: 'sessions#new'
+      post 'sign_in', to: 'sessions#create'
+      delete 'sign_out', to: 'sessions#destroy'
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

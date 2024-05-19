@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :spots, dependent: :nullify
   has_many :difficulties, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  enum role: { general: 0, admin: 10 }
 end

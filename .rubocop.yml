@@ -34,6 +34,9 @@ Style/FrozenStringLiteralComment:
   # frozen_string_literalマジックコメントを要求するルールを無効にする
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 # # Rails固有のCopを有効にする
 # Rails:
 #   Enabled: true

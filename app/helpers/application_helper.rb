@@ -16,4 +16,8 @@ module ApplicationHelper
   def t_enum(model, attr, key)
     I18n.t("activerecord.enums.#{model}.#{attr}.#{key}")
   end
+
+  def as_admin?
+    true if session[:as_admin] == true
+  end
 end
