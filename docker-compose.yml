@@ -30,7 +30,6 @@ services:
   db:
     image: postgis/postgis:16-3.4
     environment:
-      POSTGRES_DB: db_moto_tokyo_development
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       TZ: Asia/Tokyo

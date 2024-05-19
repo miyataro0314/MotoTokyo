@@ -1,0 +1,29 @@
+<%= javascript_include_tag 'admin/parkings/new', 'data-turbo-track': 'reload', async: true %>
+
+<div class="base-container">
+  <div class="base-l mt-5">
+    <%= form_with model: @parking, url: admin_parkings_path do |f| %>
+      <div>
+        <%= f.label :name %><br>
+        <%= f.text_field :name, autocomplete: 'off' %>
+      </div>
+      <div class="mt-3">
+        <%= f.label :postal_code %><br>
+        <%= f.text_field :postal_code,
+            id: 'postcode-input' %>
+      </div>
+      <div class="mt-3">
+        <%= f.label :street_address %><br>
+        <%= f.text_field :street_address,
+            id: 'address-input' %>
+      </div>
+      <div class="mt-3">
+        <%= f.label :weekday_text %><br>
+        <%= f.text_field :weekday_text %>
+      </div>
+      <div>
+        <%= f.submit class: 'btn-submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>

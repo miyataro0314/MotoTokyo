@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       post 'sign_in', to: 'sessions#create'
       delete 'sign_out', to: 'sessions#destroy'
     end
+
+    resources :parkings, only: %i[new create show index edit destroy]
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

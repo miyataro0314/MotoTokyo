@@ -20,7 +20,6 @@ module Api
         session[:name] = params[:name]
         session[:place_id] = params[:place_id]
         session[:postal_code] = params[:adr_address]&.slice(/〒(\d{3}-\d{4})/)
-        session[:region] = params[:adr_address]&.slice(%r{<span class="region">(.+)</span><span class}, 1)
         session[:street_address] = params[:adr_address]&.slice(%r{<span class="street-address">(.+)</span>}, 1)
         session[:phone_number] = params[:formatted_phone_number]
         session[:lat] = params.dig(:geometry, :location, :lat)

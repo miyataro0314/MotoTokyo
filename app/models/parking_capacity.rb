@@ -1,0 +1,2 @@
+class ParkingCapacity < ApplicationRecord
+end

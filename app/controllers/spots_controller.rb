@@ -30,7 +30,7 @@ class SpotsController < ApplicationController
   def clear_session
     keys = %i[
       name parking parking_limitation difficulty_level category comment_content
-      place_id postal_code region street_address phone_number lat lng text
+      place_id postal_code street_address phone_number lat lng text
       rating user_rating_total url
     ]
     keys.each { |key| session.delete(key) }
@@ -59,7 +59,6 @@ class SpotsController < ApplicationController
       id: session[:place_id],
       spot_id: spot.id,
       postal_code: session[:postal_code],
-      region: session[:region],
       street_address: session[:street_address],
       phone_number: session[:phone_number],
       coordinate: factory.point(session[:lng], session[:lat]),

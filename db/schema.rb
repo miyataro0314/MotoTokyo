@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_18_121641) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -35,10 +35,44 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_121641) do
     t.index ["user_id"], name: "index_difficulties_on_user_id"
   end
 
+  create_table "parking_capacities", force: :cascade do |t|
+    t.bigint "parking_id", null: false
+    t.integer "type", null: false
+    t.integer "capacity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parking_id"], name: "index_parking_capacities_on_parking_id"
+    t.index ["type"], name: "index_parking_capacities_on_type"
+  end
+
+  create_table "parking_fees", force: :cascade do |t|
+    t.bigint "parking_id", null: false
+    t.string "description"
+    t.integer "start_time"
+    t.integer "end_time"
+    t.integer "hourly_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hourly_rate"], name: "index_parking_fees_on_hourly_rate"
+    t.index ["parking_id"], name: "index_parking_fees_on_parking_id"
+  end
+
+  create_table "parkings", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "area", null: false
+    t.string "postal_code", null: false
+    t.string "street_address", null: false
+    t.geometry "coordinate", limit: {:srid=>0, :type=>"st_point"}
+    t.string "weekday_text", default: [], array: true
+    t.string "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area"], name: "index_parkings_on_area"
+  end
+
   create_table "spot_details", id: :string, force: :cascade do |t|
     t.bigint "spot_id", null: false
     t.string "postal_code"
-    t.string "region"
     t.string "street_address"
     t.string "phone_number"
     t.geography "coordinate", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
@@ -84,9 +118,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_121641) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -96,6 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_18_121641) do
   add_foreign_key "comments", "users"
   add_foreign_key "difficulties", "spots"
   add_foreign_key "difficulties", "users"
+  add_foreign_key "parking_capacities", "parkings"
+  add_foreign_key "parking_fees", "parkings"
   add_foreign_key "spot_details", "spots"
   add_foreign_key "spots", "users", on_delete: :nullify
 end

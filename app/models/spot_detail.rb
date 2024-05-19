@@ -2,7 +2,7 @@ class SpotDetail < ApplicationRecord
   belongs_to :spot
 
   def address
-    region + street_address
+    "東京都#{street_address}"
   end
 
   def opening_hours

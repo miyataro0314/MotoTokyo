@@ -25,3 +25,7 @@ body {
 .pane-a {
   @apply w-full mx-auto p-2 rounded-2xl bg-base-100
 }
+
+.btn-submit {
+  @apply daisy-btn daisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm
+}
