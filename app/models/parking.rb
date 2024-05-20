@@ -15,6 +15,10 @@ class Parking < ApplicationRecord
       .order(Arel.sql('ST_Distance(coordinate, ST_GeomFromText(?, 4326))', point.to_s))
   }
 
+  def address
+    "東京都#{street_address}"
+  end
+
   def opening_hours
     return if weekday_text.nil?
 

@@ -1,0 +1,75 @@
+<%= turbo_frame_tag 'modal' do %>
+
+  <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+
+  <div class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20'
+        data-controller="modal"
+        data-modal-target="background"
+        data-action="click->modal#closeModal">
+    <div class="base-l mt-3 p-3 text-sm"
+         data-modal-target="modal">
+      <div class="pane-a text-base">
+        <%= @parking.name %>
+      </div>
+      <div class="pane-a h-40 mt-3" id="parking-map"></div>
+      <div class="pane-a h-full mt-3">
+        <div class="text-left">
+          <%= @parking.postal_code %><br>
+          <%= @parking.address %>
+        </div>
+        <div class="flex">
+          <div class="text-left flex-auto">
+            <% @capacities.each do |capacity| %>
+              <div>
+                <%= "#{t_enum('parking_capacity', 'vehicle_type', capacity.vehicle_type)} : #{capacity.capacity}台" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="text-right flex-auto">
+            <% @fees.each do |fee| %>
+              <div>
+                <%= "#{fee.description}  #{fee.fee}円/#{t_enum('parking_fee', 'interval', fee.interval)}" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div>
+          <% @parking.weekday_text.each do |weekday| %>
+            <div>
+              <%= weekday %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    initMap();
+
+    function initMap() {
+      const parkingPosition = { lat: <%= @parking.coordinate.latitude %>,
+                              lng: <%= @parking.coordinate.longitude %> };
+      
+      const map = new google.maps.Map(document.getElementById('parking-map'), {
+        mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>',
+        center: parkingPosition,
+        zoom: 13
+      });
+
+      const blueScaledMarker = new google.maps.marker.PinView({
+        scale: 1.2,
+        background: "#1b73e8",
+        borderColor: "#0b4087",
+        glyphColor: "#0b4087"
+      });
+
+      const parkingMarker = new google.maps.marker.AdvancedMarkerElement({
+        map,
+        position: parkingPosition,
+        content: blueScaledMarker.element,
+      });
+    }
+  </script>
+
+<% end %>

@@ -46,6 +46,7 @@ class Admin::ParkingsController < ApplicationController
     weekday_text = build_weekday_text
 
     parking = Parking.new(parking_params)
+    parking.postal_code = "〒#{parking_params[:postal_code][0..2]}-#{parking_params[:postal_code][3..6]}"
     parking.area = area
     parking.weekday_text = weekday_text
     parking
@@ -97,6 +98,9 @@ class Admin::ParkingsController < ApplicationController
 
     fees_params.to_unsafe_h.map do |_, attrs|
       permitted_params = fee_params(attrs)
+      permitted_params[:start_time] = permitted_params[:start_time].gsub(/(\d+):(\d+)/, '\1時\2分')
+      permitted_params[:end_time] = permitted_params[:end_time].gsub(/(\d+):(\d+)/, '\1時\2分')
+
       fee = ParkingFee.new(permitted_params)
       fee.parking = parking
       fee

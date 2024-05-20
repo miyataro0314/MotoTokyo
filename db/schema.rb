@@ -46,8 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
   create_table "parking_fees", force: :cascade do |t|
     t.bigint "parking_id", null: false
     t.string "description"
-    t.integer "start_time"
-    t.integer "end_time"
+    t.string "start_time"
+    t.string "end_time"
     t.integer "fee"
     t.integer "interval"
     t.datetime "created_at", null: false

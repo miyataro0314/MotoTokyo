@@ -1,6 +1,9 @@
 <div class="base-c m-3 mx-5 flex-shrink-0">
   <div class="pane-a h-20"></div>
-  <div class="m-1 text-left text-sm"><%= parking.name %></div>
+  <div class="m-1 text-left text-sm">
+    <%= link_to parking.name, parking_path(parking),
+        data: { turbo_frame: 'modal' } %>
+  </div>
   <div class="text-right text-xs">
     <div><%= parking.opening_hours %></div>
     <div><%= parking.distance(spot_detail.coordinate) %>m</div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home', to: 'homes#top', as: :home
   
   resources :spots, only: %i[new create show index]
+  resources :parkings, only: %i[show index]
 
   resources :spot_registrations, only: [] do
     collection do
