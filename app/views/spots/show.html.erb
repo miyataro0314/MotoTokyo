@@ -52,8 +52,9 @@
   </div>
 
   <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap">
-    <% 5.times do %>
-      <%= render 'spots/parking_card' %>
+    <% @parkings.each do |parking| %>
+      <%= render partial: 'spots/parking_card',
+                 locals: { spot_detail: @spot_detail, parking: parking } %>
     <% end %>
   </div>
 
@@ -75,11 +76,27 @@
       scale: 1.2,
     });
 
+    const blueMarker = new google.maps.marker.PinView({
+      background: "#1b73e8",
+      borderColor: "#0b4087",
+      glyphColor: "#0b4087"
+    });
+
     const spotMarker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: spotPosition,
       content: scaledMarker.element,
     });
+
+    <% @parkings.each do |parking| %>
+    const parkingPosition<%= parking.id %> = { lat: <%= parking.coordinate.latitude %>,
+                                                lng: <%= parking.coordinate.longitude %> }
+    const parkingMarker<%= parking.id %> = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: parkingPosition<%= parking.id %>,
+      content: blueMarker.element
+    });
+    <% end %>
   }
 </script>
 

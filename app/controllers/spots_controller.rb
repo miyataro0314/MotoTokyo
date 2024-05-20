@@ -19,6 +19,7 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @spot_detail = @spot.spot_detail
+    @parkings = @spot_detail.near_parkings(1000)
   end
 
   def index

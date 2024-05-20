@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
     t.integer "area", null: false
     t.string "postal_code", null: false
     t.string "street_address", null: false
-    t.geometry "coordinate", limit: {:srid=>0, :type=>"st_point"}
+    t.geography "coordinate", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.string "weekday_text", default: [], array: true
     t.string "info"
     t.datetime "created_at", null: false

@@ -63,7 +63,7 @@ class Admin::ParkingsController < ApplicationController
       else
         start_time = attrs[:start].gsub(/(\d+):(\d+)/, '\1時\2分')
         end_time = attrs[:end].gsub(/(\d+):(\d+)/, '\1時\2分')
-        "#{weekdays[i]}: #{start_time}〜#{end_time}}"
+        "#{weekdays[i]}: #{start_time}〜#{end_time}"
       end
     end
   end
