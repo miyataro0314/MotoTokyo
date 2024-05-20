@@ -1,4 +1,14 @@
 Geocoder.configure(
+  lookup: :google,
+  always_raise: [
+    Geocoder::OverQueryLimitError,
+    Geocoder::RequestDenied,
+    Geocoder::InvalidRequest,
+    Geocoder::InvalidApiKey
+  ],
+  api_key: Rails.application.credentials.google_maps[:api_key],
+  use_https: true
+)
   # Geocoding options
   # timeout: 3,                 # geocoding service timeout (secs)
   # lookup: :nominatim,         # name of geocoding service (symbol)
@@ -24,4 +34,4 @@ Geocoder.configure(
   #   expiration: 2.days,
   #   prefix: 'geocoder:'
   # }
-)
+

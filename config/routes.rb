@@ -37,7 +37,14 @@ Rails.application.routes.draw do
       delete 'sign_out', to: 'sessions#destroy'
     end
 
-    resources :parkings, only: %i[new create show index edit destroy]
+    resources :parkings, only: %i[new create show index edit destroy] do
+      collection do
+        get 'fee_field', to: 'parking_registrations#add_fee_field'
+        delete 'fee_field', to: 'parking_registrations#delete_fee_field'
+        get 'capacity_field', to: 'parking_registrations#add_capacity_field'
+        delete 'capacity_field', to: 'parking_registrations#delete_capacity_field'
+      end
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

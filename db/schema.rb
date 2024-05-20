@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_comments_on_spot_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "difficulties", force: :cascade do |t|
@@ -32,17 +31,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_difficulties_on_spot_id"
-    t.index ["user_id"], name: "index_difficulties_on_user_id"
   end
 
   create_table "parking_capacities", force: :cascade do |t|
     t.bigint "parking_id", null: false
-    t.integer "type", null: false
     t.integer "capacity", null: false
+    t.integer "vehicle_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parking_id"], name: "index_parking_capacities_on_parking_id"
-    t.index ["type"], name: "index_parking_capacities_on_type"
+    t.index ["vehicle_type"], name: "index_parking_capacities_on_vehicle_type"
   end
 
   create_table "parking_fees", force: :cascade do |t|
@@ -50,10 +48,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
     t.string "description"
     t.integer "start_time"
     t.integer "end_time"
-    t.integer "hourly_rate"
+    t.integer "fee"
+    t.integer "interval"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hourly_rate"], name: "index_parking_fees_on_hourly_rate"
     t.index ["parking_id"], name: "index_parking_fees_on_parking_id"
   end
 
@@ -68,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_042109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["area"], name: "index_parkings_on_area"
+    t.index ["coordinate"], name: "index_parkings_on_coordinate", using: :gist
   end
 
   create_table "spot_details", id: :string, force: :cascade do |t|

@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    attributes:
+      parking_capacity:
+        capacity: '台数'
+        vehicle_type: '車種'
+    enums:
+      parking_capacity:
+        vehicle_type:
+          all_ok: '全排気量'
+          no_big: '中型以下'
+          only_scooter: '原付きのみ'

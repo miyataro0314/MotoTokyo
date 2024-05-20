@@ -13,6 +13,6 @@ class CreateParkings < ActiveRecord::Migration[7.1]
     end
 
     add_index :parkings, :area
-    add_index :spot_details, :coordinate, using: :gist
+    add_index :parkings, :coordinate, using: :gist
   end
 end
