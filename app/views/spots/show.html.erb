@@ -6,43 +6,48 @@
 
   <%= render 'shared/breadcrumb' %>
   
-  <div class="base-l mt-3 p-3 text-sm">
-    <div class="pane-a text-base">
+  <div class="base-l mt-3 p-3 ml-5 text-left">
+    <div class="pane-a font-semibold text-base">
       <%= @spot.name %>
     </div>
-    <div class="pane-a h-40 mt-3" id="map"></div>
+    <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="map"></div>
     <div class="pane-a h-full mt-3">
-      <div class="text-left">
-        <%= @spot_detail.postal_code %><br>
-        <%= @spot_detail.address %>
+      <div class="text-left pb-1 border-b border-gray-300">
+        <p><%= @spot_detail.postal_code %></p>
+        <p><%= @spot_detail.address %></p>
       </div>
-      <div class="flex">
-        <div class="flex flex-col mx-auto text-left">
-          <div>
-            カテゴリ：<%= t_enum('spot', 'category', @spot.category) %>
+      <div class="flex justify-between">
+        <div class="flex flex-col text-left">
+          <div class="text-xs">
+            <p class="text-sm">カテゴリ</p>
+            <%= t_enum('spot', 'category', @spot.category) %>
           </div>
         </div>
-        <div class="flex flex-col mx-auto text-right">
+        <div class="flex flex-col text-right">
           <div>
+            <%= svg_tag 'vuesax/linear/clock.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
             <%= @spot_detail.opening_hours %>
           </div>
           <div>
-            駐車場：<%= t_enum('spot', 'parking', @spot.parking) %>
-          </div>
-          <div>
-            投稿者：<%= @spot.user.id %>
+            <%= svg_tag 'parking_icon.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
+            <%= t_enum('spot', 'parking', @spot.parking) %>
           </div>
         </div>
       </div>
-      <div class="pane-a h-32">天気情報</div>
-      <div class="flex items-center">
-        <div class="w-10 h-10 mx-3 rounded-full bg-primary">画</div>
-        <div class="flex-grow mr-3 rounded-full bg-primary">
-          コメント<br>
-          sadghsg<br>
-          dfasdg
+      <% if @comment.nil? %>
+        <p class="my-3 text-xs text-center">
+          まだおすすめポイントは投稿されていません
+        </p>
+      <% else %>
+        <div class="flex my-3 items-center">
+          <div class="w-10 h-10 mx-3 rounded-full overflow-hidden bg-primary">
+            <%= image_tag @comment.user.profile.avatar %>
+          </div>
+          <div class="flex-grow h-fit p-2 rounded-full bg-white border border-gray-200">
+            <%= @comment.content %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 

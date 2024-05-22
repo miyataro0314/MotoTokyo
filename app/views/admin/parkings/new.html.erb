@@ -36,7 +36,7 @@
             <!-- TurboStreamでフォーム追加 -->
           </div>
             <%= link_to '料金フォーム追加', fee_field_admin_parkings_path,
-                class: 'btn-submit',
+                class: 'btn-secondary',
                 data: { turbo_stream: true } %>
         </div>
         <div>
@@ -44,7 +44,7 @@
             <!-- TurboStreamでフォーム追加 -->
           </div>
             <%= link_to '台数フォーム追加', capacity_field_admin_parkings_path,
-                class: 'btn-submit',
+                class: 'btn-secondary',
                 data: { turbo_stream: true } %>
         </div>
         <%= f.fields_for :weekday_text do |f| %>
@@ -116,7 +116,7 @@
         <% end %>
       </div>
       <div class="w-full m-3">
-        <%= f.submit class: 'btn-submit' %>
+        <%= f.submit class: 'btn-secondary' %>
       </div>
     <% end %>
   </div>

@@ -4,7 +4,7 @@
        data-controller="modal"
        data-modal-target="background"
        data-action="click->modal#closeModal">
-    <div class="base-l"
+    <div class="base-l drop-shadow-2xl"
          data-modal-target="modal">
       <div class="text-lg font-semibold text-primary-content"><%= @spot.name %></div>
       <%= form_with model: @spot,
@@ -48,9 +48,16 @@
                 class: 'daisy-textarea w-64 h-32 px-3 drop-shadow-md bg-white' } %>
           <% end %>
         </div>
-        <%= f.submit '更新', class: 'btn-submit',
-            data: { action: 'submit->modal#closeModalBySubmit' } %>
+        <%= f.submit '更新', class: 'btn-secondary' %>
       <% end %>
+      <div>
+        <div>または</div>
+        <%= link_to 'スポットを削除する', spot_path(@spot),
+            class: 'btn-danger',
+            data: { turbo_confirm: '本当に削除してよろしいですか？',
+                    turbo_method: :delete,
+                    action: 'click->modal#closeModalBySubmit' } %>
+      </div>
     </div>
   </div>
 

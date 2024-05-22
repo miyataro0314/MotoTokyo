@@ -1,19 +1,21 @@
-<div class="pane-a flex flex-col my-2 text-left text-xs">
-  <div class="flex">
-    <div class="w-1/2 text-base ">
-      <%= link_to spot.name, spot_path(spot, from: from),
-          data: { turbo: false } %>
+<%= link_to spot_path(spot, from: from),
+  data: { turbo: 'false' } do %>
+  <div class="pane-20 flex flex-col my-2 text-left text-xs">
+    <div class="flex border-b border-gray-300">
+      <div class="w-1/2 font-semibold text-base">
+        <%= spot.name %>
+      </div>
+      <div class="w-1/2 pb-0.5 text-right">
+        <div>
+          <%= spot.spot_detail.opening_hours %>
+        </div>
+        <div>
+          <%= t_enum('spot', 'parking', spot.parking) %>
+        </div>
+      </div>
     </div>
-    <div class="w-1/2 text-right">
-      <div>
-        <%= spot.spot_detail.opening_hours %>
-      </div>
-      <div>
-        <%= t_enum('spot', 'parking', spot.parking) %>
-      </div>
+    <div class="whitespace-prewrap overflow-hidden">
+      <%= spot.spot_detail.address %>
     </div>
   </div>
-  <div>
-    <%= spot.spot_detail.address %>
-  </div>
-</div>
+<% end %>

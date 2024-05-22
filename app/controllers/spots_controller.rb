@@ -25,7 +25,8 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @spot_detail = @spot.spot_detail
-    @parkings = @spot_detail.near_parkings(2000)
+    @parkings = @spot_detail.near_parkings(1000)
+    @comment = @spot.comments.order('RANDOM()').first
   end
 
   def update
@@ -45,6 +46,11 @@ class SpotsController < ApplicationController
 
   def index
     @spots = Spot.all.includes(:spot_detail).page(params[:page])
+  end
+
+  def destroy
+    @spot = Spot.find(params[:id])
+    @spot.destroy
   end
 
   private
@@ -145,7 +151,7 @@ class SpotsController < ApplicationController
       @difficulty = build_difficulty(@spot)
       @comment = build_comment(@spot)
 
-      unless @spot_details.save && @difficulty.save && @comment.save
+      unless @spot_details.save && @difficulty.save && (@comment.content.present? ? @comment.save : true)
         handle_save_error
         raise ActiveRecord::Rollback
       end

@@ -1,16 +1,18 @@
 <div class="base-container">
-  <h1 class="pt-12 p-3 text-2xl">スポット登録完了！</h1>
-  <p class="p-3 text-sm">
+
+  <h1 class="h1">スポット登録完了！</h1>
+  
+  <p class="m-3">
     あなたの登録した<%= @spot.name %>は<br>
     累計<%= @count %>番目のスポットです！
   </p>
-  <p class="text-sm">
-    サービス発展にご協力いただきありがとうございました
+  <p>
+    サービスの発展にご協力いただきありがとうございました
   </p>
 
-  <div class="base-m mt-16 h-32 mx-auto text-primary-content">
-    <p class ="p-1 text-sm">登録したスポットを...</p>
-    <%= link_to '確認する！', spot_path(@spot, from: 'spot_registration'),
-        class: 'daisy-btn daisy-btn-secondary w-32 h-10 mt-5 p-3 mx-auto block rounded-full text-sm' %>
+  <div class="base-m mt-10 mx-auto text-primary-content">
+    <p class ="m-3 text-base">登録したスポットを...</p>
+    <%= link_to '確認する', spot_path(@spot, from: 'spot_registration'),
+        class: 'btn-secondary' %>
   </div>
 </div>

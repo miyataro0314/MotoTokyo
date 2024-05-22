@@ -11,6 +11,7 @@ class SearchesController < ApplicationController
   def search_spots
     set_page
     set_spot_search_query
+    @query = build_query_string
     search_spots_form = SearchSpotsForm.new(session_spots_params)
     @spots = search_spots_form.search.page(session[:page])
     render 'spots/index'
@@ -45,5 +46,14 @@ class SearchesController < ApplicationController
       category: session[:category],
       parking: session[:parking]
     }
+  end
+
+  def build_query_string
+    %i[area category parking].map { |key| translated_value(key) }.compact.join(', ')
+  end
+
+  def translated_value(key)
+    value = session[key]
+    value.present? ? I18n.t("activerecord.enums.spot.#{key}.#{value}") : nil
   end
 end

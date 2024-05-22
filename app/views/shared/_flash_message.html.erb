@@ -1,0 +1,15 @@
+<% if notice %>
+  <div role="alert" class="daisy-alert w-fit h-14 my-3 mx-auto shadow-lg">
+    <%= svg_tag 'vuesax/linear/tick-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
+    <div>
+      <h3 class="font-semibold"><%= notice %></h3>
+    </div>
+  </div>
+<% elsif alert %>
+  <div role="alert" class="daisy-alert w-fit h-14 my-3 mx-auto shadow-lg">
+    <%= svg_tag 'vuesax/linear/info-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
+    <div>
+      <h3 class="font-semibold"><%= alert %></h3>
+    </div>
+  </div>
+<% end %>

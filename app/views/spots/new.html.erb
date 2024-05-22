@@ -6,25 +6,48 @@
   
   <%= turbo_frame_tag 'modal' %>
 
-  <h1 class="pt-12 p-3 text-2xl">スポット登録</h1>
-  <p class="text-sm">
-    お気に入りのスポットを登録しましょう！<br>
-    登録したスポットは検索内容に反映されます。
+  <h1 class="h1">スポット登録</h1>
+  
+  <p class="mt-6 text-base font-semibold">登録可能なスポットは</p>
+  <p class="text-lg font-bold">東京の中すべて！</p>
+  <p class="text-base font-semibold">
+    おすすめのツーリングスポットから、<br>
+    行ってみたかったラーメン屋まで何でもOK！
   </p>
   
-  <div class="base-m h-80 mt-14 mx-auto">
-    <p class="p-3 text-sm text-primary-content">4STEPで登録</p>
+  <div class="base-m mt-10 mx-auto">
+    <p class="p-3 text-sm text-primary-content">4STEPでかんたんに登録！</p>
     <div class="w-44 h-44 m-auto rounded-2xl bg-white">画像いれる</div>
     <%= link_to 'スポット登録', step1_spot_registrations_path,
-        class: 'btn-submit',
+        class: 'btn-secondary',
         data: { turbo_frame: 'modal' } %>
   </div>
 
-  <div class="base-m mt-16 mx-auto text-primary-content">
-    <p class ="p-1 text-sm">以下の禁止事項をお読みください</p>
-    <ul class="list-dixc list-inside text-xs primary">
-      <li class="p-0.5">私有地の登録はしないでください</li>
-      <li class="p-0.5">虚偽の申告はしないでください</li>
+
+  <p class="mt-10 m-1 text-base font-semibold">
+    スポットを登録していただくと、<br>
+    全ユーザーで以下の機能が使えるようになります
+  </p>
+  <div class="base-l mx-auto mt-3 text-primary-content">
+    <ul class="list-disc list-inside text-left">
+      <li class="m-1">スポット検索</li>
+      <li class="m-1">行ったスポットの保存</li>
+      <li class="m-1">付近の天気情報の取得</li>
+      <li class="m-1">付近のパーキング情報の取得</li>
+      <li class="m-1">気になるスポットのブックマーク</li>
+      <li class="m-1">初心者にも安心の行きやすさ投票機能</li>
+      <li class="m-1">他ユーザーからのおすすめポイント投稿</li>
+    </ul>
+  </div>
+
+  <div class="base-m mt-10 mx-auto text-primary-content">
+    <p>
+      ご登録の前に<br>
+      以下の注意事項をお読みください
+    </p>
+    <ul class="list-disc list-inside text-xs">
+      <li class="m-1 border-b w-fit mx-auto">私有地の登録はしないでください</li>
+      <li class="m-1 border-b w-fit mx-auto">虚偽の登録はしないでください</li>
     </ul>
   </div>
 </div>

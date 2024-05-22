@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply text-base;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  color: #444444
+}
+
+.h1 {
+  @apply mt-8 m-3 text-2xl font-semibold
 }
 
 .base-container {
@@ -11,27 +17,44 @@ body {
 }
 
 .base-m {
-  @apply w-64 mx-auto p-3 rounded-2xl bg-primary
+  @apply w-64 h-fit mx-auto p-3 rounded-3xl bg-primary
+}
+
+.text-field-m {
+  @apply w-52 h-10 p-2 drop-shadow-md rounded-full border border-gray-200
 }
 
 .base-l {
-  @apply w-80 mx-auto p-3 rounded-3xl bg-primary
+  @apply w-80 h-fit mx-auto p-3 rounded-3xl bg-primary
+}
+
+.text-field-l {
+  @apply w-64 h-10 p-2 drop-shadow-md rounded-full border border-gray-200
 }
 
 .base-c {
-  @apply w-32 mx-auto p-2 rounded-2xl bg-primary
+  @apply w-32 h-fit mx-auto p-2 rounded-2xl bg-primary
 }
 
 .pane-a {
-  @apply w-full mx-auto p-2 rounded-2xl bg-base-100
+  @apply w-full h-fit mx-auto p-3 rounded-2xl bg-base-100
+}
+
+.pane-20 {
+  @apply w-full h-20 mx-auto p-2 rounded-2xl bg-base-100
 }
 
 .btn-s {
   @apply daisy-btn daisy-btn-secondary h-fit w-fit min-h-0 py-1.5 px-2 block rounded-xl text-xs
 }
 
-.btn-submit {
-  @apply daisy-btn daisy-btn-secondary w-fit h-10 mt-5 p-3 mx-auto block rounded-full text-sm
+.btn-secondary {
+  @apply daisy-btn daisy-btn-secondary min-w-20 w-fit h-10 mt-3 p-3 mx-auto
+         block drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
+}
+
+.btn-danger {
+  @apply daisy-btn daisy-btn-accent w-fit h-10 mt-5 p-3 mx-auto block rounded-full text-sm
 }
 
 .tab {
@@ -41,6 +64,10 @@ body {
 .tabs-field input:checked + .tab_item {
   background-color: #5ab4bd;
   color: #fff;
+}
+
+.daisy-collapse-title {
+  padding: 16px;
 }
 
 .tab-content {
@@ -58,4 +85,18 @@ body {
 #tab2:checked + label {
   background-color: #5ab4bd;
   color: #fff;
+}
+
+.collapse-container {
+  margin: 20px;
+}
+
+.collapse-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.collapse-content.expanded {
+  max-height: 200px; /* ここはコンテンツの高さに合わせて調整 */
 }

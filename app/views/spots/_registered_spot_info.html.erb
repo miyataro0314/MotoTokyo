@@ -1,17 +1,16 @@
-<div class="pane-a flex flex-col my-2 text-left text-xs"
-     id=<%= "spot-#{spot.id}" %>>
-  <div class="flex">
-    <div class="w-3/4 text-base ">
-      <%= link_to spot.name, spot_path(spot, from: from),
-          data: { turbo: false } %>
+<div class="relative">
+  <%= link_to spot_path(spot, from: from),
+    data: { turbo: false } do %>
+    <div class="pane-20 flex flex-col my-2 text-left text-xs">
+        <div class="h-8 border-b border-gray-300 font-semibold text-base">
+          <%= spot.name %>
+        </div>
+      <div class="whitespace-prewrap overflow-hidden">
+        <%= spot.spot_detail.address %>
+      </div>
     </div>
-    <div class="w-1/4 flex flex-row-reverse ">
-        <%= link_to '編集', edit_spot_path(spot),
-            class: 'btn-s',
-            data: { turbo_frame: 'modal'} %>
-    </div>
-  </div>
-  <div>
-    <%= spot.spot_detail.address %>
-  </div>
+  <% end %>
+  <%= link_to '編集', edit_spot_path(spot),
+    class: 'btn-s absolute z-10 right-3 top-1',
+    data: { turbo_frame: 'modal'} %>
 </div>
