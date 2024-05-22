@@ -1,0 +1,33 @@
+<div class="base-container">
+  <h1 class="pt-12 p-3 text-2xl">マイページ</h1>
+
+  <div class="base-l">
+    <div><%= @profile.user_name %></div>
+    <div class="w-36 h-36 mx-auto overflow-hidden rounded-full bg-base-100 content-center">
+      <% if @profile.avatar.attached? %>
+        <%= image_tag @profile.avatar, alt: '画像アップロード中。画面更新で表示されます。' %>
+      <% else %>
+        <%= image_tag 'preview', class: "w-32 h-32 m-auto rounded-2xl bg-base-100" %>
+      <% end %>
+    </div>
+    <div>
+      登録したスポット数<br>
+      <%= current_user.spots.count %>
+    </div>
+    <div>
+      <%= "#{@profile.vehicle_name}  排気量クラス : #{t_enum('profile', 'vehicle_type', @profile.vehicle_type) }"%>
+    </div>
+    <div>
+      <% if @profile.vehicle_photo.attached? %>
+        <%= image_tag @profile.vehicle_photo %>
+      <% else %>
+        <%= image_tag 'preview', class: "w-32 h-32 mx-auto rounded-2xl bg-base-100" %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to 'プロフィール編集', edit_profile_path(@profile),
+          class: 'btn-submit' %>
+    </div>
+  </div>
+
+</div>

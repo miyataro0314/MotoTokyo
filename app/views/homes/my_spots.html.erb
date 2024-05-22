@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+
+<div class="base-container">
+
+  <%= turbo_frame_tag 'modal' %>
+
+  <h1 class="pt-12 p-3 text-2xl">マイスポット</h1>
+
+  <div class="base-l">
+    <div class="flex flex-wrap">
+      <input type="radio" id="tab1" name="tabs" class="hidden" <%= 'checked' if @selected_tab == 'bookmark' %>>
+      <label for="tab1" class="tab w-1/2">ブックマーク</label>
+      <input type="radio" id="tab2" name="tabs" class="hidden" <%= 'checked' if @selected_tab == 'register' %>>
+      <label for="tab2" class="tab w-1/2">登録スポット</label>
+
+      <div id="bookmarked_contents" class="hidden flex-1">
+        <% unless @bookmarked_spots.any? %>
+          <div class="pane-a flex flex-col my-2 text-sm">
+            該当するスポットがありませんでした
+          </div>
+        <% end %>
+        <% @bookmarked_spots.each do |spot| %>
+          <%= render partial: 'spots/spot_info', locals: { spot: spot, from: 'my_spots' } %>
+        <% end %>
+        <%= paginate @bookmarked_spots, param_name: :page_bookmark, params: { tab: 'bookmark' } %>
+      </div>
+      <div id="registered_contents" class="hidden flex-1">
+        <% unless @registered_spots.any? %>
+          <div class="pane-a flex flex-col my-2 text-left text-xs">
+            該当するスポットがありませんでした
+          </div>
+        <% end %>
+        <% @registered_spots.each do |spot| %>
+          <%= render partial: 'spots/registered_spot_info', locals: { spot: spot, from: 'my_spots' } %>
+        <% end %>
+        <%= paginate @registered_spots, param_name: :page_register, params: { tab: 'register' } %>
+      </div>
+    </div>
+  </div>
+</div>

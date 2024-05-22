@@ -3,8 +3,10 @@
     <% case params[:from] %>
     <% when 'spot_search' %>
       <%= link_to '＜ スポット検索結果に戻る', search_spots_searches_path %>
-    <% when 'spot_registration'  %>
+    <% when 'spot_registration' %>
       <%= link_to '＜ スポット登録画面に戻る', new_spot_path %>
+    <% when 'my_spots' %>
+      <%= link_to '＜ マイスポット一覧に戻る', my_spots_path %>
     <% end %>
   <% end %>
   </div>

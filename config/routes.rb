@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'static_pages#top'
-  get 'home', to: 'homes#top', as: :home
-  
-  resources :spots, only: %i[new create show index]
+  get 'home', to: 'homes#home'
+  get 'my_page', to: 'homes#my_page'
+  get 'my_spots', to: 'homes#my_spots'
+
+  resources :spots, only: %i[new create edit update show index]
   resources :parkings, only: %i[show index]
+  resources :profiles, only: %i[new create edit update]
 
   resources :spot_registrations, only: [] do
     collection do

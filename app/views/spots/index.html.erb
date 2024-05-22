@@ -11,13 +11,13 @@
     </div>
 
     <div class="base-l mt-3 h-full">
-      <% if @spots.nil? %>
-        <div class="pane-a flex flex-col my-2 text-left text-xs">
+      <% unless @spots.any? %>
+        <div class="pane-a flex flex-col my-2 text-sm">
           該当するスポットがありませんでした
         </div>
       <% end %>
       <% @spots.each do |spot| %>
-        <%= render partial: 'spots/spot_info', locals: { spot: spot } %>
+        <%= render partial: 'spots/spot_info', locals: { spot: spot, from: 'search' } %>
       <% end %>
       <%= paginate @spots %>
     </div>

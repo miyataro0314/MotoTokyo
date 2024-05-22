@@ -3,10 +3,11 @@ class Spot < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  has_one :spot_detail, dependent: :destroy
-
   has_many :difficulties, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :edit_histories, dependent: :destroy
+  has_one :spot_detail, dependent: :destroy
 
   enum parking: { free: 0, paid: 5, nothing: 10 }
   enum parking_limitation: { all_ok: 0, no_big: 5, only_scooter: 10 }

@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    attributes:
+      profile:
+        user_name: 'ユーザーネーム'
+        avatar: 'プロフィール画像'
+        vehicle_name: '愛車'
+        vehicle_type: '排気量クラス'
+        vehicle_photo: '愛車の写真'
+    enums:
+      profile:
+        vehicle_type:
+          big: '大型'
+          regular: '普通'
+          small: '小型'
+          moped: '50cc'
