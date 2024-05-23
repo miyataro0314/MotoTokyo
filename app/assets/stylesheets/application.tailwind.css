@@ -70,6 +70,9 @@ body {
   padding: 16px;
 }
 
+
+
+/* --- マイスポットタブ関係 --- */
 .tab-content {
   display: none;
 }
@@ -86,17 +89,33 @@ body {
   background-color: #5ab4bd;
   color: #fff;
 }
+/* ------------------------- */
 
-.collapse-container {
-  margin: 20px;
+/* --- ページネーション関係 --- */
+.pagination {
+  @apply flex justify-between w-52 h-10 mt-3 mx-auto rounded-full bg-base-100
 }
 
-.collapse-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
+.page {
+  @apply w-6 h-6 overflow-hidden box-content rounded-full mx-1 drop-shadow-md content-center
+         bg-secondary border border-2 border-gray-200 text-xs
+         hover:bg-primary hover:text-primary-content transition duration-300 ease-in-out
 }
 
-.collapse-content.expanded {
-  max-height: 200px; /* ここはコンテンツの高さに合わせて調整 */
+.page-current {
+  @apply w-8 h-8 rounded-full mx-1 drop-shadow-md content-center
+         bg-primary text-primary-content font-semibold
 }
+
+.first-page {
+  @apply w-6 h-6 rounded-full block box-content drop-shadow-md
+         bg-secondary border border-2 border-gray-200
+         hover:bg-primary hover:text-primary-content transition duration-300 ease-in-out
+}
+
+.last-page {
+  @apply w-6 h-6 rounded-full block box-content drop-shadow-md
+         bg-secondary border border-2 border-gray-200
+         hover:bg-primary hover:text-primary-content transition duration-300 ease-in-out
+}
+/* ------------------------- */
