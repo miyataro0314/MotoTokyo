@@ -1,17 +1,37 @@
 <div class="daisy-btm-nav bg-primary z-50">
-  <%= link_to home_path, class: 'cursor-default' do %>
-    <%= svg_tag 'vuesax/linear/home.svg', css_class: 'cursor-pointer stroke-primary-content' %>
-  <% end %>
-  <%= link_to new_search_path, class: 'cursor-default' do %>
-    <%= svg_tag 'vuesax/linear/search-normal.svg', css_class: 'cursor-pointer stroke-primary-content' %>
-  <% end %>
-  <%= link_to new_spot_path, class: 'cursor-default' do %>
-    <%= svg_tag 'vuesax/linear/location-add.svg', css_class: 'cursor-pointer stroke-primary-content' %>
-  <% end %>
-  <%= link_to my_spots_path, class: 'cursor-default' do %>
-    <%= svg_tag 'vuesax/linear/note.svg', css_class: 'cursor-pointer stroke-primary-content' %>
-  <% end %>
-  <%= link_to my_page_path, class: 'cursor-default' do %>
-    <%= svg_tag 'vuesax/linear/profile-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
-  <% end %>
+  <div class="cursor-default">
+    <%= link_to home_path, class: 'w-fit h-fit' do %>
+      <%= svg_tag 'vuesax/linear/home.svg',
+          css_class: 'daisy-btn daisy-btn-ghost daisy-btn-square w-7 h-7 min-h-6 mx-auto
+                      cursor-pointer stroke-primary-content' %>
+    <% end %>
+  </div>
+  <div class="cursor-default">
+    <%= link_to new_search_path, class: 'w-fit h-fit' do %>
+      <%= svg_tag 'vuesax/linear/search-normal.svg',
+          css_class: 'daisy-btn daisy-btn-ghost daisy-btn-square w-7 h-7 min-h-6 mx-auto
+                      cursor-pointer stroke-primary-content' %>
+    <% end %>
+  </div>
+  <div class="cursor-default">
+    <%= link_to new_spot_path, class: 'w-fit h-fit' do %>
+      <%= svg_tag 'vuesax/linear/location-add.svg',
+          css_class: 'daisy-btn daisy-btn-ghost daisy-btn-square w-7 h-7 min-h-6 mx-auto
+                      cursor-pointer stroke-primary-content' %>
+    <% end %>
+  </div>
+  <div class="cursor-default">
+    <%= link_to my_spots_path, class: 'w-fit h-fit' do %>
+      <%= svg_tag 'vuesax/linear/note.svg',
+          css_class: 'daisy-btn daisy-btn-ghost daisy-btn-square w-7 h-7 min-h-6 mx-auto
+                      cursor-pointer stroke-primary-content' %>
+    <% end %>
+  </div>
+  <div class="cursor-default">
+    <%= link_to my_page_path, class: 'w-fit h-fit' do %>
+      <%= svg_tag 'vuesax/linear/profile-circle.svg',
+          css_class: 'daisy-btn daisy-btn-ghost daisy-btn-square w-7 h-7 min-h-6 mx-auto
+                      cursor-pointer stroke-primary-content' %>
+    <% end %>
+  </div>
 </div>

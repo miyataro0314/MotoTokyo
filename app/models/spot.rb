@@ -16,4 +16,8 @@ class Spot < ApplicationRecord
   scope :by_area, ->(area) { where(area:) }
   scope :by_category, ->(category) { where(category:) }
   scope :by_parking, ->(parking) { where(parking:) }
+
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
+  end
 end

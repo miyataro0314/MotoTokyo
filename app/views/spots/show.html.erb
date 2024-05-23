@@ -1,6 +1,4 @@
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta" async defer></script>
-
-<div class="base-container">
+<div class="base-container mt-8">
 
   <%= turbo_frame_tag 'modal' %>
 
@@ -13,8 +11,10 @@
         <%= @spot.name %>
       </div>
     <% end %>
+
     <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="map"></div>
-    <div class="pane-a h-full mt-3">
+    
+    <div class="pane-a h-full mt-3">  
       <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
           target: "_blank" do %>
         <div class="text-left pb-1 border-b border-gray-300">
@@ -22,6 +22,7 @@
           <p><%= @spot_detail.address %></p>
         </div>
       <% end %>
+      
       <div class="flex justify-between">
         <div class="flex flex-col text-left">
           <div class="text-xs">
@@ -36,24 +37,40 @@
           </div>
           <div>
             <%= svg_tag 'parking_icon.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
-            <%= t_enum('spot', 'parking', @spot.parking) %>
+            <%= spot_parking_info(@spot) %>
           </div>
         </div>
       </div>
-      <% if @comment.nil? %>
-        <p class="my-3 text-xs text-center">
-          まだおすすめポイントは投稿されていません
-        </p>
-      <% else %>
-        <div class="flex my-3 items-center">
-          <div class="w-10 h-10 mx-3 rounded-full overflow-hidden bg-primary">
-            <%= image_tag @comment.user.profile.avatar %>
+
+      <div>
+        <% if @comment.nil? %>
+          <p class="my-3 text-xs text-center">
+            まだおすすめポイントは投稿されていません
+          </p>
+        <% else %>
+          <div class="flex my-3 items-end">
+            <div class="w-12 h-12 ml-1 mr-3 z-50 rounded-full overflow-hidden bg-primary">
+              <%= image_tag @comment.user.profile.avatar %>
+            </div>
+            <div class="chatbubble received my-auto">
+              <%= @comment.content %>
+            </div>
           </div>
-          <div class="flex-grow h-fit p-2 rounded-full bg-white border border-gray-200">
-            <%= @comment.content %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+
+      <div>
+        <% if @spot.bookmarked_by?(current_user) %>
+          <%= link_to 'ブックマーク解除',
+              spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
+              class: 'btn-secondary',
+              data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
+              class: 'btn-secondary',
+              data: { turbo_method: :post } %>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -75,7 +92,25 @@
 
 </div>
 
+<div id="script-container"></div>
+
 <script>
+  let map; // グローバル変数としてマップを保持
+  // 再読み込み防止
+  document.addEventListener("turbo:load", function() {
+    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+      initMap();
+    } else {
+      const script = document.createElement('script');
+      const scriptContainer = document.getElementById('script-container')
+      script.src = src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta";
+      script.async = true;
+      script.defer = true;
+      scriptContainer.appendChild(script);
+    }
+  });
+
+  // マップ表示
   function initMap() {
     const spotPosition = { lat: <%= @spot_detail.coordinate.latitude %>,
                             lng: <%= @spot_detail.coordinate.longitude %> };

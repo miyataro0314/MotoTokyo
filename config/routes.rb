@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   get 'my_spots', to: 'homes#my_spots'
   get 'account', to: 'homes#account'
 
-  resources :spots, only: %i[new create edit update show index destroy]
+  resources :spots, only: %i[new create edit update show index destroy] do
+    resources :bookmarks, only: %i[create destroy]
+  end
   resources :parkings, only: %i[show index]
   resources :profiles, only: %i[new create edit update]
+
 
   resources :spot_registrations, only: [] do
     collection do
@@ -18,6 +21,8 @@ Rails.application.routes.draw do
       get 'step3'
       get 'step4'
       get 'confirmation'
+      get 'success'
+      get 'failure'
     end
   end
 

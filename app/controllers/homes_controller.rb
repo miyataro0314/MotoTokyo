@@ -9,7 +9,7 @@ class HomesController < ApplicationController
 
   def my_spots
     @selected_tab = params[:tab] || 'bookmark'
-    @registered_spots = current_user.spots.page(params[:page_register])
+    @registered_spots = current_user.spots.page(params[:page_register]).order(:created_at)
     @bookmarked_spots = current_user.bookmarked_spots.page(params[:page_bookmark])
   end
 

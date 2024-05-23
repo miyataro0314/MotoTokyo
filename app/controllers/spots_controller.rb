@@ -9,10 +9,9 @@ class SpotsController < ApplicationController
     save_spot
 
     if @spot.persisted?
-      @count = Spot.all.count
-      render 'spot_registrations/success'
+      redirect_to success_spot_registrations_path(id: @spot.id)
     else
-      render 'spot_registrations/failure'
+      redirect_to failure_spot_registrations_path
     end
   end
 
@@ -33,7 +32,6 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @difficulty = Difficulty.find_by(user_id: current_user.id, spot_id: @spot.id)
     @comment = Comment.find_or_initialize_by(user_id: current_user.id, spot_id: @spot.id)
-
     ActiveRecord::Base.transaction do
       if update_spot_and_diffculty && save_or_update_comment
         flash[:notice] = 'スポット情報を更新しました'

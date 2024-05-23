@@ -9,14 +9,16 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        '112': '28rem',  // 448px h-112
-        '120': '30rem',  // 480px h-120
-        '128': '32rem'   // 512px h-128
+        '7': '28px',
+        '112': '448px',
+        '120': '480px',
+        '128': '512px'
       },
       width: {
-        '112': '28rem',  // 448px w-112
-        '120': '30rem',  // 480px w-120
-        '128': '32rem'   // 512px w-128
+        '7': '28px',
+        '112': '448px',
+        '120': '480px',
+        '128': '512px'
       }
     },
   },
@@ -34,9 +36,10 @@ module.exports = {
         'secondary': '#a2c5c9',
         'secondary-content': '#292d32',
         'accent': '#a78bfa',
-        'neutral': '#292d32',
-        'error': 'ef4444',
-        'base-100': '#f5f2e9'
+        'neutral': 'fbfbfb',
+        'error': '#fbbf24',
+        'base-100': '#f5f2e9',
+        'base-300': '#fbfbfb'
         }
       }
     ],
