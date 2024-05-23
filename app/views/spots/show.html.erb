@@ -7,15 +7,21 @@
   <%= render 'shared/breadcrumb' %>
   
   <div class="base-l mt-3 p-3 ml-5 text-left">
-    <div class="pane-a font-semibold text-base">
-      <%= @spot.name %>
-    </div>
+    <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
+          target: "_blank" do %>
+      <div class="pane-a font-semibold text-base">
+        <%= @spot.name %>
+      </div>
+    <% end %>
     <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="map"></div>
     <div class="pane-a h-full mt-3">
-      <div class="text-left pb-1 border-b border-gray-300">
-        <p><%= @spot_detail.postal_code %></p>
-        <p><%= @spot_detail.address %></p>
-      </div>
+      <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
+          target: "_blank" do %>
+        <div class="text-left pb-1 border-b border-gray-300">
+          <p><%= @spot_detail.postal_code %></p>
+          <p><%= @spot_detail.address %></p>
+        </div>
+      <% end %>
       <div class="flex justify-between">
         <div class="flex flex-col text-left">
           <div class="text-xs">
@@ -64,7 +70,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="mt-3 text-center">付近に登録済みのパーキングはありませんでした</div>      
+    <div class="mt-3 text-center">半径1km圏内に登録済みのパーキングは<br>ありませんでした</div>      
   <% end %>
 
 </div>

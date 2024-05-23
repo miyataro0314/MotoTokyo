@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home', to: 'homes#home'
   get 'my_page', to: 'homes#my_page'
   get 'my_spots', to: 'homes#my_spots'
+  get 'account', to: 'homes#account'
 
   resources :spots, only: %i[new create edit update show index destroy]
   resources :parkings, only: %i[show index]

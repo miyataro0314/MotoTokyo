@@ -57,11 +57,14 @@
   </div>
   <div class="flex absolute bottom-3 left-1/2 -translate-x-1/2">
     <%= link_to '戻る', step4_spot_registrations_path(from_confirmation: true),
-        data: { modal_target: 'toForm', action: 'click->modal#contractModal' },
+        data: { modal_target: 'toForm',
+                action: 'click->modal#contractModal' },
         class: 'daisy-btn daisy-btn-secondary w-20 h-10 mr-10 p-3 rounded-full text-sm
                 drop-shadow-lg border border-2 border-gray-200' %>
     <%= button_to '登録', spots_path, method: :post,
-        data: { turbo: false, wizard_target: 'toRegistration', action: 'click->wizard#removeSessionStorage' },
+        data: { turbo_frame: '_top',
+                wizard_target: 'toRegistration',
+                action: 'click->wizard#removeSessionStorage' },
         class: 'daisy-btn daisy-btn-secondary w-20 h-10 ml-10 p-3 rounded-full text-sm
         drop-shadow-lg border border-2 border-gray-200' %>
   </div>

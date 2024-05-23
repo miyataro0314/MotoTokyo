@@ -6,12 +6,16 @@
 
   <h1 class="h1">マイスポット</h1>
 
-  <div class="base-l">
+  <div class="base-l mt-8">
     <div class="flex flex-wrap">
       <input type="radio" id="tab1" name="tabs" class="hidden" <%= 'checked' if @selected_tab == 'bookmark' %>>
-      <label for="tab1" class="tab w-1/2">ブックマーク</label>
+      <label for="tab1" class="tab w-1/2 rounded-full text-primary-content">
+        ブックマーク
+      </label>
       <input type="radio" id="tab2" name="tabs" class="hidden" <%= 'checked' if @selected_tab == 'register' %>>
-      <label for="tab2" class="tab w-1/2">登録スポット</label>
+      <label for="tab2" class="tab w-1/2 rounded-full text-primary-content">
+        登録スポット
+      </label>
 
       <div id="bookmarked_contents" class="hidden flex-1">
         <% unless @bookmarked_spots.any? %>

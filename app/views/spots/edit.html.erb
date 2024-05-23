@@ -48,13 +48,15 @@
                 class: 'daisy-textarea w-64 h-32 px-3 drop-shadow-md bg-white' } %>
           <% end %>
         </div>
-        <%= f.submit '更新', class: 'btn-secondary' %>
+        <%= f.submit '更新', class: 'btn-secondary',
+                            data: { turbo_frame: '_top' } %>
       <% end %>
       <div>
         <div>または</div>
         <%= link_to 'スポットを削除する', spot_path(@spot),
             class: 'btn-danger',
             data: { turbo_confirm: '本当に削除してよろしいですか？',
+                    turbo_frame: '_top',
                     turbo_method: :delete,
                     action: 'click->modal#closeModalBySubmit' } %>
       </div>

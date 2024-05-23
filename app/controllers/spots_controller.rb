@@ -37,8 +37,10 @@ class SpotsController < ApplicationController
     ActiveRecord::Base.transaction do
       if update_spot_and_diffculty && save_or_update_comment
         flash[:notice] = 'スポット情報を更新しました'
+        redirect_to my_spots_path(tab: :register)
       else
         flash[:danger] = '更新に失敗しました'
+        redirect_to my_spots_path(tab: :register)
         raise ActiveRecord::Rollback
       end
     end
@@ -50,7 +52,12 @@ class SpotsController < ApplicationController
 
   def destroy
     @spot = Spot.find(params[:id])
-    @spot.destroy
+    if @spot.destroy
+      flash[:notice] = 'スポットを削除しました'
+    else
+      flash[:danger] = '削除に失敗しました'
+    end
+    redirect_to my_spots_path(tab: :register), status: :see_other
   end
 
   private

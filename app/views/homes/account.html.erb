@@ -1,0 +1,23 @@
+<div class="base-container">
+  <h1 class="h1">アカウント情報</h1>
+
+  <div class="base-l mt-8">
+    <div class="text-base text-primary-content">
+      <%= "ID : #{ current_user.id }" %>
+    </div>
+    <div class="text-primary-content">
+      <%= "サービス登録日 : #{ @registration_date }" %>
+    </div>
+    <div class="my-5">
+      <div class="btn-secondary w-44">
+        <%= link_to 'ユーザーIDを変更する', '#' %>
+      </div>
+      <div class="btn-secondary">
+        <%= link_to 'メールアドレスを変更する', '#' %>
+      </div>
+      <div class="btn-secondary">
+        <%= link_to 'パスワードを変更する', edit_user_password_path %>
+      </div>
+    </div>
+  </div>
+</div>
