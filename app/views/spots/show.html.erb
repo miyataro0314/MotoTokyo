@@ -59,15 +59,15 @@
         <% end %>
       </div>
 
-      <div>
+      <div class="flex">
         <% if @spot.bookmarked_by?(current_user) %>
           <%= link_to 'ブックマーク解除',
               spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
-              class: 'btn-secondary',
+              class: 'btn-secondary block',
               data: { turbo_method: :delete } %>
         <% else %>
           <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
-              class: 'btn-secondary',
+              class: 'btn-secondary block',
               data: { turbo_method: :post } %>
         <% end %>
       </div>

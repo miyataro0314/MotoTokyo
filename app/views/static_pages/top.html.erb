@@ -1,11 +1,105 @@
+<%= svg_tag 'moto-tokyo-logo.svg', 
+    css_class: 'w-56 h-28 mt-3 absolute left-1/2 translate-x-minus-fifty z-50' %>
+
 <div class="base-container">
+
+  <div class="scroll-container mt-24">
+    <div class="scroll-item bg-secondary rounded-3xl">
+      <span>Ride around tokyo!!</span>
+    </div>
+    <div class="scroll-item bg-secondary rounded-3xl">
+      <span>NO parking no Life !!</span>
+    </div>
+    <div class="scroll-item bg-secondary rounded-3xl">
+      <span>Let's pioneer new riding spot!</span>
+    </div>
+  </div>
+  
+  <style>
+  .scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 36px;
+    position: relative;
+    gap: 16px;
+  }
+  .scroll-container::before,
+  .scroll-container::after {
+    content: '';
+    flex: 0 0 12.5%;
+    height: 1px;
+  }
+  .scroll-item {
+    width: 208px;
+    height: 320px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 1px solid #000;
+    background-color: #e2e8f0;
+    scroll-snap-align: center;
+    position: relative;
+  }
+  .scroll-item: {
+    margin-right: 12.5%; /* 各アイテム間の隙間をコンテナの1/8に設定 */
+  }
+  .scroll-item span {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    transition: opacity 0.1s ease;
+  }
+</style>
+
+
+<script>
+  const container = document.querySelector('.scroll-container');
+  const items = document.querySelectorAll('.scroll-item');
+  const spans = document.querySelectorAll('.scroll-item span');
+
+  container.addEventListener('scroll', () => {
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+
+    spans.forEach((span) => {
+      const itemRect = span.parentElement.getBoundingClientRect();
+      const itemCenter = itemRect.left + itemRect.width / 2;
+      const distance = Math.abs(containerCenter - itemCenter);
+      const maxDistance = containerRect.width / 2;
+      const normalizedDistance = Math.min(distance / maxDistance, 1);
+      const spanScale = 1 - normalizedDistance ** 2
+      const parentScale = 1- normalizedDistance ** 2 / 10
+      span.style.transform = `translateX(-50%) scale(${spanScale})`;
+      span.style.opacity = spanScale;
+      span.parentElement.style.transform = `scale(${parentScale})`;
+    });
+
+    items.forEach((item) => {
+
+    } )
+  });
+</script>
+
+
   <p>
-    会員登録して<br>
-    ライディングスポットを登録する
+    お気に入りのスポットを登録して、<br>
+    新しい東京のツーリングライフを開拓しよう！
   </p>
-  <%= link_to '新規会員登録', new_user_registration_path,
-      class: 'daisy-btn' %>
-  <p>既にご登録済みの方は</p>
-  <%= link_to 'ログイン', new_user_session_path,
-      class: 'daisy-btn' %>
+
+  <div class="base-m mt-8 text-primary-content">
+    <div>
+      <p>
+        会員登録して<br>
+        お気に入りのスポットを登録する
+      </p>
+      <%= link_to '新規会員登録', new_user_registration_path,
+          class: 'btn-secondary' %>
+    </div>
+    <div class="mt-3">
+      <p>既にご登録済みの方は</p>
+      <%= link_to 'ログイン', new_user_session_path, class: 'btn-secondary' %>
+    </div>
+  </div>
 </div>

@@ -49,17 +49,17 @@ body {
 }
 
 .btn-s {
-  @apply daisy-btn daisy-btn-secondary h-fit w-fit min-h-0 py-1.5 px-2 block rounded-xl text-xs
+  @apply daisy-btn daisy-btn-secondary h-fit w-fit min-h-0 py-1.5 px-2 rounded-xl text-xs
 }
 
 .btn-secondary {
   @apply daisy-btn daisy-btn-secondary min-w-20 w-fit h-10 mt-3 p-3 mx-auto
-         block drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
+         drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
 }
 
 .btn-danger {
   @apply daisy-btn daisy-btn-error min-w-20 w-fit h-10 mt-3 p-3 mx-auto
-         block drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
+         drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
 }
 
 .flash {
