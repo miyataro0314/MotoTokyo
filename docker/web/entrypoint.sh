@@ -7,6 +7,8 @@ rm -f tmp/pids/server.pid
 if [ "$RAILS_ENV" = "production" ]; then
   echo "Running entrypoint script in production environment"
 
+  bundle install
+
   # データベースが存在しない場合createしてmigrate、存在時はmigrateのみ実行
   if ! bundle exec rake db:exists_check; then
     echo "Database does not exist. Creating and migrating..."
