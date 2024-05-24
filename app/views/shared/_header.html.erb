@@ -1,4 +1,4 @@
-<div class="daisy-navbar bg-primary">
+<header class="daisy-navbar bg-primary">
   <div class="daisy-navbar-start">
     <div class="daisy-dropdown">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -16,11 +16,11 @@
   <div class="daisy-navbar-center">
     <% if user_signed_in? %>
       <%= link_to home_path, class: 'w-fit h-fit' do %>
-        <%= svg_tag 'logo.svg', css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-20 h-12' %>
+        <%= svg_tag 'moto-tokyo-logo.svg', css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-20 h-12' %>
       <% end %>
     <% end %>
   </div>
   <div class="daisy-navbar-end">
     
   </div>
-</div>
+</header>

@@ -24,6 +24,8 @@
     <% if user_signed_in? %>
       <div class="h-20 bg-base-100"></div>
       <%= render 'shared/navbar' %>
+    <% else %>
+      <%= render 'shared/footer' %>
     <% end %>
   </body>
 </html>

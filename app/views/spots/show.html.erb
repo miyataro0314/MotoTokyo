@@ -95,20 +95,17 @@
 <div id="script-container"></div>
 
 <script>
-  let map; // グローバル変数としてマップを保持
   // 再読み込み防止
-  document.addEventListener("turbo:load", function() {
-    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
-      initMap();
-    } else {
-      const script = document.createElement('script');
-      const scriptContainer = document.getElementById('script-container')
-      script.src = src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta";
-      script.async = true;
-      script.defer = true;
-      scriptContainer.appendChild(script);
-    }
-  });
+  if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+    initMap();
+  } else {
+    const script = document.createElement('script');
+    const scriptContainer = document.getElementById('script-container')
+    script.src = src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta";
+    script.async = true;
+    script.defer = true;
+    scriptContainer.appendChild(script);
+  }
 
   // マップ表示
   function initMap() {
@@ -147,5 +144,7 @@
     });
     <% end %>
   }
+
+  
 </script>
 
