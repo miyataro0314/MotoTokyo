@@ -18,8 +18,9 @@
     <%= render 'shared/header' %>
 
     <%= render partial: 'shared/flash_message', locals: { notice: notice, alert: alert } %>
-    
-    <%= yield %>
+
+      <%= yield %>
+
 
     <% if user_signed_in? %>
       <div class="h-20 bg-base-100"></div>

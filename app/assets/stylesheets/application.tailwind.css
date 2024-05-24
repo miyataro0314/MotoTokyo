@@ -8,6 +8,10 @@ body {
   color: #444444
 }
 
+footer {
+  position: absolute;
+}
+
 .h1 {
   @apply mt-8 m-3 text-2xl font-semibold
 }

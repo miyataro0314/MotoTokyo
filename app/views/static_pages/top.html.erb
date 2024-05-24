@@ -3,26 +3,56 @@
 
 <div class="base-container">
 
-  <div class="scroll-container mt-24">
-    <div class="scroll-item bg-secondary rounded-3xl">
-      <span>Ride around tokyo!!</span>
+  <div class="scroll-container">
+    <div>
+      <div class="scroll-item bg-secondary rounded-3xl">
+        <span class="w-80 h-24 text-4xl font-black">
+          Ride Around<br>
+          Tokyo!!
+        </span>
+      </div>
+      <p>
+        東京に行くのは電車で十分？<br>
+        ノンノン、東京には沢山の<br>
+        ライディングスポットが眠っています！
+      </p>
     </div>
-    <div class="scroll-item bg-secondary rounded-3xl">
-      <span>NO parking no Life !!</span>
+    <div>
+      <div class="scroll-item bg-secondary rounded-3xl">
+        <span class="w-80 h-24 text-4xl font-black">
+          NO Parking<br>
+          No Life !!
+        </span>
+      </div>
+      <p>
+        いちいち駐車場を探す必要はありません<br>
+        付近の駐車場も同時に見つけられます！
+      </p>
     </div>
-    <div class="scroll-item bg-secondary rounded-3xl">
-      <span>Let's pioneer new riding spot!</span>
+    <div>
+      <div class="scroll-item bg-secondary rounded-3xl">
+        <span class="w-80 h-24 text-4xl font-black">
+          Let's pioneer<br>
+          new riding spot!
+        </span>
+      </div>
+      <p>
+        お気に入りのスポットを登録して、<br>
+        新しい東京のツーリングライフを開拓しよう！
+      </p>
     </div>
   </div>
   
   <style>
   .scroll-container {
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
     scroll-snap-type: x mandatory;
     padding: 0 36px;
     position: relative;
-    gap: 16px;
+    margin-top: 80px;
+    gap: 20px;
+    scrollbar-width: none; 
   }
   .scroll-container::before,
   .scroll-container::after {
@@ -45,19 +75,32 @@
   }
   .scroll-item span {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
     transition: opacity 0.1s ease;
+  }
+  .scroll-container p {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px; /* 必要に応じて調整 */
   }
 </style>
 
 
 <script>
   const container = document.querySelector('.scroll-container');
-  const items = document.querySelectorAll('.scroll-item');
   const spans = document.querySelectorAll('.scroll-item span');
+  const paragraphs = document.querySelectorAll('.scroll-container p');
+
+  let targetScales = [];
+  let currentScales = [];
+
+  paragraphs.forEach(() => {
+    targetScales.push({ scale: 1, opacity: 1 });
+    currentScales.push({ scale: 1, opacity: 1 });
+  });
 
   container.addEventListener('scroll', () => {
     const containerRect = container.getBoundingClientRect();
@@ -76,17 +119,33 @@
       span.parentElement.style.transform = `scale(${parentScale})`;
     });
 
-    items.forEach((item) => {
+    paragraphs.forEach((paragraph) => {
+      const itemRect = paragraph.getBoundingClientRect();
+      const itemCenter = itemRect.left + itemRect.width / 2;
+      const distance = Math.abs(containerCenter - itemCenter);
+      const maxDistance = containerRect.width / 2;
+      const normalizedDistance = Math.min(distance / maxDistance, 1);
+      const paragraphScale = 1 - normalizedDistance ** 1.5;
+      paragraph.style.transform = `scale(${paragraphScale})`;
+      paragraph.style.opacity = paragraphScale;
+    });
 
-    } )
+    function animate() {
+    paragraphs.forEach((paragraph, index) => {
+      currentScales[index].scale += (targetScales[index].scale - currentScales[index].scale) * 0.1;
+      currentScales[index].opacity += (targetScales[index].opacity - currentScales[index].opacity) * 0.1;
+
+      paragraph.style.transform = `scale(${currentScales[index].scale})`;
+      paragraph.style.opacity = currentScales[index].opacity;
+    });
+
+    requestAnimationFrame(animate);
+  }
   });
 </script>
 
 
-  <p>
-    お気に入りのスポットを登録して、<br>
-    新しい東京のツーリングライフを開拓しよう！
-  </p>
+  
 
   <div class="base-m mt-8 text-primary-content">
     <div>
