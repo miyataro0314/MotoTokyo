@@ -1,0 +1,30 @@
+<div class="base-container">
+  <h1>管理者用ログイン</h1>
+  <div>
+    <%= form_for(resource, as: resource_name, url: admin_sign_in_path) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br>
+        <%= f.password_field :password, autocomplete: 'current-password' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :admin_password %><br>
+        <%= f.password_field :admin_password %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "ログイン" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to '通常ログイン', new_user_session_path %><br>
+  </div>
+</div>
+

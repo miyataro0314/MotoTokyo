@@ -1,0 +1,15 @@
+<% if notice %>
+  <div role="alert" id="flash" class="flash bg-secondary">
+    <%= svg_tag 'vuesax/linear/tick-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
+    <div>
+      <h3 class="font-semibold ml-2"><%= notice %></h3>
+    </div>
+  </div>
+<% elsif alert %>
+  <div role="alert" id="flash" class="flash bg-error">
+    <%= svg_tag 'vuesax/linear/info-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
+    <div>
+      <h3 class="font-semibold ml-2"><%= alert %></h3>
+    </div>
+  </div>
+<% end %>

@@ -52,6 +52,13 @@ class SpotRegistrationsController < ApplicationController
     render 'step3'
   end
 
+  def success
+    @spot = Spot.find(params[:id])
+    @count = Spot.all.count
+  end
+
+  def failure; end
+
   private
 
   def spot_params

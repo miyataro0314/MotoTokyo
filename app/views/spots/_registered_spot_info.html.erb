@@ -1,0 +1,16 @@
+<div class="relative">
+  <%= link_to spot_path(spot, from: from, tab: 'register'),
+    data: { turbo: false } do %>
+    <div class="pane-20 flex flex-col my-2 text-left text-xs">
+        <div class="w-4/5 h-8 whitespace-nowrap overflow-hidden border-b border-gray-300 font-semibold text-base">
+          <%= spot.name %>
+        </div>
+      <div class="whitespace-prewrap overflow-hidden">
+        <%= spot.spot_detail.address %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to '編集', edit_spot_path(spot),
+    class: 'btn-s absolute z-10 right-3 top-1',
+    data: { turbo_frame: 'modal'} %>
+</div>

@@ -1,0 +1,23 @@
+<%= turbo_stream.append 'fees-container' do %>
+  <div>
+    <div>
+      説明
+      <input class="w-64 h-10 px-3 drop-shadow-md rounded-full" type="text" name="parking[fee][<%= @index %>][description]">
+    </div>
+    <div>
+      <input class="w-24 h-10 px-3 drop-shadow-md rounded-full" type="time" name="parking[fee][<%= @index %>][start_time]">
+      〜
+      <input class="w-24 h-10 px-3 drop-shadow-md rounded-full" type="time" name="parking[fee][<%= @index %>][end_time]">
+    </div>
+    <div>
+      <input class="w-24 h-10 px-3 drop-shadow-md rounded-full" type="number" name="parking[fee][<%= @index %>][fee]">
+      円 /
+      <select class="w-24 h-10 px-3 drop-shadow-md rounded-full" name="parking[fee][<%= @index %>][interval]">
+        <option value label=""></option>
+        <%= ParkingFee.intervals.keys.map do |key| %>
+          <option value="<%= key %>"><%= t_enum('parking_fee', 'interval', key) %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+<% end %>

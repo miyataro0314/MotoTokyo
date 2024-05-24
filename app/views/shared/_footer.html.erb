@@ -1,0 +1,32 @@
+<footer class="flex flex-wrap w-full h-44 mt-8 justify-between items-center rounded-t-3xl bg-primary text-primary-content">
+  <div class="flex p-1 gap-1 items-center">
+    <%= link_to root_path, class: 'daisy-btn daisy-btn-ghost h-fit w-fit pr-0' do %>
+      <%= svg_tag 'moto-tokyo-logo.svg', css_class: 'w-28 h-16' %>
+    <% end %>
+    <%= link_to 'https://github.com/miyataro0314/MotoTokyo',
+        target: '_blank',
+        class: 'daisy-btn daisy-btn-ghost daisy-btn-square' do %>
+      <%= svg_tag 'github-logo.svg', css_class: 'w-8 h-8 fill-neutral' %>
+    <% end %>
+    <%= link_to '#', class: 'daisy-btn daisy-btn-ghost daisy-btn-square' do %>
+      <%= svg_tag 'x-logo.svg', css_class: 'w-8 h-8 fill-neutral' %>
+    <% end %>
+    <%= link_to '#', class: 'daisy-btn daisy-btn-ghost daisy-btn-square' do %>
+      <%= svg_tag 'youtube-logo.svg', css_class: 'w-10 h-10 fill-neutral' %>
+    <% end %>
+  </div>
+  <div class="w-56 text-right">
+    <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-1 m-1 block text-xs text-left' do %>
+      <li>MotoTokyoについて</li>
+    <% end %>
+    <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-1 m-1 block text-xs text-left' do %>
+      <li>お問い合わせ</li>
+    <% end %>
+    <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-1 m-1 block text-xs text-left' do %>
+      <li>利用規約</li>
+    <% end %>
+    <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-1 m-1 block text-xs text-left' do %>
+      <li>プライバシーポリシー</li>
+    <% end %>
+  </div>
+</footer>

@@ -1,0 +1,9 @@
+<div class="container text-center">
+  <div>ログイン後ホーム画面（現状、ここから遷移することは無いため仮作成）</div>
+  <div>最近チェックしたスポットとか</div>
+  <div>おすすめスポットとか</div>
+</div>
+
+<% if current_user.profile.nil? %>
+  <%= link_to 'プロフィールの登録をしましょう!', new_profile_path %>
+<% end %>

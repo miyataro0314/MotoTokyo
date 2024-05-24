@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    attributes:
+      parking_fee:
+        description: '説明'
+        start_time: '開始時間'
+        end_time: '終了時間'
+        fee: '料金'
+        interval: '料金間隔'
+    enums:
+      parking_fee:
+        interval:
+          day: '日'
+          six_hours: '6時間'
+          three_hours: '3時間'
+          two_hours: '2時間'
+          hour: '1時間'
+          half_hour: '30分'
+          twenty_minues: '20分'
+          ten_minuets: '10分'

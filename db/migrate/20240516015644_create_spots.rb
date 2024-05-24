@@ -13,7 +13,7 @@ class CreateSpots < ActiveRecord::Migration[7.1]
 
     add_index :spots, :user_id
     add_foreign_key :spots, :users, column: :user_id, primary_key: 'id', on_delete: :nullify
-    
+
     add_index :spots, :name, unique: true
     add_index :spots, :parking
     add_index :spots, :parking_limitation

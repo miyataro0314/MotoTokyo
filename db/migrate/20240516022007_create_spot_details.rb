@@ -2,9 +2,8 @@ class CreateSpotDetails < ActiveRecord::Migration[7.1]
   def change
     create_table :spot_details, id: false do |t|
       t.string :id, null: false, primary_key: true
-      t.references :spot, null: false, foreign_key: true
+      t.references :spot, null: false, foreign_key: true, index: true
       t.string :postal_code
-      t.string :region
       t.string :street_address
       t.string :phone_number
       t.st_point :coordinate, geographic: true

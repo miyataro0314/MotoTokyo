@@ -1,50 +1,150 @@
-<div class="base-container">
+<div class="base-container mt-8">
 
   <%= turbo_frame_tag 'modal' %>
 
-  <div>
-    <%= link_to '検索画面に戻る', search_spots_searches_path %>
-  </div>
+  <%= render 'shared/breadcrumb' %>
   
-  <div class="base-l mt-3 p-3 text-sm">
-    <div class="pane-a text-base">
-      <%= @spot.name %>
-    </div>
-    <div class="pane-a h-40 mt-3">MAP</div>
-    <div class="pane-a h-full mt-3">
-      <div class="text-left">
-        <%= @spot_detail.postal_code %><br>
-        <%= @spot_detail.address %>
+  <div class="base-l mt-3 p-3 ml-5 text-left">
+    <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
+          target: "_blank" do %>
+      <div class="pane-a font-semibold text-base">
+        <%= @spot.name %>
       </div>
-      <div class="flex">
-        <div class="flex flex-col mx-auto text-left">
-          <div>
-            カテゴリ：<%= t_enum('spot', 'category', @spot.category) %>
+    <% end %>
+
+    <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="map"></div>
+    
+    <div class="pane-a h-full mt-3">  
+      <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
+          target: "_blank" do %>
+        <div class="text-left pb-1 border-b border-gray-300">
+          <p><%= @spot_detail.postal_code %></p>
+          <p><%= @spot_detail.address %></p>
+        </div>
+      <% end %>
+      
+      <div class="flex justify-between">
+        <div class="flex flex-col text-left">
+          <div class="text-xs">
+            <p class="text-sm">カテゴリ</p>
+            <%= t_enum('spot', 'category', @spot.category) %>
           </div>
         </div>
-        <div class="flex flex-col mx-auto text-right">
+        <div class="flex flex-col text-right">
           <div>
+            <%= svg_tag 'vuesax/linear/clock.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
             <%= @spot_detail.opening_hours %>
           </div>
           <div>
-            駐車場：<%= t_enum('spot', 'parking', @spot.parking) %>
-          </div>
-          <div>
-            投稿者：<%= @spot.user.id %>
+            <%= svg_tag 'parking_icon.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
+            <%= spot_parking_info(@spot) %>
           </div>
         </div>
       </div>
-      <div class="pane-a h-32">天気情報</div>
-      <div class="flex items-center">
-        <div class="w-10 h-10 mx-3 rounded-full bg-primary">画</div>
-        <div class="flex-grow mr-3 rounded-full bg-primary">
-          コメント<br>
-          sadghsg<br>
-          dfasdg
-        </div>
+
+      <div>
+        <% if @comment.nil? %>
+          <p class="my-3 text-xs text-center">
+            まだおすすめポイントは投稿されていません
+          </p>
+        <% else %>
+          <div class="flex my-3 items-end">
+            <div class="w-12 h-12 ml-1 mr-3 z-50 rounded-full overflow-hidden bg-primary">
+              <%= image_tag @comment.user.profile.avatar %>
+            </div>
+            <div class="chatbubble received my-auto">
+              <%= @comment.content %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="flex">
+        <% if @spot.bookmarked_by?(current_user) %>
+          <%= link_to 'ブックマーク解除',
+              spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
+              class: 'btn-secondary block',
+              data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
+              class: 'btn-secondary block',
+              data: { turbo_method: :post } %>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div>近くの駐車場</div>
+  <div class='flex w-80 mx-auto mt-5 items-center space-x-3'>
+    <span>近くのパーキング</span>
+    <div class="flex-1 border border-gray-300"></div>
+  </div>
+
+  <% if @parkings.any? %>
+    <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap">
+      <% @parkings.each do |parking| %>
+        <%= render partial: 'parkings/parking_card',
+                  locals: { spot_detail: @spot_detail, parking: parking } %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="mt-3 text-center">半径1km圏内に登録済みのパーキングは<br>ありませんでした</div>      
+  <% end %>
+
 </div>
+
+<div id="script-container"></div>
+
+<script>
+  // 再読み込み防止
+  if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+    initMap();
+  } else {
+    const script = document.createElement('script');
+    const scriptContainer = document.getElementById('script-container')
+    script.src = src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta";
+    script.async = true;
+    script.defer = true;
+    scriptContainer.appendChild(script);
+  }
+
+  // マップ表示
+  function initMap() {
+    const spotPosition = { lat: <%= @spot_detail.coordinate.latitude %>,
+                            lng: <%= @spot_detail.coordinate.longitude %> };
+    
+    const map = new google.maps.Map(document.getElementById('map'), {
+      mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>', 
+      center: spotPosition,
+      zoom: 13
+    });
+
+    const scaledMarker = new google.maps.marker.PinView({
+      scale: 1.2,
+    });
+
+    const blueMarker = new google.maps.marker.PinView({
+      background: "#1b73e8",
+      borderColor: "#0b4087",
+      glyphColor: "#0b4087"
+    });
+
+    const spotMarker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: spotPosition,
+      content: scaledMarker.element,
+    });
+
+    <% @parkings.each do |parking| %>
+    const parkingPosition<%= parking.id %> = { lat: <%= parking.coordinate.latitude %>,
+                                                lng: <%= parking.coordinate.longitude %> }
+    const parkingMarker<%= parking.id %> = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: parkingPosition<%= parking.id %>,
+      content: blueMarker.element
+    });
+    <% end %>
+  }
+
+  
+</script>
+

@@ -1,0 +1,48 @@
+<div>
+  <%= form_with model: profile do |f| %>
+    <div>
+      <%= f.label :user_name, class: 'text-base text-primary-content' %><br>
+      <%= f.text_field :user_name, class: 'text-field-l' %>
+    </div>
+    <div class="mt-3">
+      <%= f.label :avatar, class: 'text-base text-primary-content' %><br>
+      <div class="pane-a">
+        <% if profile.avatar.attached? %>
+          <%= image_tag profile.avatar,
+              class: 'w-28 h-28 mx-auto overflow-hidden rounded-full content-center' %>
+        <% else %>
+          <%= image_tag 'preview', class: "w-24 h-24 mx-auto rounded-full bg-base-100" %>
+        <% end %>
+        <%= f.file_field :avatar,
+            class: 'daisy-file-input daisy-file-input-bordered daisy-file-input-xs w-full mt-1' %>
+      </div>
+    </div>
+    <div class="mt-3">
+      <%= f.label :vehicle_name, class: 'text-base text-primary-content' %><br>
+      <%= f.text_field :vehicle_name, class: 'text-field-l'  %>
+    </div>
+    <div class="mt-3">
+      <%= f.label :vehicle_type, class: 'text-base text-primary-content' %><br>
+      <%= f.select :vehicle_type,
+          Profile.vehicle_types.keys.map { |key| [t_enum('profile', 'vehicle_type', key), key] },
+          { include_blank: true },
+          { class: 'text-field-l' } %>
+    </div>
+    <div class="mt-3">
+      <%= f.label :vehicle_photo, class: 'text-base text-primary-content' %><br>
+      <div class="pane-a">
+        <% if profile.vehicle_photo.attached? %>
+          <%= image_tag profile.vehicle_photo,
+              class: 'mx-auto overflow-hidden rounded-2xl content-center' %>
+        <% else %>
+          <%= image_tag 'preview', class: "w-32 h-32 mx-auto rounded-2xl bg-base-100" %>
+        <% end %>
+        <%= f.file_field :vehicle_photo,
+            class: 'daisy-file-input daisy-file-input-bordered daisy-file-input-xs w-full mt-1' %>
+      </div>
+    </div>
+    <div class="mt-3">
+      <%= f.submit '登録', class: 'btn-secondary' %>
+    </div>
+  <% end %>
+</div>

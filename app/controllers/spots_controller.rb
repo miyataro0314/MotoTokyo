@@ -9,28 +9,88 @@ class SpotsController < ApplicationController
     save_spot
 
     if @spot.persisted?
-      @count = Spot.all.count
-      render 'spot_registrations/success'
+      redirect_to success_spot_registrations_path(id: @spot.id)
     else
-      render 'spot_registrations/failure'
+      redirect_to failure_spot_registrations_path
     end
+  end
+
+  def edit
+    @spot = Spot.find(params[:id])
+    @difficulty = Difficulty.find_by(user_id: current_user.id, spot_id: @spot.id)
+    @comment = Comment.find_by(user_id: current_user.id, spot_id: @spot.id)
   end
 
   def show
     @spot = Spot.find(params[:id])
     @spot_detail = @spot.spot_detail
+    @parkings = @spot_detail.near_parkings(1000)
+    @comment = @spot.comments.order('RANDOM()').first
+  end
+
+  def update
+    @spot = Spot.find(params[:id])
+    @difficulty = Difficulty.find_by(user_id: current_user.id, spot_id: @spot.id)
+    @comment = Comment.find_or_initialize_by(user_id: current_user.id, spot_id: @spot.id)
+    ActiveRecord::Base.transaction do
+      if update_spot_and_diffculty && save_or_update_comment
+        flash[:notice] = 'スポット情報を更新しました'
+        redirect_to my_spots_path(tab: :register)
+      else
+        flash[:danger] = '更新に失敗しました'
+        redirect_to my_spots_path(tab: :register)
+        raise ActiveRecord::Rollback
+      end
+    end
   end
 
   def index
     @spots = Spot.all.includes(:spot_detail).page(params[:page])
   end
 
+  def destroy
+    @spot = Spot.find(params[:id])
+    if @spot.destroy
+      flash[:notice] = 'スポットを削除しました'
+    else
+      flash[:danger] = '削除に失敗しました'
+    end
+    redirect_to my_spots_path(tab: :register), status: :see_other
+  end
+
   private
+
+  def permitted_params
+    params.require(:spot).permit(:name, :parking, :parking_limitation, :category,
+                                 difficulty: :level, comment: :content)
+  end
+
+  def spot_params
+    permitted_params.except(:difficulty, :comment)
+  end
+
+  def difficulty_params
+    permitted_params[:difficulty]
+  end
+
+  def comment_params
+    permitted_params[:comment]
+  end
+
+  def update_spot_and_diffculty
+    @spot.update(spot_params) && @difficulty.update(difficulty_params)
+  end
+
+  def save_or_update_comment
+    return true if comment_params.nil?
+
+    @comment.persisted? ? @comment.update(comment_params) : @comment.save(comment_params)
+  end
 
   def clear_session
     keys = %i[
       name parking parking_limitation difficulty_level category comment_content
-      place_id postal_code region street_address phone_number lat lng text
+      place_id postal_code street_address phone_number lat lng text
       rating user_rating_total url
     ]
     keys.each { |key| session.delete(key) }
@@ -45,9 +105,9 @@ class SpotsController < ApplicationController
     Spot.new(
       user_id: current_user.id,
       name: session[:name],
-      parking: Spot.parkings[session[:parking]],
-      parking_limitation: Spot.parking_limitations[session[:parking_limitation]],
-      category: Spot.categories[session[:category]],
+      parking: session[:parking],
+      parking_limitation: session[:parking_limitation],
+      category: session[:category],
       area: area
     )
   end
@@ -59,7 +119,6 @@ class SpotsController < ApplicationController
       id: session[:place_id],
       spot_id: spot.id,
       postal_code: session[:postal_code],
-      region: session[:region],
       street_address: session[:street_address],
       phone_number: session[:phone_number],
       coordinate: factory.point(session[:lng], session[:lat]),
@@ -74,7 +133,15 @@ class SpotsController < ApplicationController
     Difficulty.new(
       user_id: current_user.id,
       spot_id: spot.id,
-      level: Difficulty.levels[session[:difficulty_level]]
+      level: session[:difficulty_level]
+    )
+  end
+
+  def build_comment(spot)
+    Comment.new(
+      user_id: current_user.id,
+      spot_id: spot.id,
+      content: session[:comment_content]
     )
   end
 
@@ -87,8 +154,9 @@ class SpotsController < ApplicationController
 
       @spot_details = build_spot_details(@spot)
       @difficulty = build_difficulty(@spot)
+      @comment = build_comment(@spot)
 
-      unless @spot_details.save && @difficulty.save
+      unless @spot_details.save && @difficulty.save && (@comment.content.present? ? @comment.save : true)
         handle_save_error
         raise ActiveRecord::Rollback
       end
@@ -96,7 +164,7 @@ class SpotsController < ApplicationController
   end
 
   def handle_save_error
-    @error_objects = [@spot, @spot_details, @difficulty].select { |object| object.errors.any? }
+    @error_objects = [@spot, @spot_details, @difficulty, @comment].select { |object| object.errors.any? }
     ErrorMailer.registration_error(@error_objects).deliver_now
   end
 end

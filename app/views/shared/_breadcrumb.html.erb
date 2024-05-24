@@ -1,0 +1,27 @@
+<div class="w-fit m-3 text-left text-sm">
+  <% if params[:from] %>
+    <% case params[:from] %>
+    <% when 'spot_search' %>
+      <%= link_to search_spots_searches_path, class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          スポット検索結果に戻る
+        </div>
+      <% end %>
+    <% when 'spot_registration' %>
+      <%= link_to new_spot_path, class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          スポット登録結果に戻る
+        </div>
+      <% end %>
+    <% when 'my_spots' %>
+      <%= link_to my_spots_path(tab: params[:tab]), class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          マイスポット一覧に戻る
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
