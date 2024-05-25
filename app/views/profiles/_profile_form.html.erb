@@ -11,7 +11,7 @@
           <%= image_tag profile.avatar,
               class: 'w-28 h-28 mx-auto overflow-hidden rounded-full content-center' %>
         <% else %>
-          <%= image_tag 'preview', class: "w-24 h-24 mx-auto rounded-full bg-base-100" %>
+          <%= image_tag 'preview.png', class: "w-24 h-24 mx-auto rounded-full bg-base-100" %>
         <% end %>
         <%= f.file_field :avatar,
             class: 'daisy-file-input daisy-file-input-bordered daisy-file-input-xs w-full mt-1' %>
@@ -35,7 +35,7 @@
           <%= image_tag profile.vehicle_photo,
               class: 'mx-auto overflow-hidden rounded-2xl content-center' %>
         <% else %>
-          <%= image_tag 'preview', class: "w-32 h-32 mx-auto rounded-2xl bg-base-100" %>
+          <%= image_tag 'preview.png', class: "w-32 h-32 mx-auto rounded-2xl bg-base-100" %>
         <% end %>
         <%= f.file_field :vehicle_photo,
             class: 'daisy-file-input daisy-file-input-bordered daisy-file-input-xs w-full mt-1' %>

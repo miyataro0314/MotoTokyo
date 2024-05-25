@@ -14,7 +14,7 @@
       <% if @profile.avatar.attached? %>
         <%= image_tag @profile.avatar, alt: '画像アップロード中。画面更新で表示されます。' %>
       <% else %>
-        <%= image_tag 'preview', class: "w-32 h-32 m-auto rounded-2xl bg-base-100" %>
+        <%= image_tag 'preview.png', class: "w-32 h-32 m-auto rounded-2xl bg-base-100" %>
       <% end %>
     </div>
     <div>
@@ -31,7 +31,7 @@
       <% if @profile.vehicle_photo.attached? %>
         <%= image_tag @profile.vehicle_photo, class: 'mx-auto rounded-2xl' %>
       <% else %>
-        <%= image_tag 'preview', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-100' %>
+        <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-100' %>
       <% end %>
     </div>
     <div>
