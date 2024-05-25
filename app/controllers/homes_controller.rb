@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_profile, only: :my_page
 
   def home; end
 
@@ -17,5 +18,13 @@ class HomesController < ApplicationController
     utc_time = current_user.created_at
     local_time = utc_time.in_time_zone(Rails.application.config.time_zone)
     @registration_date = local_time.strftime('%Y年%m月%d日')
+  end
+
+  private
+
+  def require_profile
+    return if current_user.profile
+
+    redirect_to new_profile_path, alert: 'プロフィールの登録をお願いします'
   end
 end
