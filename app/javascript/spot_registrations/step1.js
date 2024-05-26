@@ -87,7 +87,7 @@ const clearDivs = () => {
   }
 };
 
-//--- 初期化処理 --------------------------------------------------
+// --- 初期化処理 ---
 const placeName = sessionStorage.getItem('placeName')
 const nextButton = document.getElementById('go-to-step2-button');
 
@@ -97,4 +97,8 @@ if (placeName) {
   displayInfo('このスポットは登録可能です');
   nextButton.disabled = false;
 } 
-//-----------------------------------------------------------------
+//-------------------
+
+// --- GoogleMapAPI ---
+initAutocomplete();
+//---------------------

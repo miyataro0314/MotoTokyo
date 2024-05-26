@@ -43,23 +43,4 @@
     </div>
   </div>
 
-  <script>
-    connectGoogleMapApi()
-
-    function connectGoogleMapApi() {
-      let modal = document.getElementById('modal');
-      let widget = document.body.querySelector('.pac-container.pac-logo.hdpi');
-
-      // apiが毎回ウィジェットを生成するため、再初期化時にクリーンアップ
-      if (widget) {
-        document.body.removeChild(widget)
-        initAutocomplete();
-      } else {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&libraries=places&callback=initAutocomplete`;
-        modal.appendChild(script)
-      }
-    }
-  </script>
-
 <% end %>
