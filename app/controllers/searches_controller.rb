@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def new
     clear_session
     @search_spots_form = SearchSpotsForm.new

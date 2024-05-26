@@ -1,6 +1,4 @@
 class SpotRegistrationsController < ApplicationController
-  before_action :authenticate_user!
-
   def step1
     @spot = Spot.new(name: session[:name])
   end

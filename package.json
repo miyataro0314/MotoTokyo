@@ -11,8 +11,9 @@
     "tailwindcss": "^3.4.3"
   },
   "scripts": {
-    "build": "yarn build:js && yarn build:js-spots && yarn build:js-spotRegistrations && yarn build:js-admin-parkings && yarn build:css",
+    "build": "yarn build:js && yarn build:js-staticPages && yarn build:js-spots && yarn build:js-spotRegistrations && yarn build:js-admin-parkings && yarn build:css",
     "build:js": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:js-staticPages": "esbuild app/javascript/static_pages/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/static_pages --public-path=/assets",
     "build:js-spots": "esbuild app/javascript/spots/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/spots --public-path=/assets",
     "build:js-spotRegistrations": "esbuild app/javascript/spot_registrations/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/spot_registrations --public-path=/assets",
     "build:js-admin-parkings": "esbuild app/javascript/admin/parkings/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/admin/parkings --public-path=/assets",

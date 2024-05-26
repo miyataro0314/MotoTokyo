@@ -1,9 +1,78 @@
+<script src="https://unpkg.com/swiper@11.1.3/swiper-bundle.min.js"></script>
+<%= javascript_include_tag "static_pages/top", "data-turbo-track": "reload", async: true %>
+
 <%= svg_tag 'moto-tokyo-logo.svg', 
-    css_class: 'w-56 h-28 mt-3 absolute left-1/2 translate-x-minus-fifty z-10' %>
+    css_class: 'logo mt-3 absolute left-1/2 translate-x-minus-fifty z-50' %>
 
-<div class="base-container">
+<div class="mx-auto text-center overflow-hidden">
 
-  <div class="scroll-container">
+  <div class="swiper-main mt-16">
+    <div class="swiper-wrapper z-10">
+      <div class="swiper-slide relation bg-secondary rounded-3xl">
+        <%= svg_tag 'text1.svg', css_class: 'slide-text drop-shadow-md' %>
+        
+      </div>
+      <div class="swiper-slide relation bg-secondary rounded-3xl">
+        <%= svg_tag 'text2.svg', css_class: 'slide-text drop-shadow-md' %>
+      </div>
+      <div class="swiper-slide relation bg-secondary rounded-3xl">
+        <%= svg_tag 'text3.svg', css_class: 'slide-text drop-shadow-md' %>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-paragraph">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <p class="slide-paragraph">
+          東京に行くのは電車で十分？<br>
+          ノンノン、東京には沢山の<br>
+          ライディングスポットが眠っています！
+        </p>
+      </div>
+      <div class="swiper-slide">
+        <p class="slide-paragraph">
+          いちいち駐車場を探す必要はありません<br>
+          付近の駐車場も同時に見つけられます！
+        </p>
+      </div>
+      <div class="swiper-slide">
+        <p class="slide-paragraph">
+          お気に入りのスポットを登録して、<br>
+          みんなでツーリングスポットを開拓しよう！
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    
+
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <%# <div class="scroll-container">
     <div>
       <div class="scroll-item bg-secondary rounded-3xl">
         <span class="w-80 h-24 text-4xl font-black">
@@ -51,7 +120,7 @@
     padding: 0 36px;
     position: relative;
     margin-top: 80px;
-    gap: 20px;
+    gap: 1/8vw;
     scrollbar-width: none; 
   }
   .scroll-container::before,
@@ -142,7 +211,7 @@
     requestAnimationFrame(animate);
   }
   });
-</script>
+</script> %>
 
 
   
@@ -159,6 +228,17 @@
     <div class="mt-3">
       <p>既にご登録済みの方は</p>
       <%= link_to 'ログイン', new_user_session_path, class: 'btn-secondary' %>
+    </div>
+  </div>
+
+  <div class="base-m mt-8 text-primary-content">
+    <div>
+      <p>
+        もしくは<br>
+        登録済みのスポットを見てみる！
+      </p>
+      <%= link_to 'スポット検索へ', new_search_path,
+          class: 'btn-secondary' %>
     </div>
   </div>
 </div>

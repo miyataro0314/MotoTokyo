@@ -3,21 +3,20 @@
 @tailwind utilities;
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 14px;
   color: #444444
 }
 
-footer {
-  position: absolute;
+main {
+  flex: 1;
 }
 
 .h1 {
   @apply mt-8 m-3 text-2xl font-semibold
-}
-
-.translate-x-minus-fifty {
-  transform: translateX(-50%);
 }
 
 .base-container {
@@ -71,9 +70,61 @@ footer {
          flex justify-center items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
 }
 
-.daisy-collapse-title {
-  padding: 16px;
+.translate-x-minus-fifty {
+  transform: translateX(-50%);
 }
+
+
+
+/* --- トップページswiper用 --- */
+.slide-text {
+  width: 120%;
+  height: 30%;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 10px;
+}
+
+.swiper-main .swiper-slide {
+  transform: scale(0.8)!important;
+  opacity: 0.7;
+}
+
+.swiper-main .swiper-slide .slide-text {
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.swiper-main .swiper-slide-active {
+  transform: scale(1)!important;
+  opacity: 1;
+  transform-origin: center; 
+}
+
+.swiper-main .swiper-slide-active .slide-text {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+.swiper-paragraph .swiper-slide {
+  margin: auto;
+  width: 100%;
+  font-weight: 700;
+  font-size: 16px;
+  transform: translateY(-200%) scale(0);
+  opacity: 0;
+
+}
+
+.swiper-paragraph .swiper-slide-active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+/* ----------------------------- */
+
+
 
 /* --- モーダル出現時の背景制御　--- */
 body.no-scroll {
@@ -84,6 +135,16 @@ body.no-scroll {
   scrollbar-width: none; 
 }
 /* ----------------------------- */
+
+
+
+/* --- 検索トップのdaisy-collapseオーバーライド用 --- */
+.daisy-collapse-title {
+  padding: 16px;
+}
+/* --------------------------------------------- */
+
+
 
 /* --- マイスポットタブ関係 --- */
 .tab {
@@ -101,14 +162,6 @@ body.no-scroll {
   display: block;
 }
 
-/* 選択されていないタブのスタイル
-#tab1:not(checked) + label,
-#tab2:not(checked) + label {
-  color: #f5f2e9;
-  font-weight: 400;
-} */
-
-
 /*選択されているタブのスタイルを変える*/
 #tab1:checked + label,
 #tab2:checked + label {
@@ -117,6 +170,8 @@ body.no-scroll {
   font-weight: 600;
 }
 /* ------------------------- */
+
+
 
 /* --- ページネーション関係 --- */
 .pagination {
@@ -147,7 +202,10 @@ body.no-scroll {
 }
 /* ------------------------- */
 
-/* --- チャットバブル --- */
+
+
+
+/* --- コメント用チャットバブル --- */
 .chatbubble {
   position: relative; /* Setup a relative container for our pseudo elements */
   min-width: 60px;
