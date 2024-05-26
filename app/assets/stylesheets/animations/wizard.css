@@ -1,4 +1,4 @@
-@keyframes slide-from-right {
+@keyframes slidein-from-right {
   0% {
     transform: translateX(300px);
   }
@@ -7,7 +7,7 @@
   }
 }
 
-@keyframes slide-from-left {
+@keyframes slidein-from-left {
   0% {
     transform: translateX(-300px);
   }
@@ -16,12 +16,12 @@
   }
 }
 
-.slide-from-left-animation {
-  animation-name: slide-from-left;
+.slidein-from-left-animation {
+  animation-name: slidein-from-left;
   animation-duration: 150ms;
 }
 
-.slide-from-right-animation {
-  animation-name: slide-from-right;
+.slidein-from-right-animation {
+  animation-name: slidein-from-right;
   animation-duration: 150ms;
 }

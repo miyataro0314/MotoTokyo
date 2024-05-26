@@ -2,16 +2,16 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="wizard"
 export default class extends Controller {
-  static targets = ['contents', 'next', 'back', 'input', 'toRegistration']
+  static targets = ['contents', 'next', 'back']
 
   connect() {
     const transitionType = sessionStorage.getItem('transitionType');
     
     if (transitionType === 'next') {
-      this.contentsTarget.classList.add('slide-from-right-animation');
+      this.contentsTarget.classList.add('slidein-from-right-animation');
     }
     else if (transitionType === 'back') {
-      this.contentsTarget.classList.add('slide-from-left-animation');
+      this.contentsTarget.classList.add('slidein-from-left-animation');
     }
     sessionStorage.removeItem('transitionType')
   }

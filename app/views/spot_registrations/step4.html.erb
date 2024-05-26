@@ -1,6 +1,6 @@
 <%= turbo_frame_tag 'wizard' do %>
 
-  <div class="w-52 h-24 m-auto mt-3 rounded-full content-center bg-base-100">
+  <div class="flex flex-col w-52 h-24 m-auto mt-3 rounded-full justify-center bg-base-100">
     <p class="text-2xl font-semibold">かんたん登録</p>
     <p class="text-xl font-semibold">STEP 4/4</p>
   </div>
@@ -25,7 +25,7 @@
           data: { wizard_target: 'back', action: 'click->wizard#back' },
           class: 'btn-secondary mr-10' %>
       <%= f.submit '確認',
-          data: { modal_target: 'toConfirmation', action: 'click->modal#expandModal' },
+          data: { wizard_target: 'next', action: 'click->wizard#next' },
           class: 'btn-secondary ml-10' %>
     </div>
   <% end %>

@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['background', 'modal', 'toConfirmation', 'toForm'];
+  static targets = ['background', 'modal'];
   loadCount = 0;
 
   connect() {
+    document.body.classList.add('no-scroll')
     this.openModal();
   }
 
@@ -32,24 +33,8 @@ export default class extends Controller {
       this.backgroundTarget.addEventListener('animationend', () => {
         this.backgroundTarget.style.display = 'none';
       }, { once: true });
-    }
-  }
 
-  expandModal(event) {
-    if (event.target === this.toConfirmationTarget) {
-      if (this.modalTarget.classList.contains('contract-modal-animation')) {
-        this.modalTarget.classList.remove('contract-modal-animation');
-      }
-      this.modalTarget.classList.add('expand-modal-animation');
-    }
-  }
-
-  contractModal(event) {
-    if (event.target === this.toFormTarget) {
-      if (this.modalTarget.classList.contains('expand-modal-animation')) {
-        this.modalTarget.classList.remove('expand-modal-animation');
-      }
-      this.modalTarget.classList.add('contract-modal-animation');
+      document.body.classList.remove('no-scroll')
     }
   }
 
@@ -64,5 +49,7 @@ export default class extends Controller {
     this.backgroundTarget.addEventListener('animationend', () => {
       this.backgroundTarget.style.display = 'none';
     }, { once: true });
+
+    document.body.classList.remove('no-scroll')
   }
 }

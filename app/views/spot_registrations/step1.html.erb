@@ -4,13 +4,13 @@
        data-controller="modal"
        data-modal-target="background"
        data-action="click->modal#closeModal">
-    <div class="flex flex-col overflow-hidden w-80 h-112 drop-shadow-2lg rounded-3xl bg-primary"
+    <div class="modal flex flex-col overflow-y-scroll w-80 h-112 drop-shadow-2lg rounded-3xl bg-primary"
          data-modal-target="modal">
       <%= turbo_frame_tag 'wizard', class: 'flex flex-col grow relative text-center' do %>
         
         <%= javascript_include_tag 'spot_registrations/step1', 'data-turbo-track': 'reload', async: true %>
 
-        <div class="w-52 h-24 m-auto mt-3 rounded-full content-center bg-base-100">
+        <div class="flex flex-col w-52 h-24 m-auto mt-3 rounded-full justify-center bg-base-100">
           <p class="text-2xl font-semibold">かんたん登録</p>
           <p class="text-xl font-semibold">STEP 1/4</p>
         </div>

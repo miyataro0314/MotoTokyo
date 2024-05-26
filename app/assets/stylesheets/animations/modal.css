@@ -76,17 +76,3 @@
   animation-duration: 300ms;
   animation-fill-mode: forwards;
 }
-
-.expand-modal-animation {
-  animation-name: expand-modal;
-  animation-duration: 200ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
-}
-
-.contract-modal-animation {
-  animation-name: contract-modal;
-  animation-duration: 200ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
-}
