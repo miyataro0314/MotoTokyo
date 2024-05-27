@@ -1,15 +1,18 @@
 class Spot < ApplicationRecord
   include AreaEnum
 
-  belongs_to :user, optional: true
+  validates :name, presence: true
+  validates :parking, presence: true
+  validates :category, presence: true
 
+  belongs_to :user, optional: true
   has_many :difficulties, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :edit_histories, dependent: :destroy
   has_one :spot_detail, dependent: :destroy
 
-  enum parking: { free: 0, paid: 5, nothing: 10 }
+  enum parking: { free: 0, paid: 5, nothing: 10, unknown: 15 }
   enum parking_limitation: { all_ok: 0, no_big: 5, only_scooter: 10 }
   enum category: { sightseeing: 0, scenery: 5, shopping: 10, food: 15, activity: 20, accommodations: 25 }
 

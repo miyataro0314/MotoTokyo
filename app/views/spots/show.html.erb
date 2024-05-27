@@ -5,7 +5,7 @@
   <%= render 'shared/breadcrumb' %>
   
   <div class="base-l mt-3 p-3 ml-5 text-left">
-    <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
+    <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@spot_detail.coordinate.latitude}%2C#{@spot_detail.coordinate.longitude}&query_place_id=#{@spot_detail.id}",
           target: "_blank" do %>
       <div class="pane-a font-semibold text-base">
         <%= @spot.name %>
@@ -15,7 +15,7 @@
     <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="map"></div>
     
     <div class="pane-a h-full mt-3">  
-      <%= link_to "https://www.google.com/maps/place/?q=place_id:#{@spot_detail.id}",
+      <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@spot_detail.coordinate.latitude}%2C#{@spot_detail.coordinate.longitude}&query_place_id=#{@spot_detail.id}",
           target: "_blank" do %>
         <div class="text-left pb-1 border-b border-gray-300">
           <p><%= @spot_detail.postal_code %></p>
@@ -49,7 +49,7 @@
           </p>
         <% else %>
           <div class="flex my-3 items-end">
-            <div class="w-12 h-12 ml-1 mr-3 z-50 rounded-full overflow-hidden bg-primary">
+            <div class="w-12 h-12 ml-1 mr-3 z-30 rounded-full overflow-hidden bg-primary">
               <%= image_tag (@comment.user.profile&.avatar&.attached? ? @comment.user.profile.avatar : 'preview.png') %>
             </div>
             <div class="chatbubble received my-auto">
@@ -59,18 +59,20 @@
         <% end %>
       </div>
 
-      <div class="flex">
-        <% if @spot.bookmarked_by?(current_user) %>
-          <%= link_to 'ブックマーク解除',
-              spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
-              class: 'btn-secondary block',
-              data: { turbo_method: :delete } %>
-        <% else %>
-          <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
-              class: 'btn-secondary block',
-              data: { turbo_method: :post } %>
-        <% end %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="flex">
+          <% if @spot.bookmarked_by?(current_user) %>
+            <%= link_to 'ブックマーク解除',
+                spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
+                class: 'btn-secondary block',
+                data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
+                class: 'btn-secondary block',
+                data: { turbo_method: :post } %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -80,7 +82,7 @@
   </div>
 
   <% if @parkings.any? %>
-    <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap">
+    <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap no-scroll-bar">
       <% @parkings.each do |parking| %>
         <%= render partial: 'parkings/parking_card',
                   locals: { spot_detail: @spot_detail, parking: parking } %>
@@ -92,22 +94,8 @@
 
 </div>
 
-<div id="script-container"></div>
-
-<script>
-  // 再読み込み防止
-  if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
-    initMap();
-  } else {
-    const script = document.createElement('script');
-    const scriptContainer = document.getElementById('script-container')
-    script.src = src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps[:api_key] %>&callback=initMap&libraries=marker&v=beta";
-    script.async = true;
-    script.defer = true;
-    scriptContainer.appendChild(script);
-  }
-
-  // マップ表示
+<script async>
+  // マップ表示のための関数
   function initMap() {
     const spotPosition = { lat: <%= @spot_detail.coordinate.latitude %>,
                             lng: <%= @spot_detail.coordinate.longitude %> };
@@ -118,14 +106,26 @@
       zoom: 13
     });
 
+    <% if @parkings.any? %>
+      <% @parkings.each do |parking| %>
+        const blueMarker<%= parking.id %> = new google.maps.marker.PinView({
+          background: "#1b73e8",
+          borderColor: "#0b4087",
+          glyphColor: "#0b4087"
+        });
+
+        const parkingPosition<%= parking.id %> = { lat: <%= parking.coordinate.latitude %>,
+                                                    lng: <%= parking.coordinate.longitude %> }
+        const parkingMarker<%= parking.id %> = new google.maps.marker.AdvancedMarkerElement({
+          map,
+          position: parkingPosition<%= parking.id %>,
+          content: blueMarker<%= parking.id %>.element
+        });
+      <% end %>
+    <% end %>
+
     const scaledMarker = new google.maps.marker.PinView({
       scale: 1.2,
-    });
-
-    const blueMarker = new google.maps.marker.PinView({
-      background: "#1b73e8",
-      borderColor: "#0b4087",
-      glyphColor: "#0b4087"
     });
 
     const spotMarker = new google.maps.marker.AdvancedMarkerElement({
@@ -133,18 +133,8 @@
       position: spotPosition,
       content: scaledMarker.element,
     });
-
-    <% @parkings.each do |parking| %>
-    const parkingPosition<%= parking.id %> = { lat: <%= parking.coordinate.latitude %>,
-                                                lng: <%= parking.coordinate.longitude %> }
-    const parkingMarker<%= parking.id %> = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: parkingPosition<%= parking.id %>,
-      content: blueMarker.element
-    });
-    <% end %>
   }
 
-  
+  initMap();
 </script>
 

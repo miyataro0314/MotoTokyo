@@ -17,7 +17,7 @@
         登録したスポット
       </label>
 
-      <div id="bookmarked_contents" class="hidden flex-1">
+      <div id="bookmarked_contents" class="hidden w-full">
         <% unless @bookmarked_spots.any? %>
           <div class="pane-a flex flex-col my-2 text-sm">
             該当するスポットがありませんでした
@@ -28,7 +28,7 @@
         <% end %>
         <%= paginate @bookmarked_spots, param_name: :page_bookmark, params: { tab: 'bookmark' } %>
       </div>
-      <div id="registered_contents" class="hidden flex-1">
+      <div id="registered_contents" class="hidden w-full">
         <% unless @registered_spots.any? %>
           <div class="pane-a flex flex-col my-2 text-left text-xs">
             該当するスポットがありませんでした

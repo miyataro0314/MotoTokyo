@@ -1,73 +1,71 @@
 <%= turbo_frame_tag 'wizard' do %>
 
-  <div class="mt-5">
-    <p class="text-base font-semibold text-primary-content">
-      この内容で登録してよろしいでしょうか？
-    </p>
-  </div>
-  <div>
-    <div class="m-3">
+  <div data-controller="wizard" data-wizard-target="contents">
+    <div class="mt-5">
       <p class="text-base font-semibold text-primary-content">
-        スポット名
+        この内容で登録してよろしいでしょうか？
       </p>
-      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= session[:name] %>
+    </div>
+    <div>
+      <div class="m-3">
+        <p class="text-base font-semibold text-primary-content">
+          スポット名
+        </p>
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+          <%= session[:name] %>
+        </div>
+      </div>
+      <div class="m-3">
+        <p class="text-base font-semibold text-primary-content">
+          駐輪場
+        </p>
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+          <%= t_enum('spot', 'parking', session[:parking]) %>
+        </div>
+      </div>
+      <div class="m-3">
+        <p class=" text-base font-semibold text-primary-content">
+          駐輪場制限
+        </p>
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+          <%= session[:parking_limitation] ? t_enum('spot', 'parking_limitation', session[:parking_limitation]) : 'ー' %>
+        </div>
+      </div>
+      <div class="m-3">
+        <p class="text-base font-semibold text-primary-content">
+          行きやすさ
+        </p>
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+          <%= t_enum('difficulty', 'level', session[:difficulty_level]) %>
+        </div>
+      </div>
+      <div class="m-3">
+        <p class="text-base font-semibold text-primary-content">
+          カテゴリ
+        </p>
+        <div class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+          <%= t_enum('spot', 'category', session[:category]) %>
+        </div>
+      </div>
+      <div class="m-3">
+        <p class="text-base font-semibold text-primary-content">
+          おすすめポイント
+        </p>
+        <div  class="w-64 h-fit mx-auto mt-1 p-2 rounded-2xl content-center break-words bg-base-100">
+          <%= session[:comment_content].present? ? session[:comment_content] : '未入力' %>
+        </div>
       </div>
     </div>
-    <div class="m-3">
-      <p class="text-base font-semibold text-primary-content">
-        駐輪場
-      </p>
-      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= t_enum('spot', 'parking', session[:parking]) %>
-      </div>
+    <div class="flex pb-3">
+      <%= link_to '戻る', step4_spot_registrations_path(from_confirmation: true),
+          data: { wizard_target: 'back', action: 'click->wizard#back' },
+          class: 'btn-secondary' %>
+      <%= link_to '登録', spots_path,
+          data: { turbo_frame: '_top',
+                  turbo_method: :post,
+                  action: 'click->wizard#removeSessionStorage' },
+          class: 'btn-secondary' %>
     </div>
-    <div class="m-3">
-      <p class=" text-base font-semibold text-primary-content">
-        駐輪場制限
-      </p>
-      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= session[:parking_limitation] ? t_enum('spot', 'parking_limitation', session[:parking_limitation]) : 'ー' %>
-      </div>
-    </div>
-    <div class="m-3">
-      <p class="text-base font-semibold text-primary-content">
-        行きやすさ
-      </p>
-      <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= t_enum('difficulty', 'level', session[:difficulty_level]) %>
-      </div>
-    </div>
-    <div class="m-3">
-      <p class="text-base font-semibold text-primary-content">
-        カテゴリ
-      </p>
-      <div class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
-        <%= t_enum('spot', 'category', session[:category]) %>
-      </div>
-    </div>
-    <div class="m-3">
-      <p class="text-base font-semibold text-primary-content">
-        おすすめポイント
-      </p>
-      <div  class="w-64 h-fit mx-auto mt-1 p-2 rounded-2xl content-center break-words bg-base-100">
-        <%= session[:comment_content].present? ? session[:comment_content] : '未入力' %>
-      </div>
-    </div>
-  </div>
-  <div class="flex absolute bottom-3 left-1/2 -translate-x-1/2">
-    <%= link_to '戻る', step4_spot_registrations_path(from_confirmation: true),
-        data: { modal_target: 'toForm',
-                action: 'click->modal#contractModal' },
-        class: 'daisy-btn daisy-btn-secondary w-20 h-10 mr-10 p-3 rounded-full text-sm
-                drop-shadow-lg border border-2 border-gray-200' %>
-    <%= link_to '登録', spots_path,
-        data: { turbo_frame: '_top',
-                turbo_method: :post,
-                wizard_target: 'toRegistration',
-                action: 'click->wizard#removeSessionStorage' },
-        class: 'daisy-btn daisy-btn-secondary w-20 h-10 ml-10 p-3 rounded-full text-sm
-        drop-shadow-lg border border-2 border-gray-200' %>
   </div>
 
 <% end %>

@@ -3,21 +3,20 @@
 @tailwind utilities;
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 14px;
   color: #444444
 }
 
-footer {
-  position: absolute;
+main {
+  flex: 1;
 }
 
 .h1 {
   @apply mt-8 m-3 text-2xl font-semibold
-}
-
-.translate-x-minus-fifty {
-  transform: translateX(-50%);
 }
 
 .base-container {
@@ -41,15 +40,15 @@ footer {
 }
 
 .base-c {
-  @apply w-32 h-fit mx-auto p-2 rounded-2xl bg-primary
+  @apply w-40 h-40 mx-auto p-2 rounded-2xl bg-primary
 }
 
 .pane-a {
-  @apply w-72 h-fit mx-auto p-3 rounded-2xl bg-base-100
+  @apply h-fit mx-auto p-3 rounded-2xl bg-base-100
 }
 
 .pane-20 {
-  @apply w-72 h-20 mx-auto p-2 rounded-2xl bg-base-100
+  @apply h-20 mx-auto p-2 rounded-2xl bg-base-100
 }
 
 .btn-s {
@@ -67,16 +66,104 @@ footer {
 }
 
 .flash {
-  @apply absolute left-1/2 translate-x-minus-fifty w-fit h-12 mt-2 px-5 py-3
-         flex justify-center items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
+  @apply flash_initial_locate z-50 w-fit h-fit mt-5 px-5 py-3
+         flex items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
+}
+
+.translate-x-minus-fifty {
+  transform: translateX(-50%);
+}
+
+.flash_initial_locate {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateX(-300%)
+}
+
+.no-scroll-bar {
+  scrollbar-width: none; 
 }
 
 
 
+
+/* --- トップページswiper用 --- */
+.slide-text {
+  width: 120%;
+  height: 30%;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 10px;
+}
+
+.swiper-main .swiper-slide {
+  transform: scale(0.8)!important;
+  opacity: 0.7;
+}
+
+.swiper-main .swiper-slide .slide-text {
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.swiper-main .swiper-slide-active {
+  transform: scale(1)!important;
+  opacity: 1;
+  transform-origin: center; 
+}
+
+.swiper-main .swiper-slide-active .slide-text {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+.swiper-paragraph .swiper-slide {
+  margin: auto;
+  width: 100%;
+  font-weight: 700;
+  font-size: 16px;
+  transform: translateY(-200%) scale(0);
+  opacity: 0;
+
+}
+
+.swiper-paragraph .swiper-slide-active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+/* ----------------------------- */
+
+
+
+/* --- モーダル出現時の背景制御　--- */
+body.no-scroll {
+  overflow: hidden;
+}
+
+.modal {
+  scrollbar-width: none; 
+}
+/* ----------------------------- */
+
+
+
+/* --- 検索トップ関係 --- */
 .daisy-collapse-title {
   padding: 16px;
 }
 
+#collapse-check:not(:checked) ~ #collapse-title svg {
+  transform: rotate(0deg);
+  transition: 0.2s ease-in-out;
+}
+
+#collapse-check:checked ~ #collapse-title svg {
+  transform: rotate(180deg);
+  transition: 0.2s ease-in-out;
+}
+/* --------------------- */
 
 
 /* --- マイスポットタブ関係 --- */
@@ -95,14 +182,6 @@ footer {
   display: block;
 }
 
-/* 選択されていないタブのスタイル
-#tab1:not(checked) + label,
-#tab2:not(checked) + label {
-  color: #f5f2e9;
-  font-weight: 400;
-} */
-
-
 /*選択されているタブのスタイルを変える*/
 #tab1:checked + label,
 #tab2:checked + label {
@@ -112,13 +191,15 @@ footer {
 }
 /* ------------------------- */
 
+
+
 /* --- ページネーション関係 --- */
 .pagination {
-  @apply flex justify-between w-52 h-10 mt-3 mx-auto rounded-full bg-base-100
+  @apply flex justify-between w-56 h-10 mt-3 mx-auto rounded-full bg-base-100
 }
 
 .page {
-  @apply w-6 h-6 overflow-hidden box-content rounded-full mx-1 drop-shadow-md content-center
+  @apply w-6 h-6 rounded-full mx-1 drop-shadow-md content-center
          bg-secondary border border-2 border-gray-200 text-xs
          hover:bg-primary hover:text-primary-content transition duration-300 ease-in-out
 }
@@ -141,7 +222,10 @@ footer {
 }
 /* ------------------------- */
 
-/* --- チャットバブル --- */
+
+
+
+/* --- コメント用チャットバブル --- */
 .chatbubble {
   position: relative; /* Setup a relative container for our pseudo elements */
   min-width: 60px;
@@ -184,6 +268,4 @@ footer {
     border-bottom-right-radius: 10px;
   }
 }
-
-
 /* -------------------- */

@@ -1,4 +1,6 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
+
   def new
     clear_session
   end
@@ -45,7 +47,7 @@ class SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.all.includes(:spot_detail).page(params[:page])
+    @spots = Spot.all.includes(:spot_detail).order(created_at: :desc).page(params[:page])
   end
 
   def destroy

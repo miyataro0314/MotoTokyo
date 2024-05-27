@@ -1,0 +1,22 @@
+<%= link_to spot_path(spot, from: from) do %>
+  <div class="base-c m-3 mx-5 flex-shrink-0 drop-shadow-md">
+    <div class="w-full h-full p-1 flex flex-col rounded-xl bg-primary-content">
+      <div class="p-1 whitespace-normal text-left font-semibold text-sm">
+        <%= spot.name %>
+      </div>
+      <div class="h-fit pb-1 border-b border-gray-300 whitespace-normal text-left text-xs">
+        <%= spot_detail.address %>
+      </div>
+      <div class="text-right text-xs">
+        <div class="whitespace-normal">
+          <%= svg_tag 'vuesax/linear/clock.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
+          <%= spot_detail.opening_hours %>
+        </div>
+        <div class="whitespace-normal">
+          <%= svg_tag 'parking_icon.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
+          <%= spot_parking_info(spot) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -25,7 +25,7 @@
           data: { wizard_target: 'back', action: 'click->wizard#back' },
           class: 'btn-secondary mr-10' %>
       <%= f.submit '確認',
-          data: { modal_target: 'toConfirmation', action: 'click->modal#expandModal' },
+          data: { wizard_target: 'next', action: 'click->wizard#next' },
           class: 'btn-secondary ml-10' %>
     </div>
   <% end %>

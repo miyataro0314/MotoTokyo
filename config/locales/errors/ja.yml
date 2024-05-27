@@ -1,0 +1,7 @@
+ja:
+  errors:
+    messages:
+      invalid: '%{attribute}が正しくありません。'
+      blank: '%{attribute}を入力してください。'
+      too_short: '%{attribute}は英数字%{count}文字以上で入力してください。'
+      confirmation: '%{attribute}が一致しません。'

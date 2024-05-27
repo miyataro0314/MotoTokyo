@@ -1,15 +1,32 @@
 <% if notice %>
-  <div role="alert" id="flash" class="flash bg-secondary">
-    <%= svg_tag 'vuesax/linear/tick-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
+  <%= stylesheet_link_tag 'animations/flash', data: { turbolinks_track: 'reload' } %>
+  <div role="alert" id="flash" class="flash start-flash-animation bg-secondary"
+       data-flash-target="flashMessage"
+       data-controller="flash">
+    <%= svg_tag 'vuesax/linear/tick-circle.svg' %>
     <div>
       <h3 class="font-semibold ml-2"><%= notice %></h3>
     </div>
+    <button class="daisy-btn daisy-btn-square daisy-btn-ghost"
+            data-flash-controller="button"
+            data-action="click->flash#endFlash">
+      <%= svg_tag 'vuesax/linear/add.svg' %>
+    </button>
   </div>
 <% elsif alert %>
-  <div role="alert" id="flash" class="flash bg-error">
-    <%= svg_tag 'vuesax/linear/info-circle.svg', css_class: 'cursor-pointer stroke-primary-content'  %>
+  <%= stylesheet_link_tag 'animations/flash', data: { turbolinks_track: 'reload' } %>
+  <div role="alert" id="flash" class="flash start-flash-animation bg-error"
+       data-flash-target="flashMessage"
+       data-controller="flash">
+    <%= svg_tag 'vuesax/linear/info-circle.svg' %>
     <div>
       <h3 class="font-semibold ml-2"><%= alert %></h3>
     </div>
+    <button class="daisy-btn daisy-btn-square daisy-btn-ghost"
+            data-flash-controller="button"
+            data-action="click->flash#endFlash">
+      <%= svg_tag 'vuesax/linear/add.svg' %>
+    </button>
   </div>
 <% end %>
+

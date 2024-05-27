@@ -1,4 +1,6 @@
 class Difficulty < ApplicationRecord
+  validates :level, presence: true
+
   belongs_to :user
   belongs_to :spot
 

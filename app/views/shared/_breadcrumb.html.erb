@@ -1,6 +1,13 @@
 <div class="w-fit m-3 text-left text-sm">
   <% if params[:from] %>
     <% case params[:from] %>
+    <% when 'home' %>
+      <%= link_to home_path, class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          ホームに戻る
+        </div>
+      <% end %>
     <% when 'spot_search' %>
       <%= link_to search_spots_searches_path, class: "w-fit" do %>
         <div class="flex items-center w-fit">

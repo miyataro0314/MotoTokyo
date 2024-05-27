@@ -2,17 +2,17 @@ ja:
   devise:
     confirmations:
       confirmed: "メールアドレスの確認が完了しました。"
-      send_instructions: "数分以内にメールアドレスを確認するための指示が記載されたメールを受け取ります。"
-      send_paranoid_instructions: "もしあなたのメールアドレスが当社のデータベースに存在する場合、数分以内に確認のための指示が記載されたメールを受け取ります。"
+      send_instructions: "5~10分以内にメールアドレスを認証するためのリンクが記載されたメールが届きます。"
+      send_paranoid_instructions: "5~10分以内に確認のための指示が記載されたメールが届きます。"
     failure:
-      already_authenticated: "すでにサインインしています。"
+      already_authenticated: "すでにログインしています。"
       inactive: "アカウントはまだ有効化されていません。"
       invalid: "無効な%{authentication_keys}またはパスワードです。"
       locked: "アカウントがロックされています。"
       last_attempt: "アカウントがロックされる前に、あと1回試行できます。"
       not_found_in_database: "無効な%{authentication_keys}またはパスワードです。"
-      timeout: "セッションが期限切れになりました。続行するには再度サインインしてください。"
-      unauthenticated: "続行するにはサインインまたはサインアップが必要です。"
+      timeout: "セッションが期限切れになりました。続行するには再度ログインしてください。"
+      unauthenticated: "続行するにはログインまたはユーザー登録が必要です。"
       unconfirmed: "続行する前にメールアドレスを確認する必要があります。"
     mailer:
       confirmation_instructions:
@@ -32,28 +32,28 @@ ja:
       no_token: "パスワードリセットのメールからアクセスしていないとこのページにはアクセスできません。メールからアクセスしている場合は、提供されたURL全体を使用してください。"
       send_instructions: "数分以内にパスワードをリセットするための指示が記載されたメールを受け取ります。"
       send_paranoid_instructions: "もしあなたのメールアドレスが当社のデータベースに存在する場合、数分以内にパスワード回復リンクが記載されたメールを受け取ります。"
-      updated: "パスワードが正常に変更されました。現在サインインしています。"
+      updated: "パスワードが正常に変更されました。現在ログインしています。"
       updated_not_active: "パスワードが正常に変更されました。"
     registrations:
-      destroyed: "さようなら！アカウントは正常にキャンセルされました。またのご利用をお待ちしております。"
-      signed_up: "ようこそ！サインアップに成功しました。"
-      signed_up_but_inactive: "サインアップに成功しましたが、アカウントがまだ有効化されていないため、サインインできません。"
-      signed_up_but_locked: "サインアップに成功しましたが、アカウントがロックされているため、サインインできません。"
+      destroyed: "アカウントは正常にキャンセルされました。またのご利用をお待ちしております。"
+      signed_up: "ようこそ！ユーザー登録に成功しました。"
+      signed_up_but_inactive: "ユーザー登録に成功しましたが、アカウントがまだ有効化されていないためログインできません。"
+      signed_up_but_locked: "ユーザー登録に成功しましたが、アカウントがロックされているためログインできません。"
       signed_up_but_unconfirmed: "確認リンクが記載されたメッセージをメールアドレスに送信しました。リンクに従ってアカウントを有効化してください。"
       update_needs_confirmation: "アカウントは正常に更新されましたが、新しいメールアドレスを確認する必要があります。メールを確認し、確認リンクに従って新しいメールアドレスを確認してください。"
       updated: "アカウントが正常に更新されました。"
-      updated_but_not_signed_in: "アカウントは正常に更新されましたが、パスワードが変更されたため、再度サインインする必要があります。"
+      updated_but_not_signed_in: "アカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインする必要があります。"
     sessions:
-      signed_in: "正常にサインインしました。"
+      signed_in: "正常にログインしました。"
       signed_out: "正常にサインアウトしました。"
-      already_signed_out: "すでにサインアウトしています。"
+      already_signed_out: "すでにサインアウトされています。"
     unlocks:
-      send_instructions: "数分以内にアカウントのロック解除の指示が記載されたメールを受け取ります。"
-      send_paranoid_instructions: "アカウントが存在する場合、数分以内にアカウントのロック解除の指示が記載されたメールを受け取ります。"
-      unlocked: "アカウントのロックが正常に解除されました。続行するにはサインインしてください。"
+      send_instructions: "5~10分以内にアカウントのロック解除の指示が記載されたメールが届きます。"
+      send_paranoid_instructions: "アカウントが存在する場合、5~10分以内にアカウントのロック解除の指示が記載されたメールが届きます。"
+      unlocked: "アカウントのロックが正常に解除されました。続行するにはログインしてください。"
   errors:
     messages:
-      already_confirmed: "すでに確認済みです。サインインしてください。"
+      already_confirmed: "すでに確認済みです。ログインしてください。"
       confirmation_period_expired: "確認は%{period}以内に行う必要があります。新しい確認をリクエストしてください。"
       expired: "期限が切れました。新しいものをリクエストしてください。"
       not_found: "見つかりません"
