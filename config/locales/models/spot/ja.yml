@@ -13,6 +13,7 @@ ja:
           free: 'あり(無料)'
           paid: 'あり(有料)'
           nothing: '無し'
+          unknown: '分からない'
         parking_limitation:
           all_ok: '全排気量可'
           no_big: '大型不可'
@@ -87,5 +88,3 @@ ja:
           hachijo: '八丈町'
           aogashima: '青ヶ島村'
           ogasawara: '小笠原村'
-    errors:
-      models:

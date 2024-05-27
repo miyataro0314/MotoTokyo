@@ -4,13 +4,13 @@ const parkingLimitationDiv = document.getElementById('parking-limitation-div');
 const nextButton = document.getElementById('go-to-step3-button');
 
 // 戻るボタン対応用
-if (parkingSelect.value !== '' && parkingSelect.value !== 'nothing') {
+if (parkingSelect.value !== '' && parkingSelect.value !== 'nothing' && this.value !== 'unknown') {
   parkingLimitationDiv.style.display = 'block';
 }
 updateButton();
 
 parkingSelect.addEventListener('change', function() {
-  if (this.value !== '' && this.value !== 'nothing') {
+  if (this.value !== '' && this.value !== 'nothing' && this.value !== 'unknown') {
     parkingLimitationDiv.style.display = 'block';
   } else {
     parkingLimitationDiv.style.display = 'none';

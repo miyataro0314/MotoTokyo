@@ -66,13 +66,20 @@ main {
 }
 
 .flash {
-  @apply absolute left-1/2 translate-x-minus-fifty z-50 w-fit h-12 mt-2 px-5 py-3
-         flex justify-center items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
+  @apply flash_initial_locate z-50 w-fit h-fit mt-5 px-5 py-3
+         flex items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
 }
 
 .translate-x-minus-fifty {
   transform: translateX(-50%);
 }
+
+.flash_initial_locate {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateX(-300%)
+}
+
 
 
 

@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ['background', 'modal'];
-  loadCount = 0;
 
   connect() {
     document.body.classList.add('no-scroll')

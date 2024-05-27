@@ -1,8 +1,7 @@
 class Parking < ApplicationRecord
+  include AreaEnum
   geocoded_by :street_address
   after_validation :set_geolocation, if: :street_address_changed?
-
-  include AreaEnum
 
   has_many :parking_fees, dependent: :destroy
   has_many :parking_capacities, dependent: :destroy

@@ -1,0 +1,32 @@
+@keyframes start-flash {
+  0% {
+    transform: translateX(-50%) translateY(-300%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes end-flash {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-300%);
+    display: none;
+  }
+}
+
+.start-flash-animation {
+  animation-name: start-flash;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+  animation-fill-mode: forwards;
+}
+
+.end-flash-animation {
+  animation-name: end-flash;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+  animation-fill-mode: forwards;
+}

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
-
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   root 'static_pages#top'
   get 'home', to: 'homes#home'
   get 'my_page', to: 'homes#my_page'

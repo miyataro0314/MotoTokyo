@@ -1,6 +1,7 @@
 module SpotsHelper
   def spot_parking_info(spot)
     return '無し' if spot.parking == 'nothing'
+    return '情報なし' if spot.parking == 'unknown'
 
     localed_parking = t_enum('spot', 'parking', spot.parking)
     localed_parking_limitation = t_enum('spot', 'parking_limitation', spot.parking_limitation)
