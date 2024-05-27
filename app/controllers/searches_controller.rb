@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
     set_spot_search_query
     @query = build_query_string
     search_spots_form = SearchSpotsForm.new(session_spots_params)
-    @spots = search_spots_form.search.page(session[:page])
+    @spots = search_spots_form.search.order(created_at: :desc).page(session[:page])
     render 'spots/index'
   end
 

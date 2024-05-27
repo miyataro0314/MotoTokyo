@@ -47,7 +47,7 @@ class SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.all.includes(:spot_detail).page(params[:page])
+    @spots = Spot.all.includes(:spot_detail).order(created_at: :desc).page(params[:page])
   end
 
   def destroy

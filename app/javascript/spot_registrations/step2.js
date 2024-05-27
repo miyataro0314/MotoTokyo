@@ -4,7 +4,7 @@ const parkingLimitationDiv = document.getElementById('parking-limitation-div');
 const nextButton = document.getElementById('go-to-step3-button');
 
 // 戻るボタン対応用
-if (parkingSelect.value !== '' && parkingSelect.value !== 'nothing' && this.value !== 'unknown') {
+if (parkingSelect.value !== '' && parkingSelect.value !== 'nothing' && parkingSelect.value !== 'unknown') {
   parkingLimitationDiv.style.display = 'block';
 }
 updateButton();

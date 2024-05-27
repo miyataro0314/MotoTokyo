@@ -1,5 +1,5 @@
 <script src="https://unpkg.com/swiper@11.1.3/swiper-bundle.min.js"></script>
-<%= javascript_include_tag "static_pages/top", "data-turbo-track": "reload", async: true %>
+<%= javascript_include_tag "static_pages/top", "data-turbo-track": "reload", async: true, defer: true %>
 
 <%= svg_tag 'moto-tokyo-logo.svg', 
     css_class: 'logo mt-3 absolute left-1/2 translate-x-minus-fifty z-30' %>
@@ -9,34 +9,39 @@
   <div class="swiper-main mt-16">
     <div class="swiper-wrapper z-10">
       <div class="swiper-slide relation bg-secondary rounded-3xl">
-        <%= svg_tag 'text1.svg', css_class: 'slide-text drop-shadow-md' %>
-        
+        <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
+          <%= image_tag 'top_image1.jpg' %>
+        </div>
+        <%= svg_tag 'text1.svg', css_class: 'slide-text fill-secondary drop-shadow-md' %>
       </div>
       <div class="swiper-slide relation bg-secondary rounded-3xl">
-        <%= svg_tag 'text2.svg', css_class: 'slide-text drop-shadow-md' %>
+        <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
+          
+        </div>
+        <%= svg_tag 'text2.svg', css_class: 'slide-text fill-neutral drop-shadow-md' %>
       </div>
       <div class="swiper-slide relation bg-secondary rounded-3xl">
-        <%= svg_tag 'text3.svg', css_class: 'slide-text drop-shadow-md' %>
+        <%= svg_tag 'text3.svg', css_class: 'slide-text fill-neutral drop-shadow-md' %>
       </div>
     </div>
   </div>
   <div class="swiper-paragraph">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <p class="slide-paragraph">
+        <p class="slide-paragraph mt-1">
           東京に行くのは電車で十分？<br>
           ノンノン、東京には沢山の<br>
           ライディングスポットが眠っています！
         </p>
       </div>
       <div class="swiper-slide">
-        <p class="slide-paragraph">
+        <p class="slide-paragraph mt-1">
           いちいち駐車場を探す必要はありません<br>
           付近の駐車場も同時に見つけられます！
         </p>
       </div>
       <div class="swiper-slide">
-        <p class="slide-paragraph">
+        <p class="slide-paragraph mt-1">
           お気に入りのスポットを登録して、<br>
           みんなでツーリングスポットを開拓しよう！
         </p>

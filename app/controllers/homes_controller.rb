@@ -1,7 +1,9 @@
 class HomesController < ApplicationController
   before_action :require_profile, only: :my_page
 
-  def home; end
+  def home
+    @spots = Spot.includes(:spot_detail).order(created_at: :desc).limit(5)
+  end
 
   def my_page
     @profile = current_user.profile
@@ -9,8 +11,8 @@ class HomesController < ApplicationController
 
   def my_spots
     @selected_tab = params[:tab] || 'bookmark'
-    @registered_spots = current_user.spots.page(params[:page_register]).order(:created_at)
-    @bookmarked_spots = current_user.bookmarked_spots.page(params[:page_bookmark])
+    @registered_spots = current_user.spots.order(created_at: :desc).page(params[:page_register])
+    @bookmarked_spots = current_user.bookmarked_spots.order(created_at: :desc).page(params[:page_bookmark])
   end
 
   def account

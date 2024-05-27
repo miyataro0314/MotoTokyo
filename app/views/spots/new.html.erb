@@ -17,7 +17,9 @@
   
   <div class="base-m mt-10 mx-auto">
     <p class="p-3 text-sm text-primary-content">4STEPでかんたんに登録！</p>
-    <div class="w-44 h-44 m-auto rounded-2xl bg-white">画像いれる</div>
+    <div class="w-44 h-44 m-auto overflow-hidden rounded-2xl bg-white">
+      <%= image_tag 'spot_registration.jpg' %>
+    </div>
     <%= link_to 'スポット登録', step1_spot_registrations_path,
         class: 'btn-secondary',
         data: { turbo_frame: 'modal' } %>

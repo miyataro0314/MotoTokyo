@@ -9,9 +9,11 @@
   
   <div class="base-l mt-8">
     <div tabindex="0" class="daisy-collapse"> 
-      <input type="checkbox" class="cursor-pointer"> 
-      <div class="daisy-collapse-title border-b-2 text-base text-primary-content">
-        条件を指定して検索
+      <input type="checkbox" id="collapse-check" class="cursor-pointer"> 
+      <div id="collapse-title"
+           class="daisy-collapse-title relative border-b-2 text-base text-primary-content">
+        <%= svg_tag 'vuesax/linear/arrow-down.svg', css_class: 'absolute stroke-primary-content' %>
+        <p>条件を指定して検索</p>
       </div>
       <div class="daisy-collapse-content"> 
         <div class="text-center">

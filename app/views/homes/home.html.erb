@@ -1,9 +1,41 @@
 <div class="container text-center">
-  <div>ログイン後ホーム画面（現状、ここから遷移することは無いため仮作成）</div>
-  <div>最近チェックしたスポットとか</div>
-  <div>おすすめスポットとか</div>
+  <h1 class="h1">ホーム</h1>
+
+  <% if current_user.profile.nil? %>
+    <%= link_to new_profile_path, class: 'btn-secondary flex content-center' do %>
+      <%= svg_tag 'vuesax/linear/info-circle.svg' %>
+      <p>プロフィールの登録をしましょう！</p>
+    <% end %>
+  <% end %>
+
+  <div class="base-l mt-8">
+    <p class="text-primary-content font-semibold font-base">
+      最近チェックしたスポット
+    </p>
+    <%# <%= render 'spots/spot_card', locals: { spot: @spot, spot_detail: @spot_detail } %>
+    <div>
+      <p class="text-primary-content">
+        前回と同じ条件で<br>
+        検索する
+      </p>
+      <%= link_to '大田区:ご飯', search_spots_searches_path, class: 'btn-secondary' %>
+    </div>
+  </div>
+
+  <div class='flex w-80 mx-auto mt-5 items-center space-x-3'>
+    <span>最近登録されたスポット</span>
+    <div class="flex-1 border border-gray-300"></div>
+  </div>
+
+  <% if @spots.any? %>
+    <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap no-scroll-bar">
+      <% @spots.each do |spot| %>
+        <%= render partial: 'spots/spot_card',
+                   locals: { spot: spot, spot_detail: spot.spot_detail, from: 'home' } %>
+      <% end %>
+  <% else %>
+    <div class="mt-3 text-center">該当するスポットは<br>ありませんでした</div>      
+  <% end %>
+
 </div>
 
-<% if current_user.profile.nil? %>
-  <%= link_to 'プロフィールの登録をしましょう!', new_profile_path %>
-<% end %>

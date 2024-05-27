@@ -40,7 +40,7 @@ main {
 }
 
 .base-c {
-  @apply w-32 h-fit mx-auto p-2 rounded-2xl bg-primary
+  @apply w-40 h-40 mx-auto p-2 rounded-2xl bg-primary
 }
 
 .pane-a {
@@ -78,6 +78,10 @@ main {
   position: absolute;
   left: 50%;
   transform: translateX(-50%) translateX(-300%)
+}
+
+.no-scroll-bar {
+  scrollbar-width: none; 
 }
 
 
@@ -145,12 +149,21 @@ body.no-scroll {
 
 
 
-/* --- 検索トップのdaisy-collapseオーバーライド用 --- */
+/* --- 検索トップ関係 --- */
 .daisy-collapse-title {
   padding: 16px;
 }
-/* --------------------------------------------- */
 
+#collapse-check:not(:checked) ~ #collapse-title svg {
+  transform: rotate(0deg);
+  transition: 0.2s ease-in-out;
+}
+
+#collapse-check:checked ~ #collapse-title svg {
+  transform: rotate(180deg);
+  transition: 0.2s ease-in-out;
+}
+/* --------------------- */
 
 
 /* --- マイスポットタブ関係 --- */
@@ -186,7 +199,7 @@ body.no-scroll {
 }
 
 .page {
-  @apply w-6 h-6 overflow-hidden box-content rounded-full mx-1 drop-shadow-md content-center
+  @apply w-6 h-6 rounded-full mx-1 drop-shadow-md content-center
          bg-secondary border border-2 border-gray-200 text-xs
          hover:bg-primary hover:text-primary-content transition duration-300 ease-in-out
 }
