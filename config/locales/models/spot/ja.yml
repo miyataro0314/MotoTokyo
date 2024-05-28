@@ -15,7 +15,7 @@ ja:
           nothing: '無し'
           unknown: '分からない'
         parking_limitation:
-          all_ok: '全排気量可'
+          all_ok: '全排気量'
           no_big: '大型不可'
           only_scooter: '原付きのみ'
         category:

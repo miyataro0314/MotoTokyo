@@ -40,7 +40,7 @@ main {
 }
 
 .base-c {
-  @apply w-40 h-40 mx-auto p-2 rounded-2xl bg-primary
+  @apply w-40 h-44 mx-auto p-2 rounded-2xl bg-primary
 }
 
 .pane-a {
@@ -68,6 +68,10 @@ main {
 .flash {
   @apply flash_initial_locate z-50 w-fit h-fit mt-5 px-5 py-3
          flex items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
+}
+
+.modal {
+  @apply w-80 h-112 p-3 overflow-y-scroll drop-shadow-2xl rounded-3xl
 }
 
 .translate-x-minus-fifty {
@@ -140,10 +144,6 @@ main {
 /* --- モーダル出現時の背景制御　--- */
 body.no-scroll {
   overflow: hidden;
-}
-
-.modal {
-  scrollbar-width: none; 
 }
 /* ----------------------------- */
 

@@ -125,7 +125,6 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
-    csv (3.3.0)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -146,9 +145,6 @@ GEM
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
     ffi (1.16.3)
-    geocoder (1.8.3)
-      base64 (>= 0.1.0)
-      csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -404,7 +400,6 @@ DEPENDENCIES
   debug
   devise
   factory_bot_rails
-  geocoder
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

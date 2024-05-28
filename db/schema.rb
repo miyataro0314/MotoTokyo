@@ -81,36 +81,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_032209) do
     t.index ["user_id"], name: "index_edit_histories_on_user_id"
   end
 
-  create_table "parking_capacities", force: :cascade do |t|
-    t.bigint "parking_id", null: false
-    t.integer "capacity", null: false
-    t.integer "vehicle_type", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["parking_id"], name: "index_parking_capacities_on_parking_id"
-    t.index ["vehicle_type"], name: "index_parking_capacities_on_vehicle_type"
-  end
-
-  create_table "parking_fees", force: :cascade do |t|
-    t.bigint "parking_id", null: false
-    t.string "description"
-    t.string "start_time"
-    t.string "end_time"
-    t.integer "fee"
-    t.integer "interval"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["parking_id"], name: "index_parking_fees_on_parking_id"
-  end
-
   create_table "parkings", force: :cascade do |t|
     t.string "name", null: false
     t.integer "area", null: false
-    t.string "postal_code", null: false
-    t.string "street_address", null: false
+    t.string "address", null: false
     t.geography "coordinate", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
-    t.string "weekday_text", default: [], array: true
-    t.string "info"
+    t.string "fee"
+    t.string "closed_days"
+    t.string "opening_hours"
+    t.string "capacity"
+    t.string "limitation"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["area"], name: "index_parkings_on_area"
@@ -192,8 +173,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_032209) do
   add_foreign_key "difficulties", "users"
   add_foreign_key "edit_histories", "spots"
   add_foreign_key "edit_histories", "users"
-  add_foreign_key "parking_capacities", "parkings"
-  add_foreign_key "parking_fees", "parkings"
   add_foreign_key "profiles", "users"
   add_foreign_key "spot_details", "spots"
   add_foreign_key "spots", "users", on_delete: :nullify
