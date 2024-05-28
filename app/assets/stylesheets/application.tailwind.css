@@ -196,7 +196,7 @@ body.no-scroll {
 
 /* --- ページネーション関係 --- */
 .pagination {
-  @apply flex justify-between w-56 h-10 mt-3 mx-auto rounded-full bg-base-100
+  @apply flex justify-between w-64 h-10 mt-3 mx-auto rounded-full bg-base-100
 }
 
 .page {
