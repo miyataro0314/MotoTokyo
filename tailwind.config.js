@@ -8,14 +8,9 @@ module.exports = {
 
   theme: {
     extend: {
-      height: {
+      spacing: {
         '7': '28px',
-        '112': '448px',
-        '120': '480px',
-        '128': '512px'
-      },
-      width: {
-        '7': '28px',
+        '42': '168px',
         '112': '448px',
         '120': '480px',
         '128': '512px'
