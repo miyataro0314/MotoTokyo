@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
 <%= stylesheet_link_tag 'animations/wizard', data: { turbolinks_track: 'reload' } %>
-<%= javascript_include_tag "spots/new", "data-turbo-track": "reload", async: true %>
 
 <div class="base-container">
   
@@ -34,10 +33,10 @@
     <ul class="list-disc list-inside text-left">
       <li class="m-1">スポット検索</li>
       <li class="m-1">行ったスポットの保存</li>
-      <li class="m-1">付近の天気情報の取得</li>
+      <li class="m-1">付近の天気情報の取得（準備中）</li>
       <li class="m-1">付近のパーキング情報の取得</li>
       <li class="m-1">気になるスポットのブックマーク</li>
-      <li class="m-1">初心者にも安心の行きやすさ投票機能</li>
+      <li class="m-1">初心者にも安心の行きやすさ投票機能（準備中）</li>
       <li class="m-1">他ユーザーからのおすすめポイント投稿</li>
     </ul>
   </div>
@@ -53,3 +52,5 @@
     </ul>
   </div>
 </div>
+
+<%= javascript_include_tag "spots/new", "data-turbo-track": "reload", defer: true %>

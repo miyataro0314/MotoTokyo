@@ -8,7 +8,9 @@
         <%= parking.address %>
       </div>
       <div class="flex-grow flex flex-col justify-between text-right text-xs">
-        <div class="h-18 whitespace-normal overflow-hidden"><%= parking.operation_info %></div>
+        <div class="h-8 whitespace-normal overflow-hidden">
+          <%= parking.operation_info %>
+        </div>
         <div>
           スポットから
           <span class="font-semibold text-sm"><%= parking.distance(spot_detail.coordinate) %></span>

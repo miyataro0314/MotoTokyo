@@ -1,8 +1,5 @@
 <%= turbo_frame_tag 'modal' do %>
 
-  <%= javascript_include_tag 'spots/edit', 'data-turbo-track': 'reload', async: true %>
-
-
   <div class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20'
        data-controller="modal"
        data-modal-target="background"
@@ -66,5 +63,7 @@
       </div>
     </div>
   </div>
+
+  <%= javascript_include_tag 'spots/edit', 'data-turbo-track': 'reload', defer: true %>
 
 <% end %>
