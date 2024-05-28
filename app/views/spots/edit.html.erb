@@ -7,7 +7,7 @@
        data-controller="modal"
        data-modal-target="background"
        data-action="click->modal#closeModal">
-    <div class="base-l drop-shadow-2xl"
+    <div class="modal w-80 h-112 mx-auto p-3 overflow-y-scroll drop-shadow-2xl rounded-3xl bg-primary"
          data-modal-target="modal">
       <div class="text-lg font-semibold text-primary-content"><%= @spot.name %></div>
       <%= form_with model: @spot,

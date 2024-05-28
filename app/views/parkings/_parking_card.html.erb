@@ -1,15 +1,19 @@
 <%= link_to parking_path(parking), data: { turbo_frame: 'modal' } do %>
   <div class="base-c m-3 mx-5 flex-shrink-0 drop-shadow-md">
     <div class="w-full h-full p-1 flex flex-col rounded-xl bg-primary-content">
-      <div class="p-1 whitespace-normal text-left font-semibold text-sm">
+      <div class="h-12 p-1 whitespace-normal text-left font-semibold text-sm">
         <%= parking.name %>
       </div>
-      <div class="h-fit pb-1 border-b border-gray-300 whitespace-normal text-left text-xs">
+      <div class="h-12 pb-1 border-b border-gray-300 whitespace-normal text-left text-xs">
         <%= parking.address %>
       </div>
-      <div class="text-right text-xs">
-        <div><%= parking.opening_hours %></div>
-        <div><%= parking.distance(spot_detail.coordinate) %>m</div>
+      <div class="flex-grow flex flex-col justify-between text-right text-xs">
+        <div class="h-18 whitespace-normal overflow-hidden"><%= parking.operation_info %></div>
+        <div>
+          スポットから
+          <span class="font-semibold text-sm"><%= parking.distance(spot_detail.coordinate) %></span>
+          m
+        </div>
       </div>
     </div>
   </div>
