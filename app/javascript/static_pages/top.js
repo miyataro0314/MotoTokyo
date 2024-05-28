@@ -70,7 +70,7 @@ updateSlidesPerView();
 adjustSwiperHeights();
 
 // transition初期動作回避のためロード後に追加
-window.addEventListener('load', function() {
+window.addEventListener('turbo:load', function() {
   const mainSlides = document.querySelectorAll('.swiper-main .swiper-slide');
   const paragraphSlides = document.querySelectorAll('.swiper-paragraph .swiper-slide');
   mainSlides.forEach((slide) => {

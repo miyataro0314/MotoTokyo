@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 body {
+  -webkit-text-size-adjust: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 14px;
   color: #444444
@@ -28,7 +29,7 @@ main {
 }
 
 .text-field-m {
-  @apply w-52 h-10 p-2 drop-shadow-md rounded-full border border-gray-200
+  @apply w-52 h-10 p-2 drop-shadow-md rounded-full border border-gray-200 text-base
 }
 
 .base-l {
@@ -36,7 +37,7 @@ main {
 }
 
 .text-field-l {
-  @apply w-64 h-10 p-2 drop-shadow-md rounded-full border border-gray-200
+  @apply w-64 h-10 p-2 drop-shadow-md rounded-full border border-gray-200 text-base
 }
 
 .base-c {
@@ -71,7 +72,7 @@ main {
 }
 
 .modal {
-  @apply w-80 h-112 p-3 overflow-y-scroll drop-shadow-2xl rounded-3xl
+  @apply w-80 h-120 p-3 overflow-y-scroll drop-shadow-2xl rounded-3xl
 }
 
 .translate-x-minus-fifty {

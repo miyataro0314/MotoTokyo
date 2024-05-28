@@ -1,5 +1,5 @@
-<script src="https://unpkg.com/swiper@11.1.3/swiper-bundle.min.js"></script>
-<%= javascript_include_tag "static_pages/top", "data-turbo-track": "reload", async: true, defer: true %>
+<script async src="https://unpkg.com/swiper@11.1.3/swiper-bundle.min.js"></script>
+<%= javascript_include_tag "static_pages/top", "data-turbo-track": "reload", defer: true %>
 
 <%= svg_tag 'moto-tokyo-logo.svg', 
     css_class: 'logo mt-3 absolute left-1/2 translate-x-minus-fifty z-30' %>
@@ -12,17 +12,17 @@
         <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
           <%= image_tag 'top_image1.jpg' %>
         </div>
-        <%= svg_tag 'text1.svg', css_class: 'slide-text fill-secondary drop-shadow-md' %>
+        <%= svg_tag 'text1.svg', css_class: 'slide-text fill-primary drop-shadow-md' %>
       </div>
       <div class="swiper-slide relation bg-secondary rounded-3xl">
         <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
-          
+          写真準備中
         </div>
         <%= svg_tag 'text2.svg', css_class: 'slide-text fill-neutral drop-shadow-md' %>
       </div>
       <div class="swiper-slide relation bg-secondary rounded-3xl">
         <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
-          
+          写真準備中
         </div>
         <%= svg_tag 'text3.svg', css_class: 'slide-text fill-neutral drop-shadow-md' %>
       </div>

@@ -13,18 +13,18 @@ ja:
       not_found_in_database: "無効な%{authentication_keys}またはパスワードです。"
       timeout: "セッションが期限切れになりました。続行するには再度ログインしてください。"
       unauthenticated: "続行するにはログインまたはユーザー登録が必要です。"
-      unconfirmed: "続行する前にメールアドレスを確認する必要があります。"
+      unconfirmed: "続行する前にメールアドレスを確認し、アカウントを有効化する必要があります。"
     mailer:
       confirmation_instructions:
-        subject: "確認の指示"
+        subject: "アカウント有効化のお願い"
       reset_password_instructions:
-        subject: "パスワードリセットの指示"
+        subject: "パスワードリセットリンクのご案内"
       unlock_instructions:
         subject: "アンロックの指示"
       email_changed:
-        subject: "メールアドレスが変更されました"
+        subject: "メールアドレスの変更通知"
       password_change:
-        subject: "パスワードが変更されました"
+        subject: "パスワードの変更通知"
     omniauth_callbacks:
       failure: "%{kind}からの認証に失敗しました：\"%{reason}\"。"
       success: "%{kind}アカウントからの認証に成功しました。"
