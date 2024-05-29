@@ -67,7 +67,7 @@ main {
 }
 
 .flash {
-  @apply flash_initial_locate z-50 w-fit h-fit mt-5 px-5 py-3
+  @apply flash_initial_locate z-50 w-52 h-fit mt-5 px-5 py-3
          flex items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
 }
 
