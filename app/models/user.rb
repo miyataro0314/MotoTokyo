@@ -17,4 +17,12 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   enum role: { general: 0, admin: 10 }
+
+  def already_commented?(spot)
+    comments.exists?(spot_id: spot.id)
+  end
+
+  def comment_for(spot)
+    comments.find_by(spot_id: spot.id)
+  end
 end

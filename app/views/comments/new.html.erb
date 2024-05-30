@@ -1,0 +1,28 @@
+<%= turbo_frame_tag 'modal' do %>
+
+  <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+
+  <div class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20'
+        data-controller="modal"
+        data-modal-target="background"
+        data-action="click->modal#closeModal">
+    <div class="modal-h-fit text-sm bg-primary no-scroll-bar"
+         data-modal-target="modal">
+      
+      <div>
+        <%= form_with model: [@spot, @comment] do |f| %>
+          <p class="m-3 text-base font-semibold text-primary-content">
+            おすすめポイントを教えてください
+          </p>
+          <%= f.text_area :content,
+              { size: "20x10",
+                class: 'daisy-textarea w-64 h-32 px-3 drop-shadow-md bg-white' } %>
+          <%= f.submit '投稿する',
+            data: { turbo_frame: '_top' },
+            class: 'btn-secondary ml-10' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

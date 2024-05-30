@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    attributes:
+      comment:
+        content: '内容'
