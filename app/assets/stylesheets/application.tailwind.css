@@ -67,12 +67,16 @@ main {
 }
 
 .flash {
-  @apply flash_initial_locate z-50 w-52 h-fit mt-5 px-5 py-3
+  @apply flash_initial_locate z-50 w-72 h-fit mt-5 py-2 pl-3 pr-1
          flex items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
 }
 
 .modal {
   @apply w-80 h-120 p-3 overflow-y-scroll drop-shadow-2xl rounded-3xl
+}
+
+.modal-h-fit {
+  @apply w-80 h-fit max-h-120 p-3 overflow-y-scroll drop-shadow-2xl rounded-3xl
 }
 
 .translate-x-minus-fifty {
