@@ -30,8 +30,8 @@
             <%= t_enum('spot', 'category', @spot.category) %>
           </div>
         </div>
-        <div class="flex flex-col text-right">
-          <div>
+        <div class="flex flex-col max-w-48 text-right">
+          <div class="w-40 ml-auto">
             <%= svg_tag 'vuesax/linear/clock.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
             <%= @spot_detail.opening_hours %>
           </div>
