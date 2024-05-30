@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
   }
   root 'static_pages#top'
   get 'home', to: 'homes#home'
   get 'my_page', to: 'homes#my_page'
   get 'my_spots', to: 'homes#my_spots'
   get 'account', to: 'homes#account'
+  get 'account/cancellation', to: 'homes#cancellation'
 
   resources :spots, only: %i[new create edit update show index destroy] do
     resources :bookmarks, only: %i[create destroy]

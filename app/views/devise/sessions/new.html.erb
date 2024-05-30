@@ -5,12 +5,12 @@
   <div class="base-m mt-8 text-primary-content">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div>
-        <%= f.label :email, 'メールアドレス' %><br>
+        <%= f.label :email, 'メールアドレス', class: 'font-semibold' %><br>
         <%= f.email_field :email, autofocus: true, autocomplete: "email",
             class: 'w-48 h-6 bg-primary border-b' %>
       </div>
       <div class="mt-3">
-        <%= f.label :password, 'パスワード' %><br>
+        <%= f.label :password, 'パスワード', class: 'font-semibold' %><br>
         <%= f.password_field :password, autocomplete: "current-password",
             class: 'w-48 bg-primary border-b' %>
       </div>

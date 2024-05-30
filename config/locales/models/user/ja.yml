@@ -6,3 +6,5 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: '確認用パスワード'
+        reset_password_token: 'リセットパスワードトークン'
+        current_password: '現在のパスワード'

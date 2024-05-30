@@ -5,8 +5,6 @@ class User < ApplicationRecord
 
   validates :id, presence: true, uniqueness: true, length: { minimum: 6, maximum: 30 }
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6, maximum: 30 }
-  validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 30 }
 
   has_many :spots, dependent: :nullify
   has_many :difficulties, dependent: :destroy

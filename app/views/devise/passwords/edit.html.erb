@@ -1,25 +1,56 @@
-<h2>Change your password</h2>
+<div class="base-container">
+  
+  <h1 class="h1">パスワードリセット</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render 'devise/shared/error_messages', resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+  <div class="base-m mt-8 text-primary-content">
+    <% if resource.errors[:reset_password_token].blank? %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, 'New password' %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <div>
+          <%= f.label :password, '新しいパスワード' %><br />
+          <% if @minimum_password_length %>
+            <em><%= "(英数字#{@minimum_password_length}文字以上)" %></em><br />
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: 'new-password',
+              class: 'w-48 h-6 bg-primary border-b' %>
+          <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :password } %>
+        </div>
+
+        <div class="mt-3">
+          <%= f.label :password_confirmation, '確認用パスワード' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: 'new-password',
+              class: 'w-48 h-6 bg-primary border-b' %>
+          <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :password_confirmation } %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit '登録', class: 'btn-secondary' %>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-red-800">
+        正しくないパスワードリセットトークンが検出されました。<br>
+        大変お手数をおかけしますが、再度パスワードリセットメールの送信を行ってください。
+      </p>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="mt-3">
+          <%= f.label :email, '登録済みのメールアドレス' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              class: 'w-48 h-6 bg-primary border-b' %>
+          <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :email } %>
+        </div>
+
+        <div class="mt-3">
+          <p>
+            メールに記載してあるリンクから<br>
+            パスワードの再設定をお願いします
+          </p>
+          <%= f.submit "再設定メールを送信する", class: 'btn-secondary' %>
+        </div>
+      <% end %>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: 'new-password' %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, 'Confirm new password' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit 'Change my password' %>
-  </div>
-<% end %>
-
-<%= render 'devise/shared/links' %>
