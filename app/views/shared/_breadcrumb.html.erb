@@ -29,6 +29,13 @@
           マイスポット一覧に戻る
         </div>
       <% end %>
+    <% when 'spot_registration' %>
+      <%= link_to spot_path(spot_id: params[:spot]), class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          スポット詳細に戻る
+        </div>
+      <% end %>
     <% end %>
   <% end %>
   </div>

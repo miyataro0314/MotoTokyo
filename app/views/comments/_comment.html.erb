@@ -1,6 +1,10 @@
 <div class="flex my-3 items-end">
   <div class="w-12 h-12 ml-1 mr-3 z-30 rounded-full overflow-hidden bg-primary">
-    <%= image_tag (comment.user.profile&.avatar&.attached? ? comment.user.profile.avatar : 'preview.png') %>
+    <%= link_to user_path(comment.user, from: 'spot', spot_id: spot.id),
+                class: 'daisy-btn daisy-btn-circle daisy-btn-ghost',
+                data: { turbo_frame: '_top' } do %>
+      <%= image_tag (comment.user.profile&.avatar&.attached? ? comment.user.profile.avatar : 'preview.png') %>
+    <% end %>
   </div>
   <div class="chatbubble received my-auto">
     <%= comment.content %>

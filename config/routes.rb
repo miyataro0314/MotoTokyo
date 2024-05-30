@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
   resources :parkings, only: %i[show index]
   resources :profiles, only: %i[new create edit update]
-
+  resources :users, only: %i[show]
 
   resources :spot_registrations, only: [] do
     collection do

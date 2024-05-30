@@ -65,7 +65,7 @@
             まだおすすめポイントは投稿されていません
           </p>
         <% else %>
-          <%= render partial: 'comments/comment', locals: { comment: @comment } %>
+          <%= render partial: 'comments/comment', locals: { comment: @comment, spot: @spot } %>
         <% end %>
         <div class="flex flex-col">
           <% if current_user.already_commented?(@spot) %>
