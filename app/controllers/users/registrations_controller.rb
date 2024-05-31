@@ -40,9 +40,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def sign_up_permitted_parameters
+  def configure_permitted_parameters
     added_attrs = %i[id email password password_confirmation]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+  end
+
+  def after_update_path_for(_)
+    home_path # ユーザー詳細ページにリダイレクトする例
   end
 
   # The path used after sign up.

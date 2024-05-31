@@ -10,7 +10,7 @@
       <li class="m-1">削除したアカウントは復旧できません。</li>
       <li class="m-1">登録したスポット情報は残りますが、コメントやプロフィール情報は全て削除されます。</li>
     </ul>
-    <%= button_to 'アカウントを削除する', user_registration_path(current_user),
+    <%= button_to 'アカウントを削除する', user_registration_path,
         class: 'btn-danger',
         method: :delete,
         data: { turbo_confirm: 'この操作は取り消せません。本当によろしいですか？' } %>
