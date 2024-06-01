@@ -19,6 +19,16 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[new create edit update]
   resources :users, only: %i[show]
 
+  resources :friendships do
+    collection do
+      get 'add_friend'
+      post 'user_search'
+      post 'send_request'
+      post 'approve_request'
+      delete 'deny_request'
+    end
+  end
+
   resources :spot_registrations, only: [] do
     collection do
       get 'step1'

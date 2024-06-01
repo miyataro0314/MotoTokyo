@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :edit_histories, dependent: :destroy
   has_many :bookmarked_spots, through: :bookmarks, source: :spot
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships, source: :friend
   has_one :profile, dependent: :destroy
 
   enum role: { general: 0, admin: 10 }
@@ -22,5 +24,25 @@ class User < ApplicationRecord
 
   def comment_for(spot)
     comments.find_by(spot_id: spot.id)
+  end
+
+  def friendship_status_with(other_user)
+    friendship = friendships.find_by(friend: other_user)
+    return 'false' unless friendship
+
+    case friendship.status
+    when 'approved'
+      'approved'
+    when 'pending'
+      'pending'
+    end
+  end
+
+  def approved_friends
+    User.joins(:friendships).where(friendships: { friend_id: id, status: :approved })
+  end
+
+  def friend_requests
+    Friendship.where(friend_id: id, status: :pending)
   end
 end

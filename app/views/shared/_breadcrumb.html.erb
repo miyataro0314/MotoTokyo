@@ -36,6 +36,20 @@
           スポット詳細に戻る
         </div>
       <% end %>
+    <% when 'my_page' %>
+      <%= link_to my_page_path, class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          マイページに戻る
+        </div>
+      <% end %>
+    <% when 'friendships' %>
+      <%= link_to friendships_path, class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          友達一覧に戻る
+        </div>
+      <% end %>
     <% end %>
   <% end %>
   </div>

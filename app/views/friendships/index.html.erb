@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+
+<div class="base-container">
+
+  <%= turbo_frame_tag 'modal' %>
+
+  <%= render 'shared/breadcrumb' %>
+
+  <h1 class="h1">友達一覧</h1>
+
+  <div class="base-l mt-8">
+    <div class="flex flex-wrap">
+      <input type="radio" id="tab1" name="tabs" class="hidden" <%= 'checked' if @selected_tab == 'friends' %>>
+      <label for="tab1" class="tab w-1/2 rounded-full text-primary-content">
+        友達
+      </label>
+      <input type="radio" id="tab2" name="tabs" class="hidden" <%= 'checked' if @selected_tab == 'requests' %>>
+      <label for="tab2" class="tab w-1/2 rounded-full text-primary-content">
+        友達申請
+      </label>
+
+      <div id="friend_contents" class="hidden w-full">
+        <% unless @friends.any? %>
+          <div class="pane-a flex flex-col my-2 text-sm">
+            友達登録済みのユーザーがいませんでした
+          </div>
+        <% end %>
+        <% @friends.each do |friend| %>
+          <%= render partial: 'friendships/friend_info', locals: { user: friend, profile: friend.profile, from: 'friendships' } %>
+        <% end %>
+        <%= paginate @friends, param_name: :page_friends, params: { tab: 'friends' } %>
+      </div>
+      <div id="request_contents" class="hidden w-full">
+        <% unless @requests.any? %>
+          <div class="pane-a flex flex-col my-2 text-sm">
+            友達申請は送られてきていません
+          </div>
+        <% end %>
+        <% @requests.each do |request| %>
+          <%= render partial: 'friendships/request_info', locals: { request: request, user: request.user, profile: request.user.profile } %>
+        <% end %>
+        <%= paginate @requests, param_name: :page_requests, params: { tab: 'requests' } %>
+      </div>
+    </div>
+  </div>
+</div>

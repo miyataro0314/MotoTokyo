@@ -1,10 +1,12 @@
 <div class="base-container">
+  <%= turbo_frame_tag 'modal' %>
+
   <h1 class="h1">マイページ</h1>
 
   <div class="base-l mt-8 text-primary-content">
     <div>
       <div class="text-base font-semibold">
-        <%= @profile.user_name %>
+        <%= @profile.user_name.blank? ? 'ユーザーネーム未設定' : @profile.user_name %>
       </div>
       <div>
         <%= link_to "ユーザーID : #{current_user.id}", account_path  %>
@@ -35,9 +37,16 @@
         <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-100' %>
       <% end %>
     </div>
-    <div>
+    <div class="mt-3">
       <%= link_to 'プロフィール編集', edit_profile_path(@profile),
           class: 'btn-secondary' %>
+    </div>
+    <div class="flex mt-3">
+      <%= link_to '友達一覧', friendships_path(from: 'my_page'),
+          class: 'btn-secondary pr-5' %>
+      <%= link_to '友達追加', add_friend_friendships_path,
+          class: 'btn-secondary pl-5',
+          data: { turbo_frame: 'modal' } %>
     </div>
   </div>
 

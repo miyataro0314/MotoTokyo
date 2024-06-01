@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_21_032209) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_01_051251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -79,6 +79,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_032209) do
     t.index ["spot_id"], name: "index_edit_histories_on_spot_id"
     t.index ["user_id", "spot_id"], name: "index_edit_histories_on_user_id_and_spot_id", unique: true
     t.index ["user_id"], name: "index_edit_histories_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "friend_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "parkings", force: :cascade do |t|
@@ -173,6 +184,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_032209) do
   add_foreign_key "difficulties", "users"
   add_foreign_key "edit_histories", "spots"
   add_foreign_key "edit_histories", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "spot_details", "spots"
   add_foreign_key "spots", "users", on_delete: :nullify
