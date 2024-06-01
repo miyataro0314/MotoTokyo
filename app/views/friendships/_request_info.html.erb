@@ -13,10 +13,10 @@
       </div>
     </div>
   </div>
-  <%= button_to '承認', approve_request_friendships_path(request_id: request.id, friend_id: request.user_id),
+  <%= button_to '承認', approve_request_friendships_path(request_id: request.id, friend_id: request.user_id, from: from),
     class: 'btn-s absolute z-10 right-3 bottom-11',
     data: { turbo_confirm: '友達申請を承認します。' } %>
-  <%= link_to '拒否', deny_request_friendships_path(id: request.id),
+  <%= link_to '拒否', deny_request_friendships_path(id: request.id, from: from),
     class: 'btn-s-danger absolute z-10 right-3 bottom-1',
     data: { turbo_confirm: '友達申請を拒否してよろしいですか？（この操作は取り消せません。）',
             turbo_method: :delete } %>

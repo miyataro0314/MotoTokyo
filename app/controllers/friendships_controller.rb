@@ -17,16 +17,17 @@ class FriendshipsController < ApplicationController
       current_user.friendships.create(friend_id: params[:friend_id], status: 5)
     end
 
-    redirect_to friendships_path, notice: '友達申請を承認しました。'
+    redirect_to friendships_path(from: params[:from]), notice: '友達申請を承認しました。'
   end
 
   def deny_request
     friendship = Friendship.find(params[:id])
     if friendship.destroy
-      redirect_to friendships_path, notice: '友達申請を拒否しました'
+      flash[:notice] = '友達申請を拒否しました'
     else
-      redirect_to friendships_path, alert: 'エラーが発生し、友達申請を拒否できませんでした'
+      flash[:alert] = 'エラーが発生し、友達申請を拒否できませんでした'
     end
+    redirect_to friendships_path(from: params[:from])
   end
 
   def index

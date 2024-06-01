@@ -26,7 +26,8 @@
           </div>
         <% end %>
         <% @friends.each do |friend| %>
-          <%= render partial: 'friendships/friend_info', locals: { user: friend, profile: friend.profile, from: 'friendships' } %>
+          <%= render partial: 'friendships/friend_info',
+                     locals: { user: friend, profile: friend.profile, from: 'friendships' } %>
         <% end %>
         <%= paginate @friends, param_name: :page_friends, params: { tab: 'friends' } %>
       </div>
@@ -37,7 +38,8 @@
           </div>
         <% end %>
         <% @requests.each do |request| %>
-          <%= render partial: 'friendships/request_info', locals: { request: request, user: request.user, profile: request.user.profile } %>
+          <%= render partial: 'friendships/request_info',
+                     locals: { request: request, user: request.user, profile: request.user.profile, from: 'friendships' } %>
         <% end %>
         <%= paginate @requests, param_name: :page_requests, params: { tab: 'requests' } %>
       </div>

@@ -7,6 +7,6 @@ ja:
       difficulty:
         level:
           easy: '簡単！'
-          traffic: '難しい（交通量が多い）'
-          direction: '難しい（場所が分かりにくい）'
-          condition: '難しい（狭い・坂道が多い）'
+          traffic: '交通量が多い'
+          direction: '場所が分かりにくい'
+          condition: '狭い・坂道が多い'

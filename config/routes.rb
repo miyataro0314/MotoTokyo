@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :spots, only: %i[new create edit update show index destroy] do
     resources :bookmarks, only: %i[create destroy]
     resources :comments, only: %i[new index create edit update destroy]
+    resources :difficulties, only: %i[show create update]
   end
   resources :parkings, only: %i[show index]
   resources :profiles, only: %i[new create edit update]

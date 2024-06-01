@@ -26,6 +26,10 @@ class User < ApplicationRecord
     comments.find_by(spot_id: spot.id)
   end
 
+  def difficulty_for(spot)
+    difficulties.find_by(spot_id: spot.id)
+  end
+
   def friendship_status_with(other_user)
     friendship = friendships.find_by(friend: other_user)
     return 'false' unless friendship
