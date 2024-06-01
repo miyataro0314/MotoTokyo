@@ -5,28 +5,28 @@
   <div class="base-m mt-8 text-primary-content">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div>
-        <%= f.label :id, 'ユーザーID(英数字6文字以上)' %><br>
+        <%= f.label :id, 'ユーザーID (英数字6文字以上)', class: 'font-semibold' %><br>
         <%= f.text_field :id, autofocus: true, autocomplete: "username",
             class:'w-48 h-6 bg-primary border-b' %>
         <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :id } %>
       </div>
       <div class="mt-3">
-        <%= f.label :email, 'メールアドレス' %><br>
+        <%= f.label :email, 'メールアドレス', class: 'font-semibold' %><br>
         <%= f.email_field :email, autocomplete: "email",
             class: 'w-48 h-6 bg-primary border-b' %>
         <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :email } %>
       </div>
       <div class="mt-3">
-        <%= f.label :password, 'パスワード' %>
+        <%= f.label :password, 'パスワード', class: 'font-semibold' %>
         <% if @minimum_password_length %>
-        <em>(英数字<%= @minimum_password_length %> 文字以上)</em>
+        <span class="font-semibold"><%= "(英数字#{@minimum_password_length}文字以上)" %></span>
         <% end %><br>
         <%= f.password_field :password, autocomplete: "new-password",
             class: 'w-48 h-6 bg-primary border-b' %>
         <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :password } %>
       </div>
       <div class="mt-3">
-        <%= f.label :password_confirmation, '確認用パスワード' %><br>
+        <%= f.label :password_confirmation, '確認用パスワード', class: 'font-semibold' %><br>
         <%= f.password_field :password_confirmation, autocomplete: "new-password",
             class: 'w-48 h-6 bg-primary border-b' %>
         <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :password_confirmation } %>

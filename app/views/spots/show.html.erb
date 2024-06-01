@@ -43,36 +43,49 @@
       </div>
 
       <div>
-        <% if @comment.nil? %>
-          <p class="my-3 text-xs text-center">
-            まだおすすめポイントは投稿されていません
-          </p>
-        <% else %>
-          <div class="flex my-3 items-end">
-            <div class="w-12 h-12 ml-1 mr-3 z-30 rounded-full overflow-hidden bg-primary">
-              <%= image_tag (@comment.user.profile&.avatar&.attached? ? @comment.user.profile.avatar : 'preview.png') %>
-            </div>
-            <div class="chatbubble received my-auto">
-              <%= @comment.content %>
-            </div>
+        <% if user_signed_in? %>
+          <div class="flex">
+            <% if @spot.bookmarked_by?(current_user) %>
+              <%= link_to 'ブックマーク解除',
+                  spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
+                  class: 'btn-secondary',
+                  data: { turbo_method: :delete } %>
+            <% else %>
+              <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
+                  class: 'btn-secondary',
+                  data: { turbo_method: :post } %>
+            <% end %>
           </div>
         <% end %>
       </div>
 
-      <% if user_signed_in? %>
-        <div class="flex">
-          <% if @spot.bookmarked_by?(current_user) %>
-            <%= link_to 'ブックマーク解除',
-                spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
-                class: 'btn-secondary block',
-                data: { turbo_method: :delete } %>
+      <div>
+        <% if @comment.nil? %>
+          <p class="mt-5 text-xs text-center">
+            まだおすすめポイントは投稿されていません
+          </p>
+        <% else %>
+          <%= render partial: 'comments/comment', locals: { comment: @comment, spot: @spot } %>
+        <% end %>
+        <div class="flex flex-col">
+          <% if current_user.already_commented?(@spot) %>
+            <%= link_to 'おすすめポイントを編集する', edit_spot_comment_path(@spot), 
+                  class: 'btn-secondary',
+                  data: { turbo_frame: 'modal' } %>
           <% else %>
-            <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
-                class: 'btn-secondary block',
-                data: { turbo_method: :post } %>
+            <%= link_to 'おすすめポイントを投稿する', new_spot_comment_path(@spot), 
+                    class: 'btn-secondary',
+                    data: { turbo_frame: 'modal' } %>
+          <% end %>
+          <% unless @comment.nil? %>
+            <%= link_to 'おすすめポイント一覧を見る', spot_comments_path(@spot), 
+                    class: 'btn-secondary',
+                    data: { turbo_frame: 'modal' } %>
           <% end %>
         </div>
-      <% end %>
+      </div>
+
+      
     </div>
   </div>
 

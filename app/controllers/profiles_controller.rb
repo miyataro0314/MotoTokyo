@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       @profile.convert_images
       flash[:notice] = 'プロフィールを登録しました'
-      redirect_to home_path
+      redirect_to my_page_path
     else
       flash[:danger] = 'プロフィールの登録に失敗しました'
       redirect_to new_profile_path

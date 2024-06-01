@@ -5,8 +5,6 @@ class User < ApplicationRecord
 
   validates :id, presence: true, uniqueness: true, length: { minimum: 6, maximum: 30 }
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6, maximum: 30 }
-  validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 30 }
 
   has_many :spots, dependent: :nullify
   has_many :difficulties, dependent: :destroy
@@ -17,4 +15,12 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   enum role: { general: 0, admin: 10 }
+
+  def already_commented?(spot)
+    comments.exists?(spot_id: spot.id)
+  end
+
+  def comment_for(spot)
+    comments.find_by(spot_id: spot.id)
+  end
 end

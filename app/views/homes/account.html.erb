@@ -9,14 +9,14 @@
       <%= "サービス登録日 : #{ @registration_date }" %>
     </div>
     <div class="my-5">
+      <div class="btn-secondary">
+        <%= link_to 'パスワードを変更する', new_user_password_path %>
+      </div>
       <div class="btn-secondary w-44">
-        <%= link_to 'ユーザーIDを変更する', '#' %>
+        <%= link_to 'メールアドレスの変更', edit_user_registration_path %>
       </div>
-      <div class="btn-secondary">
-        <%= link_to 'メールアドレスを変更する', '#' %>
-      </div>
-      <div class="btn-secondary">
-        <%= link_to 'パスワードを変更する', edit_user_password_path %>
+      <div class="btn-secondary w-44">
+        <%= link_to 'アカウントの削除', account_cancellation_path %>
       </div>
     </div>
   </div>

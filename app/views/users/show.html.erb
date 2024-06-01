@@ -1,25 +1,24 @@
 <div class="base-container">
-  <h1 class="h1">マイページ</h1>
+
+  <%= render 'shared/breadcrumb' %>
 
   <div class="base-l mt-8 text-primary-content">
     <div>
       <div class="text-base font-semibold">
-        <%= @profile.user_name %>
-      </div>
-      <div>
-        <%= link_to "ユーザーID : #{current_user.id}", account_path  %>
+        <%= @profile.user_name ? @profile.user_name : 'ユーザーネーム未設定' %>
       </div>
     </div>
     <div class="w-28 h-28 mt-5 mx-auto overflow-hidden rounded-full bg-base-100 content-center">
       <% if @profile.avatar.attached? %>
-        <%= image_tag @profile.avatar, alt: '画像アップロード中。画面更新で表示されます。' %>
+        <%= image_tag @profile.avatar, alt: 'プロフィール画像' %>
       <% else %>
-        <%= image_tag 'preview.png', class: "w-32 h-32 m-auto rounded-2xl bg-base-100" %>
+        <%= image_tag 'preview.png', alt: 'プロフィール画像',
+                                     class: "w-32 h-32 m-auto rounded-2xl bg-base-100" %>
       <% end %>
     </div>
     <div class="mt-5">
       <p class="text-base">登録したスポット数</p>
-      <p class="text-2xl text-bold"><%= current_user.spots.count %></p>
+      <p class="text-2xl text-bold"><%= @user.spots.count %></p>
     </div>
     <div class="mt-5 text-base">
       <% if @profile.vehicle_name %>
