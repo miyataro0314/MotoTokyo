@@ -56,6 +56,10 @@ main {
   @apply daisy-btn daisy-btn-secondary h-fit w-fit min-h-0 py-1.5 px-2 rounded-xl text-xs
 }
 
+.btn-s-danger {
+  @apply daisy-btn daisy-btn-error h-fit w-fit min-h-0 py-1.5 px-2 rounded-xl text-xs
+}
+
 .btn-secondary {
   @apply daisy-btn daisy-btn-secondary min-w-20 w-fit h-10 mt-3 p-3 mx-auto
          drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
@@ -69,6 +73,10 @@ main {
 .flash {
   @apply flash_initial_locate z-50 w-72 h-fit mt-5 py-2 pl-3 pr-1
          flex items-center rounded-2xl border-2 bg-opacity-80 backdrop-blur-sm shadow-lg
+}
+
+.background {
+  @apply fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm bg-black bg-opacity-20
 }
 
 .modal {
@@ -177,7 +185,7 @@ body.no-scroll {
 /* --------------------- */
 
 
-/* --- マイスポットタブ関係 --- */
+/* --- タブ関係 --- */
 .tab {
   @apply cursor-pointer py-2 px-4 border border-primary border-transparent
   hover:border-base-100  transition duration-300 ease-in-out
@@ -186,14 +194,28 @@ body.no-scroll {
 .tab-content {
   display: none;
 }
+/* -------------- */
 
-/*選択されているタブのコンテンツのみを表示*/
+/* --- マイスポットタブ関係 --- */
 #tab1:checked ~ #bookmarked_contents,
 #tab2:checked ~ #registered_contents {
   display: block;
 }
 
-/*選択されているタブのスタイルを変える*/
+#tab1:checked + label,
+#tab2:checked + label {
+  background-color: #f5f2e9;
+  color: #444444;
+  font-weight: 600;
+}
+/* ------------------------- */
+
+/* --- 友達タブ関係 --- */
+#tab1:checked ~ #friend_contents,
+#tab2:checked ~ #request_contents {
+  display: block;
+}
+
 #tab1:checked + label,
 #tab2:checked + label {
   background-color: #f5f2e9;

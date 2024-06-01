@@ -1,0 +1,15 @@
+<%= turbo_frame_tag 'content' do %>
+
+  <% if @user.nil? %>
+    <div class="m-3 text-primary-content">
+      一致するユーザーはいませんでした
+    </div>
+  <% elsif @user == current_user %>
+    <div class="m-3 text-primary-content">
+      自分は友だち追加できません！
+    </div>
+  <% else %>
+    <%= render partial: 'friendships/user_info', locals: {user: @user, profile: @profile} %>
+  <% end %>
+
+<% end %>

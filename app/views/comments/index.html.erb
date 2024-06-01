@@ -2,13 +2,13 @@
 
   <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
 
-  <div class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-20'
+  <div class='background'
         data-controller="modal"
         data-modal-target="background"
         data-action="click->modal#closeModal">
     <div class="modal-h-fit text-sm bg-primary no-scroll-bar"
          data-modal-target="modal">
-        <p class="text-base font-semibold text-primary-content">コメント一覧</p>
+      <p class="text-base font-semibold text-primary-content">コメント一覧</p>
       <div class="mx-auto p-2 max-h-96 overflow-y-scroll rounded-2xl bg-base-100 mt-3">
         <% @comments.each do |comment| %>
           <%= render partial: 'comments/comment', locals: { comment: comment, spot: @spot }%>

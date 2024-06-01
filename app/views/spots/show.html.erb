@@ -23,11 +23,15 @@
         </div>
       <% end %>
       
-      <div class="flex justify-between">
-        <div class="flex flex-col text-left">
+      <div class="flex justify-between mt-1">
+        <div class="flex flex-col justify-between text-left">
           <div class="text-xs">
             <p class="text-sm">カテゴリ</p>
             <%= t_enum('spot', 'category', @spot.category) %>
+          </div>
+          <div>
+            <%= svg_tag 'vuesax/linear/bookmark.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
+            <%= "#{@spot.bookmarks.count}件" %>
           </div>
         </div>
         <div class="flex flex-col max-w-48 text-right">
@@ -42,24 +46,11 @@
         </div>
       </div>
 
-      <div>
-        <% if user_signed_in? %>
-          <div class="flex">
-            <% if @spot.bookmarked_by?(current_user) %>
-              <%= link_to 'ブックマーク解除',
-                  spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user)), 
-                  class: 'btn-secondary',
-                  data: { turbo_method: :delete } %>
-            <% else %>
-              <%= link_to 'ブックマークする', spot_bookmarks_path(@spot), 
-                  class: 'btn-secondary',
-                  data: { turbo_method: :post } %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <%= link_to spot_difficulty_path(@spot), data: { turbo_frame: 'modal' } do %>
+        <%= render partial: 'difficulties/votes_graph', locals: { spot: @spot } %>
+      <% end %>
 
-      <div>
+      <div class="mt-1">
         <% if @comment.nil? %>
           <p class="mt-5 text-xs text-center">
             まだおすすめポイントは投稿されていません
@@ -85,11 +76,29 @@
                     data: { turbo_frame: 'modal' } %>
           <% end %>
         </div>
-      </div>
-
-      
+      </div>      
     </div>
+
+     <div>
+      <% if user_signed_in? %>
+        <div class="flex">
+          <% if @spot.bookmarked_by?(current_user) %>
+            <%= link_to 'ブックマーク解除',
+                spot_bookmark_path(@spot, @spot.bookmarks.find_by(user: current_user), from: params[:from]), 
+                class: 'btn-secondary',
+                data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to 'ブックマークする', spot_bookmarks_path(@spot, from: params[:from]),
+                class: 'btn-secondary',
+                data: { turbo_method: :post } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
+
+ 
 
   <div class='flex w-80 mx-auto mt-5 items-center space-x-3'>
     <span>半径1km圏内のパーキング</span>

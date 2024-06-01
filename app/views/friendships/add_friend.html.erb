@@ -1,0 +1,27 @@
+<%= turbo_frame_tag 'modal' do %>
+
+  <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+
+  <div class='background'
+        data-controller="modal"
+        data-modal-target="background"
+        data-action="click->modal#closeModal">
+    <div class="modal-h-fit text-sm bg-primary no-scroll-bar"
+         data-modal-target="modal">
+      <p class="text-base font-semibold text-primary-content">
+        友達に追加したいユーザーの<br>
+        ユーザーIDを入力してください
+      </p>
+      
+      <div>
+        <%= form_with url: user_search_friendships_path do |f| %>
+          <%= f.text_field :id, class: 'text-field-l' %>
+          <%= f.submit '検索', class: 'btn-secondary',
+                              data: { turbo_frame: 'content' } %>
+        <% end %>
+        <%= turbo_frame_tag 'content' %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

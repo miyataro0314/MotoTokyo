@@ -1,0 +1,31 @@
+<div class="relative">
+  <div class="pane-20 flex my-2 text-left text-xs">
+    <div class="flex content-center h-14 w-14 m-2 shrink-0 rounded-full overflow-hidden">
+      <%= image_tag (profile&.avatar&.attached? ? profile.avatar : 'preview.png'),
+          class: 'h-14 w-14' %>
+    </div>
+    <div>
+      <div class="h-7 max-w-48 whitespace-nowrap overflow-hidden font-semibold text-base">
+        <%= profile.try(:user_name).presence || 'ユーザーネーム未設定' %>
+      </div>
+      <div class="h-5 max-w-32 whitespace-nowrap overflow-hidden text-xs">
+        <%= "ID:#{user.id}" %>
+      </div>
+    </div>
+  </div>
+  <% case current_user.friendship_status_with(user) %>
+  <% when 'approved' %>
+    <div class="btn-s absolute z-10 right-3 bottom-3", disabled="true">
+      友達追加済
+    </div>
+  <% when 'pending' %>
+    <div class="btn-s absolute z-10 right-3 bottom-3", disabled="true">
+      友達申請中
+    </div>
+  <% else %>
+    <%= button_to '友達申請', send_request_friendships_path(id: user.id),
+      class: 'btn-s absolute z-10 right-3 bottom-3',
+      data: { turbo_frame: '_top',
+              turbo_confirm: '相手ユーザーに友達申請を送信します。相手ユーザーによって承認され次第、友達追加完了となります。' } %>
+  <% end %>
+</div>

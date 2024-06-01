@@ -8,7 +8,7 @@ class BookmarksController < ApplicationController
     else
       flash[:alert] = 'ブックマークに失敗しました'
     end
-    redirect_to spot_path(@spot)
+    redirect_to spot_path(@spot, from: params[:from])
   end
 
   def destroy
@@ -20,6 +20,6 @@ class BookmarksController < ApplicationController
     else
       flash[:alert] = 'ブックマークの解除に失敗しました'
     end
-    redirect_to spot_path(@spot), status: :see_other
+    redirect_to spot_path(@spot, from: params[:from]), status: :see_other
   end
 end

@@ -1,0 +1,17 @@
+<%= link_to user_path(user, from: 'friendships'),
+  data: { turbo_frame: '_top' } do %>
+  <div class="pane-20 flex my-2 text-left text-xs">
+    <div class="flex content-center h-14 w-14 m-2 shrink-0 rounded-full overflow-hidden">
+      <%= image_tag (profile&.avatar&.attached? ? profile.avatar : 'preview.png'),
+          class: 'h-14 w-14' %>
+    </div>
+    <div>
+      <div class="max-h-14 max-w-48 whitespace-nowrap overflow-hidden font-semibold text-base">
+        <%= profile.try(:user_name).presence || 'ユーザーネーム未設定' %>
+      </div>
+      <div class="h-5 max-w-48 whitespace-nowrap overflow-hidden text-xs">
+        <%= "ID:#{user.id}" %>
+      </div>
+    </div>
+  </div>
+<% end %>

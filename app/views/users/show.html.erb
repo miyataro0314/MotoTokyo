@@ -34,10 +34,14 @@
         <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-100' %>
       <% end %>
     </div>
-    <div>
-      <%= link_to 'プロフィール編集', edit_profile_path(@profile),
-          class: 'btn-secondary' %>
-    </div>
   </div>
 
+  <% if current_user.friendship_status_with(@user) == 'approved' %>
+    <div>
+      <%= link_to '友達を解除する', friendship_path(id: @user.id, from: params[:from]),
+          class:'btn-danger',
+          data: { turbo_method: :delete,
+                  turbo_confirm: '友達登録を解除してよろしいですか？再追加するには再度相手の承認が必要になります。（この操作は取り消せません）' } %>
+    </div>
+  <% end %>
 </div>

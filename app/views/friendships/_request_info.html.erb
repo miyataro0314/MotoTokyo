@@ -1,0 +1,23 @@
+<div class="relative">
+  <div class="pane-20 flex my-2 text-left text-xs">
+    <div class="flex content-center h-14 w-14 m-2 shrink-0 rounded-full overflow-hidden">
+      <%= image_tag (profile&.avatar&.attached? ? profile.avatar : 'preview.png'),
+          class: 'h-14 w-14' %>
+    </div>
+    <div>
+      <div class="h-7 max-w-40 whitespace-nowrap overflow-hidden font-semibold text-base">
+        <%= profile.try(:user_name).presence || 'ユーザーネーム未設定' %>
+      </div>
+      <div class="h-5 max-w-40 whitespace-nowrap overflow-hidden text-xs">
+        <%= "ID:#{user.id}" %>
+      </div>
+    </div>
+  </div>
+  <%= button_to '承認', approve_request_friendships_path(request_id: request.id, friend_id: request.user_id, from: from),
+    class: 'btn-s absolute z-10 right-3 bottom-11',
+    data: { turbo_confirm: '友達申請を承認します。' } %>
+  <%= link_to '拒否', deny_request_friendships_path(id: request.id, from: from),
+    class: 'btn-s-danger absolute z-10 right-3 bottom-1',
+    data: { turbo_confirm: '友達申請を拒否してよろしいですか？（この操作は取り消せません。）',
+            turbo_method: :delete } %>
+</div>

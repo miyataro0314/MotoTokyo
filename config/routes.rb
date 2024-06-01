@@ -14,10 +14,21 @@ Rails.application.routes.draw do
   resources :spots, only: %i[new create edit update show index destroy] do
     resources :bookmarks, only: %i[create destroy]
     resources :comments, only: %i[new index create edit update destroy]
+    resources :difficulties, only: %i[show create update]
   end
   resources :parkings, only: %i[show index]
   resources :profiles, only: %i[new create edit update]
   resources :users, only: %i[show]
+
+  resources :friendships do
+    collection do
+      get 'add_friend'
+      post 'user_search'
+      post 'send_request'
+      post 'approve_request'
+      delete 'deny_request'
+    end
+  end
 
   resources :spot_registrations, only: [] do
     collection do
