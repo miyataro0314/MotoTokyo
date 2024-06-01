@@ -93,6 +93,12 @@ main {
   scrollbar-width: none; 
 }
 
+@media (min-width: 768px) {
+  #tablet-pc-only {
+    display: block;
+  }
+}
+
 
 
 
