@@ -68,14 +68,16 @@
           <%= render partial: 'comments/comment', locals: { comment: @comment, spot: @spot } %>
         <% end %>
         <div class="flex flex-col">
-          <% if current_user.already_commented?(@spot) %>
-            <%= link_to 'おすすめポイントを編集する', edit_spot_comment_path(@spot), 
-                  class: 'btn-secondary',
-                  data: { turbo_frame: 'modal' } %>
-          <% else %>
-            <%= link_to 'おすすめポイントを投稿する', new_spot_comment_path(@spot), 
-                    class: 'btn-secondary',
-                    data: { turbo_frame: 'modal' } %>
+          <% if user_signed_in? %>
+            <% if current_user.already_commented?(@spot) %>
+              <%= link_to 'おすすめポイントを編集する', edit_spot_comment_path(@spot), 
+                      class: 'btn-secondary',
+                      data: { turbo_frame: 'modal' } %>
+            <% else %>
+              <%= link_to 'おすすめポイントを投稿する', new_spot_comment_path(@spot), 
+                      class: 'btn-secondary',
+                      data: { turbo_frame: 'modal' } %>
+            <% end %>
           <% end %>
           <% unless @comment.nil? %>
             <%= link_to 'おすすめポイント一覧を見る', spot_comments_path(@spot), 

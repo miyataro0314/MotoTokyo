@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_spot
+  skip_before_action :authenticate_user!, only: :index
 
   def new
     @comment = Comment.new
