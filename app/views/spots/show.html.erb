@@ -46,7 +46,11 @@
         </div>
       </div>
 
-      <%= link_to spot_difficulty_path(@spot), data: { turbo_frame: 'modal' } do %>
+      <% if user_signed_in? %>
+        <%= link_to spot_difficulty_path(@spot), data: { turbo_frame: 'modal' } do %>
+          <%= render partial: 'difficulties/votes_graph', locals: { spot: @spot } %>
+        <% end %>
+      <% else %>
         <%= render partial: 'difficulties/votes_graph', locals: { spot: @spot } %>
       <% end %>
 
@@ -79,7 +83,7 @@
       </div>      
     </div>
 
-     <div>
+    <div>
       <% if user_signed_in? %>
         <div class="flex">
           <% if @spot.bookmarked_by?(current_user) %>
