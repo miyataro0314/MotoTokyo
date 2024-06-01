@@ -49,9 +49,8 @@ window.initAutocomplete = () => {
       }
     }).catch(error => {
       console.log(error)
-    }
-  )
-});
+    })
+  });
 }
 
 const displayPlaceName = (name) => {

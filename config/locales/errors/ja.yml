@@ -5,3 +5,4 @@ ja:
       blank: '%{attribute}を入力してください。'
       too_short: '%{attribute}は英数字%{count}文字以上で入力してください。'
       confirmation: '%{attribute}が一致しません。'
+      taken: '%{attribute}は既に使用されています。'
