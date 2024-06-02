@@ -10,10 +10,11 @@
          data-modal-target="modal">
       
       <div>
-        <%= form_with model: [@spot, @comment] do |f| %>
+        <%= form_with model: [@spot, @comment], url: spot_comments_path(@spot, from: params[:from]) do |f| %>
           <p class="m-3 text-base font-semibold text-primary-content">
             おすすめポイントを教えてください
           </p>
+          <%= hidden_field_tag :additional_param, "additional_value" %>
           <%= f.text_area :content,
               { size: "20x10",
                 class: 'daisy-textarea w-64 h-32 px-3 drop-shadow-md bg-white' } %>

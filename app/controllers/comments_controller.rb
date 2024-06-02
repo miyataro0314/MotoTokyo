@@ -13,10 +13,10 @@ class CommentsController < ApplicationController
       content: comment_params[:content]
     )
     if @comment.save
-      redirect_to spot_path(@spot), notice: 'おすすめポイントを投稿しました'
+      redirect_to spot_path(@spot, from: params[:from]), notice: 'おすすめポイントを投稿しました'
     else
       errors = @comment.errors[:content].join(' ')
-      redirect_to spot_path(@spot), alert: errors
+      redirect_to spot_path(@spot, from: params[:from]), alert: errors
     end
   end
 
@@ -28,10 +28,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comment_for(@spot)
 
     if @comment.update(comment_params)
-      redirect_to spot_path(@spot), notice: 'おすすめポイントを更新しました'
+      redirect_to spot_path(@spot, from: params[:from]), notice: 'おすすめポイントを更新しました'
     else
       errors = @comment.errors[:content].join(' ')
-      redirect_to spot_path(@spot), alert: errors
+      redirect_to spot_path(@spot, from: params[:from]), alert: errors
     end
   end
 
@@ -42,9 +42,9 @@ class CommentsController < ApplicationController
   def destroy
     @comment = current_user.comment_for(@spot)
     if @comment.destroy
-      redirect_to spot_path(@spot), notice: 'おすすめポイントを削除しました'
+      redirect_to spot_path(@spot, from: params[:from]), notice: 'おすすめポイントを削除しました'
     else
-      redirect_to spot_path(@spot), alert: 'おすすめポイントの削除に失敗しました'
+      redirect_to spot_path(@spot, from: params[:from]), alert: 'おすすめポイントの削除に失敗しました'
     end
   end
 

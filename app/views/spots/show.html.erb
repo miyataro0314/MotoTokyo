@@ -51,7 +51,9 @@
           <%= render partial: 'difficulties/votes_graph', locals: { spot: @spot } %>
         <% end %>
       <% else %>
-        <%= render partial: 'difficulties/votes_graph', locals: { spot: @spot } %>
+        <%= link_to spot_difficulty_path(@spot, from: params[:from]), data: { turbo_frame: '_top' } do %>
+          <%= render partial: 'difficulties/votes_graph', locals: { spot: @spot } %>
+        <% end %>
       <% end %>
 
       <div class="mt-1">
@@ -65,11 +67,11 @@
         <div class="flex flex-col">
           <% if user_signed_in? %>
             <% if current_user.already_commented?(@spot) %>
-              <%= link_to 'おすすめポイントを編集する', edit_spot_comment_path(@spot), 
+              <%= link_to 'おすすめポイントを編集する', edit_spot_comment_path(@spot, from: params[:from]), 
                       class: 'btn-secondary',
                       data: { turbo_frame: 'modal' } %>
             <% else %>
-              <%= link_to 'おすすめポイントを投稿する', new_spot_comment_path(@spot), 
+              <%= link_to 'おすすめポイントを投稿する', new_spot_comment_path(@spot, from: params[:from]), 
                       class: 'btn-secondary',
                       data: { turbo_frame: 'modal' } %>
             <% end %>

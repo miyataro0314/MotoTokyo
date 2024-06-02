@@ -1,8 +1,13 @@
 class DifficultiesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
   before_action :set_spot, only: %i[show create update]
 
   def show
-    @difficulty = Difficulty.find_or_initialize_by(user_id: current_user.id, spot_id: @spot.id)
+    if user_signed_in?
+      @difficulty = Difficulty.find_or_initialize_by(user_id: current_user.id, spot_id: @spot.id)
+    else
+      redirect_to spot_path(@spot, from: params[:from]), alert: '続行するにはログインまたはユーザー登録が必要です。'
+    end
   end
 
   def create

@@ -53,6 +53,7 @@ class SpotRegistrationsController < ApplicationController
   def success
     @spot = Spot.find(params[:id])
     @count = Spot.all.count
+    post_to_x
   end
 
   def failure; end
@@ -93,5 +94,19 @@ class SpotRegistrationsController < ApplicationController
 
   def set_session_comment_content
     session[:comment_content] = comment_params[:content]
+  end
+
+  def post_to_x
+    require 'x'
+
+    message = "新しいスポットが追加されました: #{@spot.name}"
+    x_credentials = {
+      api_key: Rails.application.credentials.x[:api_key],
+      api_key_secret: Rails.application.credentials.x[:api_key_secret],
+      access_token: Rails.application.credentials.x[:access_token],
+      access_token_secret: Rails.application.credentials.x[:access_token_secret]
+    }
+    x_client = X::Client.new(**x_credentials)
+    post = x_client.post("tweets", '{"text":"Hello, World! (from @gem)"}')
   end
 end
