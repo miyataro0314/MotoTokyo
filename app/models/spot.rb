@@ -23,4 +23,17 @@ class Spot < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
   end
+
+  def hashtag_for_tweet
+    hashtags = {
+      'sightseeing' => '#東京観光 #東京散策 #東京名所',
+      'scenery' => '#東京景色 #東京風景',
+      'shopping' => '#東京ショッピング #東京お土産',
+      'food' => '#東京グルメ',
+      'activity' => '#東京体験 #東京アクティビティ',
+      'accommodations' => '#東京宿泊 #東京ホテル'
+    }
+
+    hashtags[category]
+  end
 end
