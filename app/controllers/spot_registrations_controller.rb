@@ -1,4 +1,6 @@
 class SpotRegistrationsController < ApplicationController
+  include TweetContent
+
   def step1
     @spot = Spot.new(name: session[:name])
   end
@@ -53,6 +55,7 @@ class SpotRegistrationsController < ApplicationController
   def success
     @spot = Spot.find(params[:id])
     @count = Spot.all.count
+    tweet_new_spot
   end
 
   def failure; end
@@ -93,5 +96,9 @@ class SpotRegistrationsController < ApplicationController
 
   def set_session_comment_content
     session[:comment_content] = comment_params[:content]
+  end
+
+  def tweet_new_spot
+    tweet(tweet_content_for_spot_registration(@spot))
   end
 end

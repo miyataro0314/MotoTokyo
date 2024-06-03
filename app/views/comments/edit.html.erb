@@ -10,7 +10,7 @@
          data-modal-target="modal">
       
       <div>
-        <%= form_with model: [@spot, @comment] do |f| %>
+        <%= form_with model: [@spot, @comment], url: spot_comment_path(@spot, from: params[:from]) do |f| %>
           <p class="m-3 text-base font-semibold text-primary-content">
             おすすめポイントを教えてください
           </p>
@@ -25,7 +25,7 @@
       </div>
       <div>
         <div class="mt-3">または</div>
-        <%= link_to 'おすすめポイントを削除する', spot_comment_path(@spot),
+        <%= link_to 'おすすめポイントを削除する', spot_comment_path(@spot, from: params[:from]),
             class: 'btn-danger',
             data: { turbo_confirm: '本当に削除してよろしいですか？',
                     turbo_frame: '_top',
