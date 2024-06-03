@@ -20,4 +20,14 @@ module ApplicationHelper
   def as_admin?
     true if session[:as_admin] == true
   end
+
+  def twitter_card(title:, description:)
+    content_for :twitter_card do
+      tag.meta(name: 'twitter:card', content: 'summary') +
+        tag.meta(name: 'twitter:site', content: '@MotoTokyo_X') +
+        tag.meta(name: 'twitter:title', content: title) +
+        tag.meta(name: 'twitter:description', content: description) +
+        tag.meta(name: 'twitter:image', content: image_path('logo_circle.png'))
+    end
+  end
 end

@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
 <%= stylesheet_link_tag 'animations/wizard', data: { turbolinks_track: 'reload' } %>
 
+<% content_for :title, 'スポット登録 - MotoTokyo' %>
+
 <div class="base-container">
   
   <%= turbo_frame_tag 'modal' %>
