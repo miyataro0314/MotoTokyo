@@ -9,8 +9,8 @@
   
   <div class="base-l mt-3 p-3 ml-5 text-left">
     <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@spot_detail.coordinate.latitude}%2C#{@spot_detail.coordinate.longitude}&query_place_id=#{@spot_detail.id}",
-          target: "_blank" do %>
-      <div class="pane-a font-semibold text-base">
+          target: '_blank' do %>
+      <div class="pane-a font-semibold text-base text-blue-400 underline">
         <%= @spot.name %>
       </div>
     <% end %>
@@ -19,10 +19,10 @@
     
     <div class="pane-a h-full mt-3">  
       <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@spot_detail.coordinate.latitude}%2C#{@spot_detail.coordinate.longitude}&query_place_id=#{@spot_detail.id}",
-          target: "_blank" do %>
+          target: '_blank' do %>
         <div class="text-left pb-1 border-b border-gray-300">
-          <p><%= @spot_detail.postal_code %></p>
-          <p><%= @spot_detail.address %></p>
+          <p class="text-blue-400 underline"><%= @spot_detail.postal_code %></p>
+          <p class="text-blue-400 underline"><%= @spot_detail.address %></p>
         </div>
       <% end %>
       
@@ -107,15 +107,10 @@
 
   </div>
 
- 
-
-  <div class='flex w-80 mx-auto mt-5 items-center space-x-3'>
-    <span>半径1km圏内のパーキング</span>
-    <div class="flex-1 border border-gray-300"></div>
-  </div>
+  <%= render partial: 'shared/divider', locals: { heading: '半径1km圏内のパーキング'} %>
 
   <% if @parkings.any? %>
-    <div class="mt-3 px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap no-scroll-bar">
+    <div class="px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap no-scroll-bar">
       <% @parkings.each do |parking| %>
         <%= render partial: 'parkings/parking_card',
                   locals: { spot_detail: @spot_detail, parking: parking } %>

@@ -1,0 +1,28 @@
+<div class="flex">
+  <div class="flex flex-col w-1/2">
+    <p class="font-semibold text-lg"><%= data['date'] %></p>
+    <p><%= data['telop'] %></p>
+    <p><%= "#{formatted_temperature(data, 'min')}℃ / #{formatted_temperature(data, 'max')}℃" %></p>
+  </div>
+  <div class="flex w-1/2 justify-center">
+    <%= image_tag data['image']['url'] %>
+  </div>
+</div>
+<div class="flex divide-x divide-dashed py-2 border-b">
+  <div class="flex-1">
+    <p class="font-semibold text-base">0~6</p>
+    <p><%= data['chanceOfRain']['T00_06'] %></p>
+  </div>
+  <div class="flex-1">
+    <p class="font-semibold text-base">6~12</p>
+    <p><%= data['chanceOfRain']['T06_12'] %></p>
+  </div>
+  <div class="flex-1">
+    <p class="font-semibold text-base">12~18</p>
+    <p><%= data['chanceOfRain']['T12_18'] %></p>
+  </div>
+  <div class="flex-1">
+    <p class="font-semibold text-base">18~24</p>
+    <p><%= data['chanceOfRain']['T18_24'] %></p>
+  </div>
+</div>
