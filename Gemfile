@@ -53,6 +53,8 @@ gem 'activerecord-postgis-adapter', '~> 9.0'
 
 gem 'kaminari'
 
+gem 'http'
+
 gem 'x'
 
 group :development, :test do

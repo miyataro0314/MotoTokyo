@@ -30,4 +30,8 @@ module ApplicationHelper
         tag.meta(name: 'twitter:image', content: image_path('logo_circle.png'))
     end
   end
+
+  def formatted_temperature(data, type)
+    data['temperature'][type]['celsius'] || '-'
+  end
 end
