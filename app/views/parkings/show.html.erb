@@ -6,13 +6,13 @@
         data-controller="modal"
         data-modal-target="background"
         data-action="click->modal#closeModal">
-    <div class="modal-h-fit text-sm bg-primary no-scroll-bar"
+    <div class="modal-h-fit text-sm bg-primary"
          data-modal-target="modal">
       <div class="pane-a max-h-18 font-semibold text-base text-left">
         <%= @parking.name %>
       </div>
       <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="parking-map"></div>
-      <div class="pane-a max-h-42 mt-3 overflow-y-scroll">
+      <div class="pane-a max-h-112 mt-3 overflow-y-scroll">
         <div class="text-left pb-1 border-b border-gray-300">
           <%= @parking.address %>
         </div>

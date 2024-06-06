@@ -1,0 +1,51 @@
+<div class="flex flex-col w-64 mx-auto overflow-hidden rounded-2xl drop-shadow-md border-2 bg-base-100">
+  <%= link_to weather_detail_path, class: 'daisy-btn daisy-btn-ghost h-fit p-0 block font-normal',
+                                   data: { turbo_frame: 'modal' } do %>
+    <div class="flex">
+      <div class="flex-1 p-2">
+        <div class="flex">
+          <div class="flex flex-col w-1/2">
+            <p class="font-semibold text-lg"><%= first['date'] %></p>
+            <p><%= first['telop'] %></p>
+            <p><%= "#{formatted_temperature(first, 'min')}℃ / #{formatted_temperature(first, 'max')}℃" %></p>
+          </div>
+          <div class="flex w-1/2 justify-center">
+            <%= image_tag first['image']['url'] %>
+          </div>
+        </div>
+        <div class="flex divide-x divide-dashed py-2 border-b">
+          <div class="flex-1">
+            <p class="font-semibold text-base">0~6</p>
+            <p><%= first['chanceOfRain']['T00_06'] %></p>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-base">6~12</p>
+            <p><%= first['chanceOfRain']['T06_12'] %></p>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-base">12~18</p>
+            <p><%= first['chanceOfRain']['T12_18'] %></p>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-base">18~24</p>
+            <p><%= first['chanceOfRain']['T18_24'] %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex-1 px-2 pb-2 justify-center">
+        <p class="font-semibold text-base"><%= second['date'] %></p>
+        <%= image_tag second['image']['url'], class: 'mx-auto' %>
+        <p><%= "#{formatted_temperature(second, 'min')}℃ / #{formatted_temperature(second, 'max')}℃" %></p>
+      </div>
+      <div class="flex-1 px-2 pb-2">
+        <div class="flex-1 px-2 pb-2 justify-center">
+        <p class="font-semibold text-base"><%= third['date'] %></p>
+        <%= image_tag third['image']['url'], class: 'mx-auto' %>
+        <p><%= "#{formatted_temperature(third, 'min')}℃ / #{formatted_temperature(third, 'max')}℃" %></p>
+      </div>
+      </div>
+    </div>
+  <% end %>
+</div>

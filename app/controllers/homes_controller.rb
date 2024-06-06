@@ -6,6 +6,10 @@ class HomesController < ApplicationController
     set_weather_data
   end
 
+  def weather_detail
+    set_weather_data
+  end
+
   def my_page
     @profile = current_user.profile
   end
@@ -34,8 +38,8 @@ class HomesController < ApplicationController
 
   def set_weather_data
     response = HTTP.get('https://weather.tsukumijima.net/api/forecast/city/130010')
-    data = JSON.parse(response.body)
-    forecasts = data['forecasts']
+    @data = JSON.parse(response.body)
+    forecasts = @data['forecasts']
 
     @first = forecasts[0]
     @second = forecasts[1]

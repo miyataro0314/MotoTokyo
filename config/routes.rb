@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
   root 'static_pages#top'
   get 'home', to: 'homes#home'
+  get 'weather_detail', to: 'homes#weather_detail'
   get 'my_page', to: 'homes#my_page'
   get 'my_spots', to: 'homes#my_spots'
   get 'account', to: 'homes#account'

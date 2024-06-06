@@ -9,8 +9,8 @@
   
   <div class="base-l mt-3 p-3 ml-5 text-left">
     <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@spot_detail.coordinate.latitude}%2C#{@spot_detail.coordinate.longitude}&query_place_id=#{@spot_detail.id}",
-          target: "_blank" do %>
-      <div class="pane-a font-semibold text-base">
+          target: '_blank' do %>
+      <div class="pane-a font-semibold text-base text-blue-400 underline">
         <%= @spot.name %>
       </div>
     <% end %>
@@ -19,10 +19,10 @@
     
     <div class="pane-a h-full mt-3">  
       <%= link_to "https://www.google.com/maps/search/?api=1&query=#{@spot_detail.coordinate.latitude}%2C#{@spot_detail.coordinate.longitude}&query_place_id=#{@spot_detail.id}",
-          target: "_blank" do %>
+          target: '_blank' do %>
         <div class="text-left pb-1 border-b border-gray-300">
-          <p><%= @spot_detail.postal_code %></p>
-          <p><%= @spot_detail.address %></p>
+          <p class="text-blue-400 underline"><%= @spot_detail.postal_code %></p>
+          <p class="text-blue-400 underline"><%= @spot_detail.address %></p>
         </div>
       <% end %>
       

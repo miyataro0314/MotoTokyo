@@ -1,6 +1,9 @@
 <% content_for :title, 'ホーム - MotoTokyo' %>
 
 <div class="base-container text-center">
+
+  <%= turbo_frame_tag 'modal' %>
+
   <h1 class="h1">ホーム</h1>
 
   <% if current_user.profile.nil? %>
@@ -12,8 +15,8 @@
 
   <%= render partial: 'shared/divider', locals: { heading: '東京の天気情報'} %>
 
-  <%= render partial: 'shared/weather_forecast',
-             locals: { first: @first, second: @second, third: @third } %>
+  <%= render partial: 'homes/weather_forecast_card',
+            locals: { first: @first, second: @second, third: @third } %>
 
   <%# <div class="base-l mt-8">
     <p class="text-primary-content font-semibold font-base">
