@@ -8,7 +8,6 @@ class CreateAccessHistroys < ActiveRecord::Migration[7.1]
     end
 
     add_index :access_histories, :user_id
-    add_index :access_histories, [:user_id, :spot_id], unique: true
     add_foreign_key :access_histories, :users, column: :user_id, primary_key: 'id'
   end
 end

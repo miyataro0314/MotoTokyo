@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_121613) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_access_histories_on_spot_id"
-    t.index ["user_id", "spot_id"], name: "index_access_histories_on_user_id_and_spot_id", unique: true
     t.index ["user_id"], name: "index_access_histories_on_user_id"
   end
 
@@ -130,12 +129,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_121613) do
 
   create_table "search_histories", force: :cascade do |t|
     t.string "user_id", null: false
-    t.integer "area", null: false
-    t.integer "category", null: false
+    t.integer "search_query"
+    t.integer "parking"
+    t.integer "category"
+    t.integer "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["area"], name: "index_search_histories_on_area"
-    t.index ["category"], name: "index_search_histories_on_category"
     t.index ["user_id"], name: "index_search_histories_on_user_id"
   end
 
