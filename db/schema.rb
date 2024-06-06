@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_01_051251) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_121613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "access_histories", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_access_histories_on_spot_id"
+    t.index ["user_id", "spot_id"], name: "index_access_histories_on_user_id_and_spot_id", unique: true
+    t.index ["user_id"], name: "index_access_histories_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +128,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_051251) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "search_histories", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.integer "area", null: false
+    t.integer "category", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area"], name: "index_search_histories_on_area"
+    t.index ["category"], name: "index_search_histories_on_category"
+    t.index ["user_id"], name: "index_search_histories_on_user_id"
+  end
+
   create_table "spot_details", id: :string, force: :cascade do |t|
     t.bigint "spot_id", null: false
     t.string "postal_code"
@@ -174,6 +195,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_051251) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "access_histories", "spots"
+  add_foreign_key "access_histories", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "spots"
@@ -187,6 +210,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_01_051251) do
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "profiles", "users"
+  add_foreign_key "search_histories", "users"
   add_foreign_key "spot_details", "spots"
   add_foreign_key "spots", "users", on_delete: :nullify
 end

@@ -1,0 +1,2 @@
+class AccessHistroy < ApplicationRecord
+end

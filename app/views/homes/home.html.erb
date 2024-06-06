@@ -18,19 +18,19 @@
   <%= render partial: 'homes/weather_forecast_card',
             locals: { first: @first, second: @second, third: @third } %>
 
-  <%# <div class="base-l mt-8">
+  <div class="base-l mt-8">
     <p class="text-primary-content font-semibold font-base">
       最近チェックしたスポット
-    </p> %>
-    <%# <%= render 'spots/spot_card', locals: { spot: @spot, spot_detail: @spot_detail } %>
-    <%# <div>
+    </p>
+    <%= render 'spots/spot_card', locals: { spot: @spot, spot_detail: @spot_detail, from: 'home' } %>
+    <div>
       <p class="text-primary-content">
         前回と同じ条件で<br>
         検索する
-      </p> %>
-      <%# <%= link_to '大田区:ご飯', search_spots_searches_path, class: 'btn-secondary' %>
-    <%# </div>
-  </div> %>
+      </p>
+      <%= link_to '大田区:ご飯', search_spots_searches_path, class: 'btn-secondary' %>
+    </div>
+  </div>
 
   <%= render partial: 'shared/divider', locals: { heading: '最近登録されたスポット'} %>
 
