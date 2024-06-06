@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AccessHistroyTest < ActiveSupport::TestCase
+class AccessHistoryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

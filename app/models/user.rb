@@ -10,10 +10,12 @@ class User < ApplicationRecord
   has_many :difficulties, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :edit_histories, dependent: :destroy
   has_many :bookmarked_spots, through: :bookmarks, source: :spot
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, source: :friend
+  has_many :edit_histories, dependent: :destroy
+  has_many :access_histories, dependent: :destroy
+  has_many :search_histories, dependent: :destroy
   has_one :profile, dependent: :destroy
 
   enum role: { general: 0, admin: 10 }

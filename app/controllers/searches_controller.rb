@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :save_search_histroy, only: :search_spots
 
   def new
     clear_session
@@ -57,5 +58,11 @@ class SearchesController < ApplicationController
   def translated_value(key)
     value = session[key]
     value.present? ? I18n.t("activerecord.enums.spot.#{key}.#{value}") : nil
+  end
+
+  def save_search_histroy
+    return if search_spots_params.nil? || search_spots_params.values.all?(&:blank?)
+
+    SearchHistory.save_search_histroy(current_user, search_spots_params)
   end
 end

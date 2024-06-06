@@ -1,4 +1,4 @@
-class CreateAccessHistroys < ActiveRecord::Migration[7.1]
+class CreateAccessHistories < ActiveRecord::Migration[7.1]
   def change
     create_table :access_histories do |t|
       t.string :user_id, null: false

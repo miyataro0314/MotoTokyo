@@ -28,6 +28,7 @@ class SpotsController < ApplicationController
     @spot_detail = @spot.spot_detail
     @parkings = @spot_detail.near_parkings(1000)
     @comment = @spot.comments.order('RANDOM()').first
+    save_access_history
   end
 
   def update
@@ -168,5 +169,9 @@ class SpotsController < ApplicationController
   def handle_save_error
     @error_objects = [@spot, @spot_details, @difficulty, @comment].select { |object| object.errors.any? }
     ErrorMailer.registration_error(@error_objects).deliver_now
+  end
+
+  def save_access_history
+    AccessHistory.create(user_id: current_user.id, spot_id: @spot.id)
   end
 end

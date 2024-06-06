@@ -1,2 +1,0 @@
-class AccessHistroy < ApplicationRecord
-end

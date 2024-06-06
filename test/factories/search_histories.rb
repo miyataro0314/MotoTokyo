@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :access_histroy do
+  factory :search_history do
     
   end
 end
