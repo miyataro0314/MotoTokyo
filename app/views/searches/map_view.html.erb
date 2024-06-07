@@ -1,0 +1,14 @@
+<% content_for :title, 'スポット一覧 - MotoTokyo' %>
+
+<div class="base-container mt-8">
+
+  <%= render 'shared/breadcrumb' %>
+  
+
+  <div class="w-4/5 h-120 mt-3 mx-auto p-2 drop-shadow-md rounded-2xl border-2" id="map"></div>
+
+</div>
+
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+<%= javascript_include_tag 'searches/map_view', 'data-turbo-track': 'reload', defer: true %>

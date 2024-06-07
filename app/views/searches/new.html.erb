@@ -21,7 +21,7 @@
         <div class="text-center">
           <div class="w-64 h-fit mt-3 mx-auto p-3 rounded-3xl bg-base-100">
             <%= form_with model: @search_spots_form,
-                          url: search_spots_searches_path,
+                          url: search_spots_searches_path(from: 'search_top'),
                           method: :get do |f| %>
               <div class="mt-3">
                 <%= f.label :area, 'エリア' %>
@@ -55,8 +55,16 @@
       もしくは<br>
       条件を指定しないで一覧を見る
     </p>
-    <%= link_to 'スポット一覧', spots_path,
+    <%= link_to 'スポット一覧', spots_path(from: 'search_top'),
         class: 'btn-secondary' %>
+
+    <p class ="mt-3 text-base text-primary-content">
+        地図上でスポットを確認
+      </p>
+      <%= link_to '地図', map_view_searches_path(from: 'search_top'),
+          class: 'btn-secondary' %>
+    </div>
   </div>
+
 </div>
 

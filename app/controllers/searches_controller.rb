@@ -20,6 +20,8 @@ class SearchesController < ApplicationController
     render 'spots/index'
   end
 
+  def map_view; end
+
   private
 
   def search_spots_params

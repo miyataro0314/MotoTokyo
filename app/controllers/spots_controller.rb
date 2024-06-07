@@ -26,7 +26,7 @@ class SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @spot_detail = @spot.spot_detail
-    @parkings = @spot_detail.near_parkings(1000)
+    @parkings = Parking.nearby(@spot_detail.coordinate, 1000)
     @comment = @spot.comments.order('RANDOM()').first
     save_access_history
   end

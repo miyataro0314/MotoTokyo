@@ -47,12 +47,18 @@ Rails.application.routes.draw do
     collection do
       get 'search_spots_modal'
       get 'search_spots'
+      get 'map_view'
     end
   end
 
   namespace :api do
     namespace :v1 do
-      post 'spots/check', to: 'spots#check'
+      namespace :spots do
+        post 'check'
+      end
+      namespace :searches do
+        post 'load_map_data'
+      end
     end
   end
 
