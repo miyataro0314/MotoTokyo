@@ -20,6 +20,11 @@ class Spot < ApplicationRecord
   scope :by_area, ->(area) { where(area:) }
   scope :by_category, ->(category) { where(category:) }
   scope :by_parking, ->(parking) { where(parking:) }
+  scope :nearby, lambda { |point, distance|
+    joins(:spot_detail)
+      .where('ST_DWithin(coordinate, ST_GeomFromText(?, 4326), ?)', point.to_s, distance)
+      .order(Arel.sql('ST_Distance(coordinate, ST_GeomFromText(?, 4326))', point.to_s))
+  }
 
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)

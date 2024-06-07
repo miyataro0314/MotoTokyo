@@ -15,8 +15,10 @@
 
   <% if @last_access_spot %>
     <%= render partial: 'shared/divider', locals: { heading: '最近チェックしたスポット'} %>
-    <%= render partial: 'spots/spot_card',
-               locals: { spot: @last_access_spot, spot_detail: @last_access_spot_detail, from: 'home' } %>
+    <div class="w-fit mx-auto">
+      <%= render partial: 'spots/spot_card',
+                locals: { spot: @last_access_spot, spot_detail: @last_access_spot_detail, from: 'home' } %>
+    </div>
   <% end %>
 
   <% if @last_search_query %>

@@ -1,8 +1,6 @@
 module Api
   module V1
-    class SpotsController < ApplicationController
-      skip_before_action :verify_authenticity_token
-
+    class SpotsController < BaseController
       def check
         if !params[:adr_address].include?('東京都')
           render json: { available: false, reason: 'out_of_area' }

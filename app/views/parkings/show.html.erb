@@ -12,7 +12,7 @@
         <%= @parking.name %>
       </div>
       <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="parking-map"></div>
-      <div class="pane-a max-h-112 mt-3 overflow-y-scroll">
+      <div class="pane-a max-h-42 mt-3 overflow-y-scroll">
         <div class="text-left pb-1 border-b border-gray-300">
           <%= @parking.address %>
         </div>
@@ -59,7 +59,8 @@
       const map = new google.maps.Map(document.getElementById('parking-map'), {
         mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>',
         center: parkingPosition,
-        zoom: 13
+        zoom: 13,
+        gestureHandling: 'greedy'
       });
 
       const blueScaledMarker = new google.maps.marker.PinView({

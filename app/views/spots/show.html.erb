@@ -131,7 +131,8 @@
     const map = new google.maps.Map(document.getElementById('map'), {
       mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>', 
       center: spotPosition,
-      zoom: 13
+      zoom: 13,
+      gestureHandling: 'greedy'
     });
 
     <% if @parkings.any? %>

@@ -50,6 +50,13 @@
           友達一覧に戻る
         </div>
       <% end %>
+    <% when 'search_top' %>
+      <%= link_to new_search_path, class: "w-fit" do %>
+        <div class="flex items-center w-fit">
+          <%= svg_tag 'vuesax/linear/arrow-left.svg', css_class: 'inline' %>
+          検索トップに戻る
+        </div>
+      <% end %>
     <% end %>
   <% end %>
   </div>
