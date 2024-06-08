@@ -45,8 +45,8 @@ ja:
       updated_but_not_signed_in: "アカウントは正常に更新されました。パスワードが変更されたため、再度ログインする必要があります。"
     sessions:
       signed_in: "正常にログインしました。"
-      signed_out: "正常にサインアウトしました。"
-      already_signed_out: "すでにサインアウトされています。"
+      signed_out: "正常にログアウトしました。"
+      already_signed_out: "すでにログアウトされています。"
     unlocks:
       send_instructions: "5~10分以内にアカウントのロック解除の指示が記載されたメールが届きます。"
       send_paranoid_instructions: "アカウントが存在する場合、5~10分以内にアカウントのロック解除の指示が記載されたメールが届きます。"

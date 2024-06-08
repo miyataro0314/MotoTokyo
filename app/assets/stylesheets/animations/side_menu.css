@@ -1,9 +1,13 @@
-@keyframes start-modal {
+@keyframes start-menu {
   0% {
-    transform: scale(0.0, 0.0);
+    /* transform: scale(0.0, 0.0);
+    transform-origin: top left; */
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   }
   100% {
-    transform: scale(1.0, 1.0);
+    /* transform: scale(1.0, 1.0);
+    transform-origin: top left; */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
 
@@ -11,18 +15,21 @@
   0% {
     opacity: 0%;
   }
+  70% {
+    opacity: 100%;
+  }
   100% {
     opacity: 100%;
   }
 }
 
 
-@keyframes end-modal {
+@keyframes end-menu {
   0% {
-    transform: scale(1.0, 1.0);
+    clip-path: circle(100% at left top)
   }
   100% {
-    transform: scale(0.0, 0.0);
+    clip-path: circle(0% at left top);
   }
 }
 
@@ -35,8 +42,8 @@
   }
 }
 
-.start-modal-animation {
-  animation-name: start-modal;
+.start-menu-animation {
+  animation-name: start-menu;
   animation-duration: 300ms;
   animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
 }
@@ -44,10 +51,11 @@
 .start-bg-animation {
   animation-name: start-bg;
   animation-duration: 300ms;
+  animation-timing-function: ease-in;
 }
 
-.end-modal-animation {
-  animation-name: end-modal;
+.end-menu-animation {
+  animation-name: end-menu;
   animation-duration: 300ms;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
@@ -56,5 +64,6 @@
 .end-bg-animation {
   animation-name: end-bg;
   animation-duration: 300ms;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }

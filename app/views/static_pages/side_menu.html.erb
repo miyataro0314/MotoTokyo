@@ -1,19 +1,18 @@
 <%= turbo_frame_tag 'side_menu' do %>
 
-  <%# <%= stylesheet_link_tag 'animations/sideMenu', data: { turbolinks_track: 'reload' } %>
+  <%= stylesheet_link_tag 'animations/side_menu', data: { turbolinks_track: 'reload' } %>
 
   <div class='background'
        data-controller="side-menu"
        data-side-menu-target="background"
-       data-action="click->side-menu#closeModal">
+       data-action="click->side-menu#closeMenu">
     <div class="side-menu text-center"
          data-side-menu-target="menu">
       <div class="flex h-16 items-center">
-        <%= link_to '#', class: 'w-fit h-fit',
-                                data: { turbo_frame: 'side_menu' } do %>
-          <%= svg_tag 'vuesax/linear/menu.svg',
-              css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-7 h-7 min-h-7 ml-5 stroke-primary-content' %>      
-        <% end %>
+        <div data-action="click->side-menu#closeMenuByButton">
+          <%= svg_tag 'vuesax/linear/add.svg',
+              css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-11 h-11 ml-3 stroke-primary-content' %>      
+        </div>
       </div>
       
       <div class="flex mt-5 gap-1 items-center">
