@@ -1,6 +1,5 @@
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :save_search_histroy, only: :search_spots
 
   def new
     clear_session
@@ -14,9 +13,12 @@ class SearchesController < ApplicationController
   def search_spots
     set_page
     set_spot_search_query
+
     @query = build_query_string
     search_spots_form = SearchSpotsForm.new(session_spots_params)
     @spots = search_spots_form.search.order(created_at: :desc).page(session[:page])
+
+    save_search_histroy if user_signed_in?
     render 'spots/index'
   end
 
