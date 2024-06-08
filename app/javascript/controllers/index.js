@@ -10,5 +10,8 @@ application.register("flash", FlashController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import SideMenuController from "./side_menu_controller"
+application.register("side-menu", SideMenuController)
+
 import WizardController from "./wizard_controller"
 application.register("wizard", WizardController)

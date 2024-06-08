@@ -65,6 +65,11 @@ main {
          drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
 }
 
+.btn-secondary-mm {
+  @apply daisy-btn daisy-btn-secondary min-w-20 w-fit h-10 mt-3 p-3
+         drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
+}
+
 .btn-danger {
   @apply daisy-btn daisy-btn-error min-w-20 w-fit h-10 mt-3 p-3 mx-auto
          drop-shadow-lg rounded-full border border-2 border-gray-200 text-sm
@@ -85,6 +90,14 @@ main {
 
 .modal-h-fit {
   @apply w-80 h-fit max-h-120 p-3 drop-shadow-2xl rounded-3xl
+}
+
+.side-menu {
+  @apply fixed top-0 left-0 top-0 w-80 h-fit pb-20 drop-shadow-2xl rounded-br-[270px] bg-primary
+}
+
+.link {
+  @apply text-blue-400 underline
 }
 
 .translate-x-minus-fifty {

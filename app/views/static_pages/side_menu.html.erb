@@ -1,0 +1,82 @@
+<%= turbo_frame_tag 'side_menu' do %>
+
+  <%# <%= stylesheet_link_tag 'animations/sideMenu', data: { turbolinks_track: 'reload' } %>
+
+  <div class='background'
+       data-controller="side-menu"
+       data-side-menu-target="background"
+       data-action="click->side-menu#closeModal">
+    <div class="side-menu text-center"
+         data-side-menu-target="menu">
+      <div class="flex h-16 items-center">
+        <%= link_to '#', class: 'w-fit h-fit',
+                                data: { turbo_frame: 'side_menu' } do %>
+          <%= svg_tag 'vuesax/linear/menu.svg',
+              css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-7 h-7 min-h-7 ml-5 stroke-primary-content' %>      
+        <% end %>
+      </div>
+      
+      <div class="flex mt-5 gap-1 items-center">
+        <%= link_to root_path, class: 'daisy-btn daisy-btn-ghost h-fit w-fit pr-0',
+                               data: { turbo_frame: '_top' } do %>
+          <%= svg_tag 'moto-tokyo-logo.svg', css_class: 'w-28 h-16' %>
+        <% end %>
+        <%= link_to 'https://github.com/miyataro0314/MotoTokyo',
+            target: '_blank',
+            class: 'daisy-btn daisy-btn-ghost daisy-btn-square' do %>
+          <%= svg_tag 'github-logo.svg', css_class: 'w-8 h-8 fill-neutral' %>
+        <% end %>
+        <%= link_to 'https://x.com/MotoTokyo_X', 
+            target: '_blank',
+            class: 'daisy-btn daisy-btn-ghost daisy-btn-square' do %>
+          <%= svg_tag 'x-logo.svg', css_class: 'w-8 h-8 fill-neutral' %>
+        <% end %>
+        <%= link_to 'https://www.youtube.com/@MotoTokyo_Official',
+            target: '_blank',
+            class: 'daisy-btn daisy-btn-ghost daisy-btn-square' do %>
+          <%= svg_tag 'youtube-logo.svg', css_class: 'w-10 h-10 fill-neutral' %>
+        <% end %>
+      </div>
+
+      <div class="w-fit text-primary-content">
+        <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                         data: { turbo_frame: '_top' } do %>
+          <li>MotoTokyoについて</li>
+        <% end %>
+        <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                         data: { turbo_frame: '_top' } do %>
+          <li>お問い合わせ</li>
+        <% end %>
+        <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                         data: { turbo_frame: '_top' } do %>
+          <li>利用規約</li>
+        <% end %>
+        <%= link_to privacy_policy_path, class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                         data: { turbo_frame: '_top' } do %>
+          <li>プライバシーポリシー</li>
+        <% end %>
+      </div>
+
+      <div class="flex mt-5">
+        <% if user_signed_in? %>
+          <% if as_admin? %>
+            <%= link_to '管理者ログアウト', admin_sign_out_path,
+                class: 'btn-secondary-mm ml-5',
+                data: { turbo_frame: '_top',
+                        turbo_method: 'delete' } %>
+          <% else %>
+            <%= link_to 'ログアウト', destroy_user_session_path,
+                class: 'btn-secondary-mm ml-5',
+                data: { turbo_frame: '_top',
+                        turbo_method: 'delete' } %>
+          <% end %>
+        <% else %>
+          <%= link_to 'ログイン', new_user_session_path,
+                class: 'btn-secondary-mm ml-5',
+                data: { turbo_frame: '_top' } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
