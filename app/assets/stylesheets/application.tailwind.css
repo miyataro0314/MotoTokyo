@@ -16,6 +16,12 @@ main {
   flex: 1;
 }
 
+li {
+  margin-bottom: 10px;
+  text-indent: -1rem;
+  padding-left: 1rem;
+}
+
 .h1 {
   @apply mx-8 m-3 text-2xl font-semibold
 }

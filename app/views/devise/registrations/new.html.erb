@@ -32,7 +32,15 @@
         <%= render partial: 'shared/error_messages', locals: { object: resource, attribute: :password_confirmation } %>
       </div>
       <div>
-        <%= f.submit "新規登録", class: 'btn-secondary' %>
+        <div class="mt-5 list-disc list-inside">
+          <li class="mb-1 ml-3 text-left"><%= link_to '利用規約', terms_path, class: 'font-bold underline', target: '_blank' %></li>
+          <li class="mb-1 ml-3 text-left"><%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'font-bold underline', target: '_blank' %></li>
+          <div class="flex justify-end">
+            <label for="check" class="mr-1">同意する</label>
+            <input id="check" type="checkbox" class="daisy-checkbox daisy-checkbox-secondary daisy-checkbox-sm checked:border mr-3">
+          </div>
+        </div>
+        <%= f.submit "新規登録", id: 'submit', class: 'btn-secondary block' %>
       </div>
     <% end %>
   </div>
@@ -49,3 +57,5 @@
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag 'devise/registrations/new', 'data-turbo-track': 'reload', defer: true %>

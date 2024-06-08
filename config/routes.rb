@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'side_menu', to: 'static_pages#side_menu'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms', to: 'static_pages#terms'
   get 'home', to: 'homes#home'
   get 'weather_detail', to: 'homes#weather_detail'
   get 'my_page', to: 'homes#my_page'
