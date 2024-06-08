@@ -38,6 +38,20 @@
   <%= render partial: 'homes/weather_forecast_card',
             locals: { first: @first, second: @second, third: @third } %>
 
+
+  <%= render partial: 'shared/divider', locals: { heading: 'あなたにおすすめのスポット'} %>
+
+  <% if @recommended_spots.any? %>
+    <div class="px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap no-scroll-bar">
+      <% @recommended_spots.each do |spot| %>
+        <%= render partial: 'spots/spot_card',
+                   locals: { spot: spot, spot_detail: spot.spot_detail, from: 'home' } %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="mt-3 text-center">該当するスポットは<br>ありませんでした</div>      
+  <% end %>
+
   <%= render partial: 'shared/divider', locals: { heading: '最近登録されたスポット'} %>
 
   <% if @spots.any? %>
@@ -46,6 +60,7 @@
         <%= render partial: 'spots/spot_card',
                    locals: { spot: spot, spot_detail: spot.spot_detail, from: 'home' } %>
       <% end %>
+    </div>
   <% else %>
     <div class="mt-3 text-center">該当するスポットは<br>ありませんでした</div>      
   <% end %>

@@ -31,7 +31,7 @@
 
           <div class="mt-3 text-right">
             <p><%= "#{@data['publicTimeFormatted'][0...-3]}時点" %></p>
-            <p class="text-blue-400 underline">
+            <p class="link">
               <%= link_to @data['copyright']['provider'][0]['name'],
                           @data['copyright']['provider'][0]['link'],
                           target: '_blank' %>

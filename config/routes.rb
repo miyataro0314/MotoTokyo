@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     passwords: 'users/passwords'
   }
+
   root 'static_pages#top'
+  get 'side_menu', to: 'static_pages#side_menu'
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'home', to: 'homes#home'
   get 'weather_detail', to: 'homes#weather_detail'
   get 'my_page', to: 'homes#my_page'

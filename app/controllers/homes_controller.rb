@@ -2,10 +2,11 @@ class HomesController < ApplicationController
   before_action :require_profile, only: :my_page
 
   def home
-    set_latest_spots
     set_spot_by_access_history
     set_query_by_search_history
     set_weather_data
+    set_latest_spots(5)
+    set_recommend_spots(5)
   end
 
   def weather_detail
@@ -38,8 +39,8 @@ class HomesController < ApplicationController
     redirect_to new_profile_path, alert: 'プロフィールの登録をお願いします'
   end
 
-  def set_latest_spots
-    @spots = Spot.includes(:spot_detail).order(created_at: :desc).limit(5)
+  def set_latest_spots(limit)
+    @spots = Spot.includes(:spot_detail).order(created_at: :desc).limit(limit)
   end
 
   def set_weather_data
@@ -64,5 +65,63 @@ class HomesController < ApplicationController
     session[:area] = @last_search_query.area
     session[:category] = @last_search_query.category
     session[:parking] = @last_search_query.parking
+  end
+
+  def set_recommend_spots(limit)
+    search_histories = recent_search_histories
+    accessed_spots = recent_access_spots
+
+    search_score_weights = calculate_score_weights(search_histories)
+    access_score_weights = calculate_score_weights(accessed_spots)
+
+    recommend_score_weights = merge_score_weights(search_score_weights, access_score_weights)
+
+    spots_with_scores = Spot.all.includes(:spot_detail).map do |spot|
+      score = calculate_score(spot, recommend_score_weights)
+      score *= 0.7 if accessed_spots.include?(spot) # 閲覧済みのスポットはスコア3割減
+      { spot:, score: }
+    end
+
+    @recommended_spots = spots_with_scores.sort_by { |spot_with_score| -spot_with_score[:score] }
+                                          .take(limit)
+                                          .map { |hash| hash[:spot] }
+  end
+
+  def recent_search_histories(limit = 10)
+    SearchHistory.where(user_id: current_user.id).order(created_at: :desc).limit(limit)
+  end
+
+  def recent_access_spots(limit = 10)
+    AccessHistory.where(user_id: current_user.id).order(created_at: :desc).limit(limit).includes(:spot).map(&:spot)
+  end
+
+  def calculate_score_weights(object)
+    area_score_weight = count_score(object, :area)
+    parking_score_weight = count_score(object, :parking)
+    category_score_weight = count_score(object, :category)
+
+    { area: area_score_weight, parking: parking_score_weight, category: category_score_weight }
+  end
+
+  def count_score(object, key)
+    object.group_by(&key).transform_values(&:count).reject { |k, _| k.nil? }
+  end
+
+  def merge_score_weights(score_weights1, score_weights2)
+    merged_score_weights = {}
+
+    score_weights1.each do |key, score_weight|
+      merged_score_weights[key] = score_weight.merge(score_weights2[key]) do |_, score1, score2|
+        score1 + score2
+      end
+    end
+
+    merged_score_weights
+  end
+
+  def calculate_score(spot, score_weights)
+    score_weights.sum do |key, score_weight|
+      score_weight.fetch(spot.send(key), 0)
+    end
   end
 end

@@ -28,7 +28,8 @@ class SpotsController < ApplicationController
     @spot_detail = @spot.spot_detail
     @parkings = Parking.nearby(@spot_detail.coordinate, 1000)
     @comment = @spot.comments.order('RANDOM()').first
-    save_access_history
+
+    save_access_history if user_signed_in?
   end
 
   def update

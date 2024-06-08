@@ -5,3 +5,4 @@
 //= link animations/flash.css
 //= link animations/modal.css
 //= link animations/wizard.css
+//= link animations/side_menu.css

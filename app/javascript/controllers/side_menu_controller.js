@@ -1,26 +1,26 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['background', 'modal'];
+  static targets = ['background', 'menu'];
 
   connect() {
     document.body.classList.add('no-scroll')
-    this.openModal();
+    this.openMenu();
   }
 
-  openModal() {
-    this.modalTarget.classList.add('start-modal-animation');
+  openMenu() {
+    this.menuTarget.classList.add('start-menu-animation');
     this.backgroundTarget.classList.add('start-bg-animation');
   }
 
-  closeModal(event) {
+  closeMenu(event) {
     if (event.target === this.backgroundTarget) {
-      this.modalTarget.classList.add('end-modal-animation');
+      this.menuTarget.classList.add('end-menu-animation');
       this.backgroundTarget.classList.add('end-bg-animation');
       this.backgroundTarget.classList.remove('z-50');
 
-      this.modalTarget.addEventListener('animationend', () => {
-        this.modalTarget.style.display = 'none';
+      this.menuTarget.addEventListener('animationend', () => {
+        this.menuTarget.style.display = 'none';
       }, { once: true });
       this.backgroundTarget.addEventListener('animationend', () => {
         this.backgroundTarget.style.display = 'none';
@@ -30,13 +30,13 @@ export default class extends Controller {
     }
   }
 
-  closeModalBySubmit() {
-    this.modalTarget.classList.add('end-modal-animation');
+  closeMenuByButton() {
+    this.menuTarget.classList.add('end-menu-animation');
     this.backgroundTarget.classList.add('end-bg-animation');
     this.backgroundTarget.classList.remove('z-50');
 
-    this.modalTarget.addEventListener('animationend', () => {
-      this.modalTarget.style.display = 'none';
+    this.menuTarget.addEventListener('animationend', () => {
+      this.menuTarget.style.display = 'none';
     }, { once: true });
     this.backgroundTarget.addEventListener('animationend', () => {
       this.backgroundTarget.style.display = 'none';
