@@ -7,7 +7,7 @@
     入力内容に誤りが無いようご注意をお願いいたします。
   </p>
 
-  <div class="w-112 mt-3 p-3 mx-auto rounded-2xl border-2">
+  <div class="w-80 mt-3 p-3 mx-auto rounded-2xl border-2">
     <%= form_with model: @contact_form, url: contact_path do |f| %>
       <div>
         <%= f.label :user_id, class: 'text-base' %><br>
@@ -22,7 +22,7 @@
         <%= f.label :content, class: 'text-base' %><br>
         <%= f.text_area :content,
             { size: "20x10",
-              class: 'daisy-textarea w-4/5 h-40 px-3 drop-shadow-md bg-white' } %>
+              class: 'daisy-textarea w-11/12 h-40 px-3 drop-shadow-md bg-white' } %>
       </div>
       <%= f.submit '送信', class: 'btn-secondary' %>
     <% end %>
