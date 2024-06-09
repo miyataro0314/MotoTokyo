@@ -1,0 +1,118 @@
+<div class="base-container">
+  <h1 class="h1">MotoTokyoについて</h1>
+
+  <p>
+    MotoTokyoは東京を走るライダーのための<br>
+    サポートサービスです。<br>
+    皆さまの新しいスポットの開拓を支援します。
+  </p>
+
+  <div class="mt-8">
+    <p class="font-semibold">
+      次のようなケースはMotoTokyoにお任せ下さい！
+    </p>
+
+    <div class="base-l mt-5 text-primary-content">
+      <h2 class="font-semibold text-xl text-center">Case 1</h2>
+      <p class="mt-3 mx-auto">
+        東京って電車・バスがたくさんあるし、あまりバイクで走るイメージがない...<br>
+        そもそもツーリングスポットも無いんじゃない？
+      </p>
+      <%= svg_tag 'vuesax/linear/narrow-arrow-down.svg', css_class: 'my-2 mx-auto stroke-base-100' %>
+      <p class="mt-3 mx-auto">
+        MotoTokyoにはユーザーの皆さまの投稿による素敵なスポットが掲載されています。<br>
+        きっと新しい出会いを見つけられます！
+      </p>
+    </div>
+    <div class="base-l mt-5 text-primary-content">
+      <h2 class="font-semibold text-xl text-center">Case 2</h2>
+      <p class="mt-3 mx-auto">
+        ツーリングがてら、東京で美味しいご飯を食べたいのにパーキングが見つからない！<br>
+        いつもコンビニで済ませてるよ...
+      </p>
+      <%= svg_tag 'vuesax/linear/narrow-arrow-down.svg', css_class: 'my-2 mx-auto stroke-base-100' %>
+      <p class="mt-3 mx-auto">
+        スポットから半径1km圏内のパーキング情報が自動で表示されます。<br>
+        パーキングに悩まずスポットを探すことができます！
+      </p>
+    </div>
+    <div class="base-l mt-5 text-primary-content">
+      <h2 class="font-semibold text-xl text-center">Case 3</h2>
+      <p class="mt-3 mx-auto">
+        東京は交通量が多くて走るのが怖い...<br>
+        建物も多いから目的の場所に行けるかも分からないよ...
+      </p>
+      <%= svg_tag 'vuesax/linear/narrow-arrow-down.svg', css_class: 'my-2 mx-auto stroke-base-100' %>
+      <p class="mt-3 mx-auto">
+        東京の中でも落ち着いていて、走りやすいエリアもあります。<br>
+        MotoTokyoではユーザーによる行きやすさ投票機能により、スポットの行きやすさが一目で分かります！
+      </p>
+    </div>
+  </div>
+
+  <%# <div class="base-m mt-8 text-primary-content">
+    <div>
+      <%# <p>
+        ぜひ利用方法もご覧ください！
+      </p> %>
+      <%# <%= link_to '利用方法', guide_path, class: 'btn-secondary' %>
+    <%# </div> %>
+  <%# </div> %>
+
+  <div class="base-m mt-8 text-primary-content">
+    <div>
+      <p>
+        会員登録して<br>
+        お気に入りのスポットを登録する
+      </p>
+      <%= link_to '新規会員登録', new_user_registration_path,
+          class: 'btn-secondary' %>
+    </div>
+    <div class="mt-3">
+      <p>既にご登録済みの方は</p>
+      <%= link_to 'ログイン', new_user_session_path, class: 'btn-secondary' %>
+    </div>
+  </div>
+
+  <div class="base-m mt-8 text-primary-content">
+    <div>
+      <p>
+        もしくはユーザーが登録した<br>
+        素敵なスポットを見に行く！
+      </p>
+      <%= link_to 'スポット検索へ', new_search_path,
+          class: 'btn-secondary' %>
+    </div>
+  </div>
+
+  <div class="w-4/5 mt-8 mx-auto text-left">
+    <div class="flex h-fit items-center space-x-3">
+      <div class="flex-1 border border-gray-300"></div>
+      <h2 class="mx-2 font-semibold text-xl inline">運営より</h2>
+      <div class="flex-1 border border-gray-300"></div>
+    </div>
+    <p class="mt-3 mb-2 indent-3.5">
+      私は月に数回、東京へ走りに行きます。活気に溢れている東京を走るのがとても好きなんです。
+      時間帯や天気によって様々な表情を見せ、訪れるたび変化していく東京の街並みは、まるで共に生きているかのような親しみや安心感を感じることさえあります。
+    </p>
+    <p class="mb-2 indent-3.5">
+      ただ、東京ではパーキングの悩みは切っても切り離せません。
+      行ってみたいスポットがあっても、付近のパーキングを調べているうちにスポットの場所が分からなくなって、またスポットを調べ直して...
+      そんなことをしているうちに、結局いつも同じスポットに行くことになるんです。
+      いつもそんな調子なので、それなりに走っているつもりですが、気軽に行けるスポットが意外と少ないことに気づきました。
+    </p>
+    <p class="mb-2 indent-3.5">
+      同じ悩みを抱えている方々が、もっと気軽に新しいスポットに出会えるように、MotoTokyoを開発・運営することにしました。
+      当サービスの核となるスポット情報は、ユーザーの皆さまのご投稿で支えられています。
+      皆さまのお気に入りスポットのご登録、心よりお待ちしております。
+      また、当サービスは個人で開発・運営しており、まだまだサービスとして未熟な点が多々ございます。
+      ユーザーの皆さまが使いやすいサービスを目指して、日々開発を続けてまいります。
+      サービスに関するご意見等ございましたら、
+      <%= link_to '運営公式 X', 'https://x.com/MotoTokyo_X', class: 'link', target: '_blank' %>
+      のDMにてご連絡をお願いいたします。
+    </p>
+    <p class="text-right">
+      2024年6月8日
+    </p>
+  </div>
+</div>

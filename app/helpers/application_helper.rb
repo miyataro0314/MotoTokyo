@@ -34,4 +34,34 @@ module ApplicationHelper
   def formatted_temperature(data, type)
     data['temperature'][type]['celsius'] || '-'
   end
+
+  def back_link(path, text)
+    link_to path, class: 'w-fit' do
+      content_tag(:div, class: 'flex items-center w-fit') do
+        concat(svg_tag('vuesax/linear/arrow-left.svg', css_class: 'inline'))
+        concat(text)
+      end
+    end
+  end
+
+  def determine_back_link(from, params) # rubocop:disable Metrics/CyclomaticComplexity
+    case from
+    when 'home'
+      back_link(home_path, 'ホームに戻る')
+    when 'spot_search'
+      back_link(search_spots_searches_path, 'スポット検索結果に戻る')
+    when 'spot_registration'
+      back_link(new_spot_path, 'スポット登録に戻る')
+    when 'my_spots'
+      back_link(my_spots_path(tab: params[:tab]), 'マイスポット一覧に戻る')
+    when 'spot_detail'
+      back_link(spot_path(params[:spot]), 'スポット詳細に戻る')
+    when 'my_page'
+      back_link(my_page_path, 'マイページに戻る')
+    when 'friendships'
+      back_link(friendships_path, '友達一覧に戻る')
+    when 'search_top'
+      back_link(new_search_path, '検索トップに戻る')
+    end
+  end
 end

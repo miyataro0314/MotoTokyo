@@ -1,0 +1,7 @@
+ja:
+  activemodel:
+    attributes:
+      contact_form:
+        user_id: 'ユーザーID'
+        email: 'メールアドレス'
+        content: 'お問い合わせ内容'

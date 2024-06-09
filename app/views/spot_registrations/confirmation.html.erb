@@ -11,7 +11,7 @@
         <p class="text-base font-semibold text-primary-content">
           スポット名
         </p>
-        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-300">
           <%= session[:name] %>
         </div>
       </div>
@@ -19,7 +19,7 @@
         <p class="text-base font-semibold text-primary-content">
           駐輪場
         </p>
-        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-300">
           <%= t_enum('spot', 'parking', session[:parking]) %>
         </div>
       </div>
@@ -27,7 +27,7 @@
         <p class=" text-base font-semibold text-primary-content">
           駐輪場制限
         </p>
-        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-300">
           <%= session[:parking_limitation] ? t_enum('spot', 'parking_limitation', session[:parking_limitation]) : 'ー' %>
         </div>
       </div>
@@ -35,7 +35,7 @@
         <p class="text-base font-semibold text-primary-content">
           行きやすさ
         </p>
-        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <div  class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-300">
           <%= t_enum('difficulty', 'level', session[:difficulty_level]) %>
         </div>
       </div>
@@ -43,7 +43,7 @@
         <p class="text-base font-semibold text-primary-content">
           カテゴリ
         </p>
-        <div class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-100">
+        <div class="w-64 h-10 mx-auto mt-1 rounded-2xl content-center bg-base-300">
           <%= t_enum('spot', 'category', session[:category]) %>
         </div>
       </div>
@@ -51,7 +51,7 @@
         <p class="text-base font-semibold text-primary-content">
           おすすめポイント
         </p>
-        <div  class="w-64 h-fit mx-auto mt-1 p-2 rounded-2xl content-center break-words bg-base-100">
+        <div  class="w-64 h-fit mx-auto mt-1 p-2 rounded-2xl content-center break-words bg-base-300">
           <%= session[:comment_content].present? ? session[:comment_content] : '未入力' %>
         </div>
       </div>
