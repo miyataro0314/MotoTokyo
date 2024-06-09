@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   }
 
   root 'static_pages#top'
-  get 'side_menu', to: 'static_pages#side_menu'
+  get 'about', to: 'static_pages#about'
+  get 'guide', to: 'static_pages#guide'
+  get 'contact', to: 'static_pages#contact'
+  post 'contact', to: 'static_pages#send_contact'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms', to: 'static_pages#terms'
+  get 'side_menu', to: 'static_pages#side_menu'
   get 'home', to: 'homes#home'
   get 'weather_detail', to: 'homes#weather_detail'
   get 'my_page', to: 'homes#my_page'

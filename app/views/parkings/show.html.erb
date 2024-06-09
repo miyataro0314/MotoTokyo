@@ -8,14 +8,18 @@
         data-action="click->modal#closeModal">
     <div class="modal-h-fit text-sm bg-primary"
          data-modal-target="modal">
-      <div class="pane-a max-h-18 font-semibold text-base text-left">
-        <%= @parking.name %>
-      </div>
+      <%= link_to @parking.url, target: '_blank' do %>
+        <div class="pane-a max-h-18 font-semibold text-base text-left link">
+          <%= @parking.name %>
+        </div>
+      <% end %>
       <div class="w-full h-48 mt-3 mx-auto p-2 rounded-2xl" id="parking-map"></div>
       <div class="pane-a max-h-42 mt-3 overflow-y-scroll">
-        <div class="text-left pb-1 border-b border-gray-300">
-          <%= @parking.address %>
-        </div>
+        <%= link_to @parking.url, target: '_blank' do %>
+          <div class="text-left pb-1 border-b border-gray-300 link">
+            <%= @parking.address %>
+          </div>
+        <% end %>
         <div class="flex flex-col text-right">
           <div class="p-1">
             <div>
@@ -39,6 +43,9 @@
           <div class="p-1">
             <%= @parking.fee || '料金：情報無し' %>
           </div>
+          <p class="p-1 text-red-500">
+            タイミングによって、情報が最新ではない場合があります。必ずご利用前に実際の料金等ご確認下さい。
+          </p>
         </div>
         <div class="w-fit mt-3 mx-auto overflow-hidden drop-shadow-md rounded-2xl ">
           <%= link_to @parking.url, target: '_blank' do %>

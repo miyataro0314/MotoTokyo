@@ -10,12 +10,12 @@
         <%= @profile.user_name ? @profile.user_name : 'ユーザーネーム未設定' %>
       </div>
     </div>
-    <div class="w-28 h-28 mt-5 mx-auto overflow-hidden rounded-full bg-base-100 content-center">
+    <div class="w-28 h-28 mt-5 mx-auto overflow-hidden rounded-full bg-base-300 content-center">
       <% if @profile.avatar.attached? %>
         <%= image_tag @profile.avatar, alt: 'プロフィール画像' %>
       <% else %>
         <%= image_tag 'preview.png', alt: 'プロフィール画像',
-                                     class: "w-32 h-32 m-auto rounded-2xl bg-base-100" %>
+                                     class: "w-32 h-32 m-auto rounded-2xl bg-base-300" %>
       <% end %>
     </div>
     <div class="mt-5">
@@ -33,7 +33,7 @@
       <% if @profile.vehicle_photo.attached? %>
         <%= image_tag @profile.vehicle_photo, class: 'mx-auto rounded-2xl' %>
       <% else %>
-        <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-100' %>
+        <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-300' %>
       <% end %>
     </div>
   </div>

@@ -38,16 +38,22 @@
       </div>
 
       <div class="w-fit text-primary-content">
-        <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
-                         data: { turbo_frame: '_top' } do %>
+        <%= link_to about_path, class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                                data: { turbo_frame: '_top' } do %>
           <li>MotoTokyoについて</li>
         <% end %>
-        <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
-                         data: { turbo_frame: '_top' } do %>
-          <li>お問い合わせ</li>
+        <%# <%= link_to guide_path, class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left', %>
+                                 <%# data: { turbo_frame: '_top' } do %>
+          <%# <li>利用方法</li> %>
+        <%# <% end %>
+        <% if user_signed_in? %>
+          <%= link_to contact_path, class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                                    data: { turbo_frame: '_top' } do %>
+            <li>お問い合わせ</li>
+          <% end %>
         <% end %>
-        <%= link_to '#', class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
-                         data: { turbo_frame: '_top' } do %>
+        <%= link_to terms_path, class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
+                                data: { turbo_frame: '_top' } do %>
           <li>利用規約</li>
         <% end %>
         <%= link_to privacy_policy_path, class: 'daisy-btn daisy-btn-ghost h-fit min-h-2 ml-2 my-5 block text-left',
