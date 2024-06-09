@@ -1,7 +1,6 @@
 initMap();
 
 function initMap() {
-  // Mapの用意
   const centerPosition = { lat: 35.6895, lng: 139.6917 };
   const map = new google.maps.Map(document.getElementById('map'), {
     mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>', 
@@ -13,7 +12,6 @@ function initMap() {
   reloadMarkers(map, centerPosition);
 }
 
-// マップ移動時に動的にマーカー更新
 function reloadMarkers(map, position) {
   fetch('/api/v1/searches/load_map_data',{
     method: 'POST',
@@ -27,15 +25,16 @@ function reloadMarkers(map, position) {
   }).then(data => {
       const spots = data.spots;
       const parkings = data.parkings;
+      const infoWindow = new google.maps.InfoWindow();
 
-      setSpotMarkers(map, spots);
-      setParkingMarkers(map, parkings);
+      setSpotMarkers(map, spots, infoWindow);
+      setParkingMarkers(map, parkings, infoWindow);
   }).catch(error => {
     console.log(error);
   })
 }
 
-function setSpotMarkers(map, spots) {
+function setSpotMarkers(map, spots, infoWindow) {
   spots.forEach((spot, i) => {
     setTimeout(() => {
       const regex = /POINT \(([0-9]+.[0-9]+) ([0-9]+.[0-9]+)\)/;
@@ -48,20 +47,17 @@ function setSpotMarkers(map, spots) {
         title: spot.name
       });
 
-      const infoWindow = new google.maps.InfoWindow();
-
-      google.maps.event.addListener(spotMarker, "click", (function(marker, name) {
+      spotMarker.addListener('click', (function(name, marker) {
         return function() {
-          infoWindow.close();
           infoWindow.setContent(name);
           infoWindow.open(map, marker);
         };
-      })(spotMarker, spot.name));
+      })(spot.name, spotMarker));
     }, i * 10);
   });
 }
 
-function setParkingMarkers(map, parkings) {
+function setParkingMarkers(map, parkings, infoWindow) {
   
   parkings.forEach((parking, i) => {
     setTimeout(() => {
@@ -80,16 +76,15 @@ function setParkingMarkers(map, parkings) {
         position: parkingPosition,
         content: blueMarker.element
       });
-
-      const infoWindow = new google.maps.InfoWindow();
         
-      google.maps.event.addListener(parkingMarker, "click", (function(marker, name) {
+      parkingMarker.addListener('click', (function(name, marker) {
         return function() {
-          infoWindow.close();
           infoWindow.setContent(name);
-          infoWindow.open(map, marker);
-        };
-      })(parkingMarker, parking.name));
+          infoWindow.open({
+            anchor: marker
+          });
+        }
+      })(parking.name, parkingMarker));
     }, i * 5);
   });
 }
