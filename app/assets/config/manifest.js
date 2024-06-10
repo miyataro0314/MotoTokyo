@@ -6,3 +6,4 @@
 //= link animations/modal.css
 //= link animations/wizard.css
 //= link animations/side_menu.css
+//= link animations/map_view.css

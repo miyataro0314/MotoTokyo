@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       get 'search_spots_modal'
       get 'search_spots'
       get 'map_view'
+      get 'map_view/spots/:id', to: 'searches#spot'
     end
   end
 
@@ -78,7 +79,7 @@ Rails.application.routes.draw do
       delete 'sign_out', to: 'sessions#destroy'
     end
 
-    resources :parkings, only: %i[new create show index edit destroy] do
+    resources :parkings, only: %i[new create show index edit update destroy] do
       collection do
         get 'fee_field', to: 'parking_registrations#add_fee_field'
         delete 'fee_field', to: 'parking_registrations#delete_fee_field'

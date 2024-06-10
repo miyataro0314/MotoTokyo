@@ -1,0 +1,10 @@
+<% @parkings.each do |parking| %>
+<div class="m-1">
+  <tr>
+    <td><%= parking.name %></td>
+    <td>
+      <%= link_to '編集', edit_admin_parking_path(parking), class: 'btn-secondary' %>
+    </td>
+  </tr>
+</div>
+<% end %>

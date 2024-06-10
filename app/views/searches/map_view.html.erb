@@ -1,11 +1,16 @@
 <% content_for :title, 'スポット一覧 - MotoTokyo' %>
 
+<%= stylesheet_link_tag 'animations/map_view', data: { turbolinks_track: 'reload' } %>
+
 <div class="base-container mt-8">
 
   <%= render 'shared/breadcrumb' %>
   
-
-  <div class="w-11/12 h-128 mt-3 mx-auto p-2 drop-shadow-md rounded-2xl border-2" id="map"></div>
+  <div class="relative w-11/12 h-128 mt-3 mx-auto">
+    <div class="w-full h-full p-2 drop-shadow-md rounded-2xl border-2" id="map"></div>
+    <div id="mini-card-container"
+        class="absolute bottom-10 left-1/2 -translate-x-1/2"></div>
+  </div>
 
 </div>
 
