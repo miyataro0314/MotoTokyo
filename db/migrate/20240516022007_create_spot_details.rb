@@ -8,7 +8,7 @@ class CreateSpotDetails < ActiveRecord::Migration[7.1]
       t.string :phone_number
       t.st_point :coordinate, geographic: true
       t.string :weekday_text, array: true, default: []
-      t.float :rating
+      t.float :ratingquit
       t.integer :user_rating_total
       t.string :url
 

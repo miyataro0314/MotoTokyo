@@ -8,7 +8,9 @@ function initMap(markers) {
     mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>', 
     center: centerPosition,
     zoom: 14,
-    gestureHandling: 'greedy'
+    gestureHandling: 'greedy',
+    disableDefaultUI: true,
+    clickableIcons: false
   });
 
   loadMarkers(map, centerPosition, markers);
@@ -59,12 +61,13 @@ function setSpotMarkers(map, spots, infoWindow, markers) {
       title: spot.name
     });
 
-    spotMarker.addEventListener('click', (function(name, marker) {
+    spotMarker.addEventListener('click', (function(id, name, marker) {
       return function() {
         infoWindow.setContent(name);
         infoWindow.open(map, marker);
+        fetch_spot(id)
       };
-    })(spot.name, spotMarker));
+    })(spot.id, spot.name, spotMarker));
 
     markers.push(spotMarker)
   });
@@ -96,6 +99,25 @@ function setParkingMarkers(map, parkings, infoWindow, markers) {
     })(parking.name, parkingMarker));
 
     markers.push(parkingMarker)
+  });
+}
 
+function fetch_spot(id) {
+  fetch(`/searches/map_view/spots/${id}`,{
+    method: 'GET',
+    headers: {
+      accept: 'text/vnd.turbo-stream.html'
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.text();
+  })
+  .then(turboStreamHTML => {
+    Turbo.renderStreamMessage(turboStreamHTML);
+  })
+  .catch(error => {
+    console.error('Fetch operation failed:', error);
   });
 }

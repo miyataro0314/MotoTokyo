@@ -1,0 +1,63 @@
+<div class="base-container">
+  <%= form_with model: @parking, url: admin_parking_path(@parking) do |form| %>
+    <% if @parking.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@parking.errors.count, "error") %> エラーが発生しました。</h2>
+        <ul>
+          <% @parking.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="m-3 text-base">
+      <%= form.label :name %><br>
+      <%= form.text_field :name, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :postal_code %><br>
+      <%= form.text_field :postal_code, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :address %><br>
+      <%= form.text_field :address, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :fee %><br>
+      <%= form.text_field :fee, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :closed_days %><br>
+      <%= form.text_field :closed_days, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :opening_hours %><br>
+      <%= form.text_field :opening_hours, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :capacity %><br>
+      <%= form.text_field :capacity, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :limitation %><br>
+      <%= form.text_field :limitation, class: 'text-field-l' %>
+    </div>
+
+    <div class="m-3 text-base">
+      <%= form.label :url %><br>
+      <%= form.text_field :url, class: 'text-field-l' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit '更新', class: 'btn-secondary' %>
+    </div>
+  <% end %>
+</div>

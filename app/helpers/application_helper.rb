@@ -62,6 +62,8 @@ module ApplicationHelper
       back_link(friendships_path, '友達一覧に戻る')
     when 'search_top'
       back_link(new_search_path, '検索トップに戻る')
+    when 'map_view'
+      back_link(map_view_searches_path, 'マップビューに戻る')
     end
   end
 end
