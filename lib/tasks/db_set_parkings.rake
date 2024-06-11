@@ -19,6 +19,7 @@ namespace :db_set_parkings do
           factory = RGeo::Geographic.spherical_factory(srid: 4326)
           Parking.create!(
             name: details['名前'],
+            postal_code: details['郵便番号'],
             address: details['所在地'],
             coordinate: factory.point(details['lng'], details['lat']),
             closed_days: details['定休日'] || nil,

@@ -17,7 +17,8 @@
       <div class="pane-a max-h-42 mt-3 overflow-y-scroll">
         <%= link_to @parking.url, target: '_blank' do %>
           <div class="text-left pb-1 border-b border-gray-300 link">
-            <%= @parking.address %>
+            <p><%= @parking.postal_code %></p>
+            <p><%= @parking.address %></p>
           </div>
         <% end %>
         <div class="flex flex-col text-right">
@@ -43,14 +44,15 @@
           <div class="p-1">
             <%= @parking.fee || '料金：情報無し' %>
           </div>
-          <p class="p-1 text-red-500">
-            タイミングによって、情報が最新ではない場合があります。必ずご利用前に実際の料金等ご確認下さい。
+          <p class="p-1 text-center text-red-500">
+            内容は慎重に精査の上掲載しておりますが、情報が最新でない場合があります。<br>
+            ご利用前には必ず車両制限や料金等、実際の情報をご確認下さい。
           </p>
-        </div>
-        <div class="w-fit mt-3 mx-auto overflow-hidden drop-shadow-md rounded-2xl ">
-          <%= link_to @parking.url, target: '_blank' do %>
-            <%= image_tag 'spark_logo.jpg' %>
-          <% end %>
+          <p class="p-1 text-center">
+            駐車場の閉業・新設、内容の誤り等、何かお気づきの点がございましたら、
+            <%= link_to 'お問い合わせ', contact_path, class: 'link', data: { turbo_frame: '_top' } %>
+            よりご連絡いただけますと幸いです。
+          </p>
         </div>
       </div>
     </div>

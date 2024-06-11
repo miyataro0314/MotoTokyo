@@ -3,11 +3,11 @@
 
   <p class="mt-8">
     下記のお問合せフォームをご入力下さい。<br>
-    ご入力いただいたメールアドレスへご回答させていただきます。<br>
-    入力内容に誤りが無いようご注意をお願いいたします。
+    ご入力いただいたメールアドレスへご回答させていただきますので、<br>
+    入力内容に誤りが無いようご注意下さい。
   </p>
 
-  <div class="w-80 mt-3 p-3 mx-auto rounded-2xl border-2">
+  <div class="w-80 mt-5 p-3 mx-auto rounded-2xl border-2">
     <%= form_with model: @contact_form, url: contact_path do |f| %>
       <div>
         <%= f.label :user_id, class: 'text-base' %><br>
