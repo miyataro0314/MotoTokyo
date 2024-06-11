@@ -11,7 +11,7 @@
     "tailwindcss": "^3.4.3"
   },
   "scripts": {
-    "build": "yarn build:js && yarn build:js-staticPages && yarn build:js-spots && yarn build:js-difficulties && yarn build:js-spotRegistrations && yarn build:js-mapView && yarn build:js-admin-parkings && yarn build:js-devise-registrations && yarn build:css",
+    "build": "yarn build:js && yarn build:js-staticPages && yarn build:js-spots && yarn build:js-difficulties && yarn build:js-spotRegistrations && yarn build:js-mapViews && yarn build:js-admin-parkings && yarn build:js-devise-registrations && yarn build:css",
     "build:js": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:js-staticPages": "esbuild app/javascript/static_pages/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/static_pages --public-path=/assets",
     "build:js-spots": "esbuild app/javascript/spots/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/spots --public-path=/assets",
