@@ -1,14 +1,18 @@
-<%= turbo_stream.append 'mini-card-container' do %>
-  <%= link_to spot_path(@spot, from: 'map_view'), class: 'slide_from_left w-fit h-fit ' do %>
-    <div class="w-72 h-fit p-2 drop-shadow-md rounded-2xl border-2 bg-secondary">
-      <p class="font-bold text-base overflow-hidden"><%= @spot.name %></p>
-      <div class="flex justify-between">
-        <p><%= t_enum('spot', 'category', @spot.category) %></p>
-        <div>
-          <%= svg_tag 'parking_icon.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
-          <%= spot_parking_info(@spot) %>
+<%= turbo_stream.append 'map' do %>
+  <div id="mini-card"
+       class="slide-in-animation absolute bottom-8 left-1/2 -translate-x-1/2">
+    <%= link_to spot_path(@spot, from: 'map_view'),
+                class: 'w-fit h-fit ' do %>
+      <div class="w-72 h-fit p-2 drop-shadow-md rounded-2xl border-2 bg-secondary">
+        <p class="font-bold text-base overflow-hidden"><%= @spot.name %></p>
+        <div class="flex justify-between">
+          <p><%= t_enum('spot', 'category', @spot.category) %></p>
+          <div>
+            <%= svg_tag 'parking_icon.svg', css_class: 'h-4 w-4 mb-0.5 inline' %>
+            <%= spot_parking_info(@spot) %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>

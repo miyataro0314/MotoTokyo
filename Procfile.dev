@@ -3,7 +3,7 @@ js-staticPages: yarn build:js-staticPages --watch
 js-spots: yarn build:js-spots --watch
 js-difficluties: yarn build:js-difficulties --watch
 js-spotRegistrations: yarn build:js-spotRegistrations --watch
-js-searches: yarn build:js-searches --watch
+js-mapViews: yarn build:js-mapViews --watch
 js-devise-registrations: yarn build:js-devise-registrations --watch
 js-admin-parkings: yarn build:js-admin-parkings --watch
 css: yarn build:css --watch

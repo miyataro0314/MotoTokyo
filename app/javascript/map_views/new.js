@@ -31,6 +31,7 @@ function loadMarkers(map, position, markers) {
       const spots = data.spots;
       const parkings = data.parkings;
       const infoWindow = new google.maps.InfoWindow();
+      infoWindow.addListener('closeclick', closeMiniCard);
 
       setSpotMarkers(map, spots, infoWindow, markers);
       setParkingMarkers(map, parkings, infoWindow, markers);
@@ -61,11 +62,11 @@ function setSpotMarkers(map, spots, infoWindow, markers) {
       title: spot.name
     });
 
-    spotMarker.addEventListener('click', (function(id, name, marker) {
+    spotMarker.addListener('gmp-click', (function(id, name, marker) {
       return function() {
         infoWindow.setContent(name);
         infoWindow.open(map, marker);
-        fetch_spot(id)
+        closeMiniCard(() => fetchSpot(id));
       };
     })(spot.id, spot.name, spotMarker));
 
@@ -91,19 +92,61 @@ function setParkingMarkers(map, parkings, infoWindow, markers) {
       content: blueMarker.element
     });
 
-    parkingMarker.addEventListener('click', (function(name, marker) {
+    parkingMarker.addListener('gmp-click', (function(id, name, marker) {
       return function() {
         infoWindow.setContent(name);
         infoWindow.open(map, marker);
+        closeMiniCard(() => fetchParking(id));
       }
-    })(parking.name, parkingMarker));
+    })(parking.id, parking.name, parkingMarker));
 
     markers.push(parkingMarker)
   });
 }
 
-function fetch_spot(id) {
-  fetch(`/searches/map_view/spots/${id}`,{
+function closeMiniCard(callback) {
+  const miniCard = document.getElementById('mini-card')
+
+  if (miniCard) {
+    const removeMiniCard = () => {
+      miniCard.removeEventListener('animationend', removeMiniCard);
+      miniCard.remove();
+      if (typeof callback === 'function') {
+        callback();
+      }
+    };
+
+    miniCard.classList.add('slide-out-animation');
+    miniCard.addEventListener('animationend', removeMiniCard);
+  } else {
+    if (typeof callback === 'function') {
+      callback();
+    }
+  }
+}
+
+function fetchSpot(id) {
+  fetch(`/map_views/spot_mini_card/${id}`,{
+    method: 'GET',
+    headers: {
+      accept: 'text/vnd.turbo-stream.html'
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.text();
+  })
+  .then(turboStreamHTML => {
+    Turbo.renderStreamMessage(turboStreamHTML);
+  })
+  .catch(error => {
+    console.error('Fetch operation failed:', error);
+  });
+}
+
+function fetchParking(id) {
+  fetch(`/map_views/parking_mini_card/${id}`,{
     method: 'GET',
     headers: {
       accept: 'text/vnd.turbo-stream.html'
