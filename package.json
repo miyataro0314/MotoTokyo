@@ -17,7 +17,7 @@
     "build:js-spots": "esbuild app/javascript/spots/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/spots --public-path=/assets",
     "build:js-difficulties": "esbuild app/javascript/difficulties/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/difficulties --public-path=/assets",
     "build:js-spotRegistrations": "esbuild app/javascript/spot_registrations/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/spot_registrations --public-path=/assets",
-    "build:js-searches": "esbuild app/javascript/searches/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/searches --public-path=/assets",
+    "build:js-mapViews": "esbuild app/javascript/map_views/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/map_views --public-path=/assets",
     "build:js-devise-registrations": "esbuild app/javascript/devise/registrations/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/devise/registrations --public-path=/assets",
     "build:js-admin-parkings": "esbuild app/javascript/admin/parkings/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds/admin/parkings --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"

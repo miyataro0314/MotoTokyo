@@ -55,8 +55,13 @@ Rails.application.routes.draw do
     collection do
       get 'search_spots_modal'
       get 'search_spots'
-      get 'map_view'
-      get 'map_view/spots/:id', to: 'searches#spot'
+    end
+  end
+
+  resources :map_views, only: %i[new] do
+    collection do
+      get 'spot_mini_card/:id', to: 'map_views#spot_mini_card'
+      get 'parking_mini_card/:id', to: 'map_views#parking_mini_card'
     end
   end
 

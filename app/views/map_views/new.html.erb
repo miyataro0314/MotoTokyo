@@ -1,0 +1,18 @@
+<% content_for :title, 'スポット一覧 - MotoTokyo' %>
+
+<%= stylesheet_link_tag 'animations/modal', data: { turbolinks_track: 'reload' } %>
+<%= stylesheet_link_tag 'animations/map_view', data: { turbolinks_track: 'reload' } %>
+
+<%= turbo_frame_tag 'modal' %>
+
+<div class="base-container mt-8">
+
+  <%= render 'shared/breadcrumb' %>
+  
+  <div class="w-11/12 h-128 mt-3 mx-auto">
+    <div class="w-full h-full p-2 drop-shadow-md rounded-2xl border-2" id="map"></div>
+  </div>
+
+</div>
+
+<%= javascript_include_tag 'map_views/new', 'data-turbo-track': 'reload', defer: true %>

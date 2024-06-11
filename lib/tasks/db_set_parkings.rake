@@ -8,7 +8,7 @@ namespace :db_set_parkings do
       exit
     end
 
-    file = File.read(files.sort.last)
+    file = File.read(files.max)
     parking_data = JSON.parse(file)
 
     failures = []
@@ -22,12 +22,12 @@ namespace :db_set_parkings do
             postal_code: details['郵便番号'],
             address: details['所在地'],
             coordinate: factory.point(details['lng'], details['lat']),
-            closed_days: details['定休日'] || nil,
-            opening_hours: details['営業時間'] || nil,
-            fee: details['利用料金'] || nil,
-            capacity: details['収容台数'] || nil,
-            limitation: details['車両制限'] || nil,
-            url: details['url'] || nil
+            closed_days: details['定休日'].presence,
+            opening_hours: details['営業時間'].presence,
+            fee: details['利用料金'].presence,
+            capacity: details['収容台数'].presence,
+            limitation: details['車両制限'].presence,
+            url: details['url'].presence
           )
         end
       rescue => e

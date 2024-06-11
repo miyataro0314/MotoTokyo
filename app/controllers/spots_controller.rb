@@ -88,7 +88,12 @@ class SpotsController < ApplicationController
   def save_or_update_comment
     return true if comment_params.nil?
 
-    @comment.persisted? ? @comment.update(comment_params) : @comment.save(comment_params)
+    if @comment.persisted?
+      @comment.update(comment_params)
+    else
+      @comment.content = comment_params[:content]
+      @comment.save
+    end
   end
 
   def clear_session

@@ -22,13 +22,6 @@ class SearchesController < ApplicationController
     render 'spots/index'
   end
 
-  def map_view; end
-
-  def spot
-    @spot = Spot.find(params[:id])
-    render 'spots/spot_mini_card'
-  end
-
   private
 
   def search_spots_params

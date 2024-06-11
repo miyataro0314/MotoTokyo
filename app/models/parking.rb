@@ -11,6 +11,10 @@ class Parking < ApplicationRecord
     opening_hours || '営業時間情報無し'
   end
 
+  def formatted_limitation
+    
+  end
+
   def distance(st_point)
     self.class.connection.execute(
       "SELECT ST_DistanceSphere(
