@@ -12,11 +12,11 @@
   <div class="daisy-navbar-center">
     <% if user_signed_in? %>
       <%= link_to home_path, class: 'w-fit h-fit' do %>
-        <%= svg_tag 'moto-tokyo-logo.svg', css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-20 h-12' %>
+        <%= svg_tag 'moto_tokyo_logo.svg', css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-20 h-12' %>
       <% end %>
     <% elsif !current_page?(root_path) %>
       <%= link_to root_path, class: 'w-fit h-fit' do %>
-        <%= svg_tag 'moto-tokyo-logo.svg', css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-20 h-12' %>
+        <%= svg_tag 'moto_tokyo_logo.svg', css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-20 h-12' %>
       <% end %>
     <% end %>
   </div>
