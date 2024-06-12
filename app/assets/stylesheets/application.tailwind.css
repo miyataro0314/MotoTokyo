@@ -126,6 +126,12 @@ li {
   }
 }
 
+@media (max-width: 768px) {
+  #smartphone-tablet-only {
+    display: block;
+  }
+}
+
 
 /* --- トップページswiper用 --- */
 .slide-text {

@@ -1,4 +1,4 @@
-<%= svg_tag 'moto-tokyo-logo.svg', 
+<%= svg_tag 'moto_tokyo_logo.svg', 
     css_class: 'logo mt-3 absolute left-1/2 translate-x-minus-fifty z-30' %>
 
 <div class="mx-auto text-center overflow-hidden">
@@ -84,6 +84,20 @@
       <p class="mt-3">
         下記QRコードを読み取ると<br>
         スマートフォンで使用できます
+      </p>
+      <%= svg_tag 'qr_code.svg', css_class: 'h-48 w-48 mx-auto mt-3' %>
+    </div>
+  </div>
+
+  <div id="smartphone-tablet-only" class="base-l mt-8 text-primary-content hidden">
+    <div>
+      <p class="font-semibold text-base">
+        当Webアプリケーションは<br>
+        PWAに対応しています。
+      </p>
+      <p class="mt-3">
+        ホーム画面に追加すると、<br>
+        他のアプリと同様にお使いいただけます。
       </p>
       <%= svg_tag 'qr_code.svg', css_class: 'h-48 w-48 mx-auto mt-3' %>
     </div>

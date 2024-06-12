@@ -27,7 +27,7 @@ module ApplicationHelper
         tag.meta(name: 'twitter:site', content: '@MotoTokyo_X') +
         tag.meta(name: 'twitter:title', content: title) +
         tag.meta(name: 'twitter:description', content: description) +
-        tag.meta(name: 'twitter:image', content: image_path('logo_circle.png'))
+        tag.meta(name: 'twitter:image', content: asset_url('logo_circle.png'))
     end
   end
 
