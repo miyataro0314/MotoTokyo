@@ -3,6 +3,7 @@
   <head>
     <%= favicon_link_tag('favicon.ico') %>
     <title><%= yield(:title) || "MotoTokyo" %></title>
+    <%= yield(:twitter_card) %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <%= csrf_meta_tags %>
@@ -18,6 +19,7 @@
 
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module' %>
+    <link rel="manifest" href="/manifest.json">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1091HNT5K"></script>
     <script>
@@ -44,5 +46,19 @@
     <% else %>
       <%= render 'shared/footer' %>
     <% end %>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service_worker.js')
+            .then((registration) => {
+              console.log('Service Worker registered:', registration);
+            })
+            .catch((error) => {
+              console.error('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
