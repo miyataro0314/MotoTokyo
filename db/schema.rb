@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_10_093141) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_13_020334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_093141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_comments_on_spot_id"
+    t.index ["user_id", "spot_id"], name: "index_comments_on_user_id_and_spot_id", unique: true
   end
 
   create_table "difficulties", force: :cascade do |t|
@@ -78,6 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_093141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spot_id"], name: "index_difficulties_on_spot_id"
+    t.index ["user_id", "spot_id"], name: "index_difficulties_on_user_id_and_spot_id", unique: true
   end
 
   create_table "edit_histories", force: :cascade do |t|
@@ -126,6 +128,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_093141) do
     t.integer "vehicle_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
   create_table "search_histories", force: :cascade do |t|
@@ -152,7 +155,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_093141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coordinate"], name: "index_spot_details_on_coordinate", using: :gist
-    t.index ["spot_id"], name: "index_spot_details_on_spot_id"
+    t.index ["spot_id"], name: "index_spot_details_on_spot_id", unique: true
   end
 
   create_table "spots", force: :cascade do |t|

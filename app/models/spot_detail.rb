@@ -1,4 +1,7 @@
 class SpotDetail < ApplicationRecord
+  validates :id, presence: true, uniqueness: true
+  validates :spot_id, uniqueness: true
+
   belongs_to :spot
 
   def address

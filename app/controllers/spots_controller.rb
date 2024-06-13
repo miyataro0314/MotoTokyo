@@ -117,7 +117,7 @@ class SpotsController < ApplicationController
       parking: session[:parking],
       parking_limitation: session[:parking_limitation],
       category: session[:category],
-      area: area
+      area:
     )
   end
 

@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  validates :user_id, uniqueness: true
+
   has_one_attached :avatar
   has_one_attached :vehicle_photo
   belongs_to :user

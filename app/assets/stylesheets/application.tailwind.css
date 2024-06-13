@@ -4,6 +4,7 @@
 
 body {
   -webkit-text-size-adjust: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -141,6 +142,7 @@ li {
   transform: translateX(-50%);
   left: 50%;
   bottom: 10px;
+  filter: drop-shadow(0 12px 10px rgba(143, 143, 143, 0.525));
 }
 
 .swiper-main .swiper-slide {

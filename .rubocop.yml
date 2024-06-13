@@ -15,6 +15,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'Gemfile'
     - 'db/migrate/*'
+    - 'spec/**/*'
 
 # 特定のCopの設定
 

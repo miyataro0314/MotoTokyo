@@ -1,6 +1,11 @@
 class Parking < ApplicationRecord
   include AreaEnum
-  after_validation :set_area, if: :address_changed?
+
+  before_validation :set_area, if: :address_changed?
+
+  validates :name, presence: true
+  validates :area, presence: true
+  validates :address, presence: true
 
   scope :nearby, lambda { |point, distance|
     where('ST_DWithin(coordinate, ST_GeomFromText(?, 4326), ?)', point.to_s, distance)
@@ -9,10 +14,6 @@ class Parking < ApplicationRecord
 
   def operation_info
     opening_hours || '営業時間情報無し'
-  end
-
-  def formatted_limitation
-    
   end
 
   def distance(st_point)

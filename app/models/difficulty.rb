@@ -1,4 +1,5 @@
 class Difficulty < ApplicationRecord
+  validates :user_id, uniqueness: { scope: :spot_id, message: 'should have only one difficulty per spot' }
   validates :level, presence: true
 
   belongs_to :user
