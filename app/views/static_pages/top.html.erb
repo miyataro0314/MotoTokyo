@@ -9,19 +9,19 @@
         <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
           <%= image_tag 'top_image1.jpg' %>
         </div>
-        <%= svg_tag 'text1.svg', css_class: 'slide-text fill-primary drop-shadow-md' %>
+        <%= svg_tag 'text1.svg', css_class: 'slide-text fill-primary' %>
       </div>
       <div class="swiper-slide relation bg-secondary rounded-3xl">
         <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
           <%= image_tag 'top_image2.jpg' %>
         </div>
-        <%= svg_tag 'text2.svg', css_class: 'slide-text fill-secondary drop-shadow-md' %>
+        <%= svg_tag 'text2.svg', css_class: 'slide-text fill-primary' %>
       </div>
       <div class="swiper-slide relation bg-secondary rounded-3xl">
         <div class="w-full h-full rounded-3xl border-8 overflow-hidden">
           <%= image_tag 'top_image3.jpg' %>
         </div>
-        <%= svg_tag 'text3.svg', css_class: 'slide-text fill-primary drop-shadow-md' %>
+        <%= svg_tag 'text3.svg', css_class: 'slide-text fill-primary' %>
       </div>
     </div>
   </div>
@@ -49,25 +49,27 @@
     </div>
   </div>
   
-  <div class="base-m mt-8 text-primary-content">
-    <div>
-      <p>
-        会員登録して<br>
-        お気に入りのスポットを登録する
-      </p>
-      <%= link_to '新規会員登録', new_user_registration_path,
-          class: 'btn-secondary' %>
+  <% unless user_signed_in? %>
+    <div class="base-m mt-8 text-primary-content">
+      <div>
+        <p>
+          会員登録して<br>
+          お気に入りのスポットを登録する
+        </p>
+        <%= link_to '新規会員登録', new_user_registration_path,
+            class: 'btn-secondary' %>
+      </div>
+      <div class="mt-3">
+        <p>既にご登録済みの方は</p>
+        <%= link_to 'ログイン', new_user_session_path, class: 'btn-secondary' %>
+      </div>
     </div>
-    <div class="mt-3">
-      <p>既にご登録済みの方は</p>
-      <%= link_to 'ログイン', new_user_session_path, class: 'btn-secondary' %>
-    </div>
-  </div>
+  <% end %>
 
   <div class="base-m mt-8 text-primary-content">
     <div>
       <p>
-        もしくはユーザーが登録した<br>
+        ユーザーが登録した<br>
         素敵なスポットを見に行く！
       </p>
       <%= link_to 'スポット検索へ', new_search_path,

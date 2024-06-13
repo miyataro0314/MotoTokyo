@@ -1,5 +1,6 @@
 FactoryBot.define do
-  factory :parking do
+  factory :profile do
+    
     
   end
 end

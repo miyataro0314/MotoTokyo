@@ -4,6 +4,7 @@
 
 body {
   -webkit-text-size-adjust: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -141,6 +142,7 @@ li {
   transform: translateX(-50%);
   left: 50%;
   bottom: 10px;
+  filter: drop-shadow(0 12px 10px rgba(143, 143, 143, 0.525));
 }
 
 .swiper-main .swiper-slide {
@@ -254,13 +256,13 @@ body.no-scroll {
 }
 
 .page {
-  @apply w-6 h-6 rounded-full mx-1 drop-shadow-md content-center
+  @apply w-6 h-6 rounded-full mx-1 drop-shadow-md flex justify-center leading-18
          bg-secondary border border-2 border-gray-200 text-xs
          hover:bg-primary hover:text-primary-content transition duration-300 ease-in-out
 }
 
 .page-current {
-  @apply w-8 h-8 rounded-full mx-1 drop-shadow-md content-center
+  @apply w-8 h-8 rounded-full mx-1 drop-shadow-md flex items-center justify-center
          bg-primary text-primary-content font-semibold
 }
 

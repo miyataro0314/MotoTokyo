@@ -9,5 +9,5 @@
 -%>
 <span class="page<%= '-current' if page.current? %>">
   <%= link_to_unless page.current?, page, url, 
-      { remote: remote, rel: page.rel, class: 'block' } %>
+      { remote: remote, rel: page.rel, class: 'w-full h-full block items-center' } %>
 </span>

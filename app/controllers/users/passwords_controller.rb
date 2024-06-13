@@ -34,7 +34,7 @@ class Users::PasswordsController < Devise::PasswordsController
     if user_signed_in?
       home_path
     else
-      top_path
+      root_path
     end
   end
 end

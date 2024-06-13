@@ -3,9 +3,10 @@ class Spot < ApplicationRecord
   include CategoryEnum
   include AreaEnum
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :parking, presence: true
   validates :category, presence: true
+  validates :area, presence: true
 
   belongs_to :user, optional: true
   has_many :difficulties, dependent: :destroy
