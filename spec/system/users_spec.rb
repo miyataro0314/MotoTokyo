@@ -140,7 +140,6 @@ RSpec.describe 'Users', type: :system, js: true do
     it 'ログアウトができるか' do
       user.confirm
       login_as(user)
-      sleep 0.5
       visit side_menu_path
       click_link 'ログアウト'
 

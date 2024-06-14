@@ -15,8 +15,8 @@ class ProfilesController < ApplicationController
       flash[:notice] = 'プロフィールを登録しました'
       redirect_to my_page_path
     else
-      flash[:danger] = 'プロフィールの登録に失敗しました'
-      redirect_to new_profile_path
+      flash.now[:alert] = 'プロフィールの登録に失敗しました'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,8 +27,8 @@ class ProfilesController < ApplicationController
       flash[:notice] = 'プロフィールを更新しました'
       redirect_to my_page_path
     else
-      flash[:danger] = 'プロフィールの更新に失敗しました'
-      redirect_to edit_profile_path(@profile)
+      flash.now[:alert] = 'プロフィールの更新に失敗しました'
+      render :edit, status: :unprocessable_entity
     end
   end
 

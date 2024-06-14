@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_13_020334) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_14_050833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_020334) do
 
   create_table "profiles", force: :cascade do |t|
     t.string "user_id", null: false
-    t.string "user_name"
+    t.string "user_name", null: false
     t.string "vehicle_name"
     t.integer "vehicle_type"
     t.datetime "created_at", null: false

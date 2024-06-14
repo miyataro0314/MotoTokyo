@@ -4,7 +4,6 @@
 
 body {
   -webkit-text-size-adjust: 100%;
-  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -21,6 +20,14 @@ li {
   margin-bottom: 10px;
   text-indent: -1rem;
   padding-left: 1rem;
+}
+
+footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.navbar {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .h1 {
@@ -298,7 +305,7 @@ body.no-scroll {
 
   &:after {
     width: 26px;
-    background-color: #f5f2e9; /* Tail background to match page background */
+    background-color: #fbfbfb; /* Tail background to match page background */
   }
 
   &:before,
