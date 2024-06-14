@@ -14,6 +14,7 @@ module SystemHelper
     fill_in 'メールアドレス', with: user.email
     fill_in 'パスワード', with: 'password'
     click_button 'ログイン'
+    sleep 0.5
   end
 
   def login_as_admin(user)

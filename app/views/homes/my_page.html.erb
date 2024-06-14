@@ -14,11 +14,12 @@
         <%= link_to "ユーザーID : #{current_user.id}", account_path  %>
       </div>
     </div>
-    <div class="w-28 h-28 mt-5 mx-auto overflow-hidden rounded-full bg-base-300 content-center">
+    <div class="w-28 h-28 mt-5 mx-auto overflow-hidden content-center
+                rounded-full border bg-base-300 text-xs text-neutral">
       <% if @profile.avatar.attached? %>
-        <%= image_tag @profile.avatar, alt: '画像アップロード中。画面更新で表示されます。' %>
+        <%= image_tag @profile.avatar, alt: "\n画像アップロード処理中。画面更新で表示されます。", class: 'w-full h-full text-center' %>
       <% else %>
-        <%= image_tag 'preview.png', class: "w-32 h-32 m-auto rounded-2xl bg-base-300" %>
+        <%= image_tag 'preview.png', class: "w-full h-full m-auto rounded-2xl" %>
       <% end %>
     </div>
     <div class="mt-5">
@@ -32,11 +33,11 @@
         愛車情報登録なし
       <% end %>
     </div>
-    <div>
+    <div class="mx-auto rounded-2xl overflow-hidden border bg-base-300 text-xs text-neutral">
       <% if @profile.vehicle_photo.attached? %>
-        <%= image_tag @profile.vehicle_photo, class: 'mx-auto rounded-2xl' %>
+        <%= image_tag @profile.vehicle_photo, alt: '画像アップロード処理中。画面更新で表示されます。' %>
       <% else %>
-        <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto rounded-2xl bg-base-300' %>
+        <%= image_tag 'preview.png', class: 'w-32 h-32 mx-auto' %>
       <% end %>
     </div>
     <div class="mt-3">
@@ -51,5 +52,4 @@
           data: { turbo_frame: 'modal' } %>
     </div>
   </div>
-
 </div>

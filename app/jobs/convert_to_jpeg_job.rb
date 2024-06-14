@@ -1,7 +1,7 @@
 class ConvertToJpegJob < ApplicationJob
   queue_as :default
 
-  def perform(record, attachment_name)
+  def perform(record, attachment_name) # rubocop:disable Metrics/AbcSize
     attachment = record.send(attachment_name)
     return unless attachment.attached?
 

@@ -1,10 +1,10 @@
 <div class="mt-1 p-1 drop-shadow-md border-2 rounded-xl bg-base-300">
   <p class="font-semibold text-sm text-center m-1">行きやすさ投票</p>
   <div class="flex border h-3">
-    <div class="bg-green-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'easy') %>%;"></div>
-    <div class="bg-red-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'traffic') %>%;"></div>
-    <div class="bg-blue-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'direction') %>%;"></div>
-    <div class="bg-yellow-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'condition') %>%;"></div>
+    <div id="easy-bar" class="bg-green-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'easy') %>%;"></div>
+    <div id="traffic-bar" class="bg-red-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'traffic') %>%;"></div>
+    <div id="direction-bar" class="bg-blue-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'direction') %>%;"></div>
+    <div id="condition-bar" class="bg-yellow-400 duration-200" style="width: <%= Difficulty.percentage(@spot, 'condition') %>%;"></div>
   </div>
   <div class="flex flex-wrap">
     <div class="flex items-center w-1/2">

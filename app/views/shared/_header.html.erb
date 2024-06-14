@@ -21,11 +21,12 @@
     <% end %>
   </div>
   <div class="daisy-navbar-end">
-    <% if user_signed_in? %>
+    <!-- 通知機能実装時に表示 -->
+    <!--<% if user_signed_in? %>
       <%= link_to '#', class: 'w-fit h-fit' do %>
         <%= svg_tag 'vuesax/linear/notification.svg',
             css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-7 h-7 min-h-7 mr-3 stroke-primary-content' %>
       <% end %>
-    <% end %>
+    <% end %>-->
   </div>
 </header>

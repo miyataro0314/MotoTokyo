@@ -41,7 +41,7 @@ class SpotsController < ApplicationController
         flash[:notice] = 'スポット情報を更新しました'
         redirect_to my_spots_path(tab: :register)
       else
-        flash[:danger] = '更新に失敗しました'
+        flash[:alert] = '更新に失敗しました'
         redirect_to my_spots_path(tab: :register)
         raise ActiveRecord::Rollback
       end
@@ -57,7 +57,7 @@ class SpotsController < ApplicationController
     if @spot.destroy
       flash[:notice] = 'スポットを削除しました'
     else
-      flash[:danger] = '削除に失敗しました'
+      flash[:alert] = '削除に失敗しました'
     end
     redirect_to my_spots_path(tab: :register), status: :see_other
   end

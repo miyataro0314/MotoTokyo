@@ -7,6 +7,8 @@ rm -f tmp/pids/server.pid
 if [ "$RAILS_ENV" = "production" ]; then
   echo "Running entrypoint script in production environment"
 
+  # Gemをインストール
+  echo "Bundle installing..."
   bundle install
 
   # データベースが存在しない場合createしてmigrate、存在時はmigrateのみ実行
@@ -20,9 +22,11 @@ if [ "$RAILS_ENV" = "production" ]; then
   fi
 
   # アセットをプリコンパイル
+  echo "Precompiling assets..."
   bundle exec rails assets:precompile
 
   # サーバーを起動
+  echo "Starting server..."
   rails server  # 'bundle exec puma -C config/puma.rb'だとうまく行かない"
 
 else
