@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :spot_registrations, only: [] do
+  resources :spot_registrations do
     collection do
       get 'step1'
       get 'step2'
@@ -67,6 +67,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :user_registrations do
+        post 'check_id'
+        post 'check_email'
+      end
       namespace :spots do
         post 'check'
       end

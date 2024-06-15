@@ -23,57 +23,52 @@ RSpec.describe 'Users', type: :system, js: true do
 
     it 'ユーザーIDのバリデーションが機能しているか' do
       visit new_user_registration_path
-      fill_in 'ユーザーID (英数字6文字以上)', with: 't'
+      fill_in 'ユーザーID', with: 't'
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in '確認用パスワード', with: 'password'
       check '同意する'
-      click_button '新規登録'
 
-      Capybara.assert_current_path(new_user_registration_path, ignore_query: true)
-      expect(page).to have_content 'ユーザーIDは英数字6文字以上で入力してください。'
+      expect(page).to have_selector("input[disabled]")
+      expect(page).to have_content '英数字6文字以上で入力してください'
     end
 
     it 'パスワードのバリデーションが機能しているか' do
       visit new_user_registration_path
-      fill_in 'ユーザーID (英数字6文字以上)', with: 'test_user'
+      fill_in 'ユーザーID', with: 'test_user'
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'pass'
       fill_in '確認用パスワード', with: 'pass'
       check '同意する'
-      click_button '新規登録'
 
-      Capybara.assert_current_path(new_user_registration_path, ignore_query: true)
-      expect(page).to have_content 'パスワードは英数字6文字以上で入力してください。'
+      expect(page).to have_selector("input[disabled]")
+      expect(page).to have_content '英数字6文字以上で入力してください'
     end
 
     it 'パスワードが一致しない時エラーとなるか' do
       visit new_user_registration_path
-      fill_in 'ユーザーID (英数字6文字以上)', with: 'test_user'
+      fill_in 'ユーザーID', with: 'test_user'
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in '確認用パスワード', with: 'passwors'
       check '同意する'
-      click_button '新規登録'
 
-      Capybara.assert_current_path(new_user_registration_path, ignore_query: true)
-      expect(page).to have_content 'パスワードが一致しません。'
+      expect(page).to have_selector("input[disabled]")
+      expect(page).to have_content 'パスワードが一致しません'
     end
 
     it '既に登録済みの値を回避できるか' do
       create(:user, id: 'test_user', email: 'test@example.com')
 
       visit new_user_registration_path
-      fill_in 'ユーザーID (英数字6文字以上)', with: 'test_user'
+      fill_in 'ユーザーID', with: 'test_user'
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in '確認用パスワード', with: 'passwors'
       check '同意する'
-      click_button '新規登録'
 
-      Capybara.assert_current_path(new_user_registration_path, ignore_query: true)
-      expect(page).to have_content 'ユーザーIDは既に使用されています。'
-      expect(page).to have_content 'メールアドレスは既に使用されています。'
+      expect(page).to have_selector("input[disabled]")
+      expect(page).to have_content '既に使用されています'
     end
   end
 
