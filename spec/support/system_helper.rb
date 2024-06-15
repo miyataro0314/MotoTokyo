@@ -1,7 +1,7 @@
 module SystemHelper
   def user_registration
     visit new_user_registration_path
-    fill_in 'ユーザーID (英数字6文字以上)', with: 'test_user'
+    fill_in 'ユーザーID', with: 'testuser'
     fill_in 'メールアドレス', with: 'test@example.com'
     fill_in 'パスワード', with: 'password'
     fill_in '確認用パスワード', with: 'password'

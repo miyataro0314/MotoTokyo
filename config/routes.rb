@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :spot_registrations, only: [] do
+  resources :spot_registrations do
     collection do
       get 'step1'
       get 'step2'
@@ -67,6 +67,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :user_registrations do
+        post 'check_id'
+        post 'check_email'
+      end
       namespace :spots do
         post 'check'
       end
@@ -85,12 +89,6 @@ Rails.application.routes.draw do
     end
 
     resources :parkings, only: %i[new create show index edit update destroy] do
-      collection do
-        get 'fee_field', to: 'parking_registrations#add_fee_field'
-        delete 'fee_field', to: 'parking_registrations#delete_fee_field'
-        get 'capacity_field', to: 'parking_registrations#add_capacity_field'
-        delete 'capacity_field', to: 'parking_registrations#delete_capacity_field'
-      end
     end
   end
 

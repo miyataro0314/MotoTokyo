@@ -5,7 +5,7 @@ module Api
         if params[:adr_address].exclude?('東京都')
           render json: { available: false, reason: 'out_of_area' }
         elsif Spot.exists?(name: params[:name])
-          render json: { avalable: false, reason: 'already_registered' }
+          render json: { available: false, reason: 'already_registered' }
         else
           set_session_spot_details
           render json: { available: true }
