@@ -7,7 +7,7 @@ class SearchSpotsForm
   attribute :parking, :string
 
   def search
-    spots = Spot.all.includes(:spot_detail)
+    spots = Spot.includes(:spot_detail)
 
     spots = spots.by_area(area) if area.present?
     spots = spots.by_category(category) if category.present?

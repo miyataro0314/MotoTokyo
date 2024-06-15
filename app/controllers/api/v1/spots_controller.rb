@@ -2,7 +2,7 @@ module Api
   module V1
     class SpotsController < BaseController
       def check
-        if !params[:adr_address].include?('東京都')
+        if params[:adr_address].exclude?('東京都')
           render json: { available: false, reason: 'out_of_area' }
         elsif Spot.exists?(name: params[:name])
           render json: { avalable: false, reason: 'already_registered' }
@@ -14,7 +14,7 @@ module Api
 
       private
 
-      def set_session_spot_details
+      def set_session_spot_details # rubocop:disable Metrics/AbcSize
         session[:name] = params[:name]
         session[:place_id] = params[:place_id]
         session[:postal_code] = params[:adr_address]&.slice(/〒(\d{3}-\d{4})/)

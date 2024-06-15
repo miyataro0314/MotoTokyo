@@ -3,6 +3,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!, only: %i[edit update destroy]
 
+  # GET /resource/edit
+  def edit
+    super
+  end
   # GET /resource/sign_up
   # def new
   #   super
@@ -11,11 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     configure_permitted_parameters
-    super
-  end
-
-  # GET /resource/edit
-  def edit
     super
   end
 

@@ -4,9 +4,9 @@ class BookmarksController < ApplicationController
     bookmark = current_user.bookmarks.build(spot: @spot)
 
     if bookmark.save
-      flash[:notice] = 'ブックマークしました'
+      flash[:notice] = I18n.t('flash.bookmarks.create.notice')
     else
-      flash[:alert] = 'ブックマークに失敗しました'
+      flash[:alert] = I18n.t('flash.bookmarks.create.alert')
     end
     redirect_to spot_path(@spot, from: params[:from])
   end
@@ -16,9 +16,9 @@ class BookmarksController < ApplicationController
     bookmark = current_user.bookmarks.find_by(spot_id: @spot.id)
 
     if bookmark.destroy
-      flash[:notice] = 'ブックマークを解除しました'
+      flash[:notice] = I18n.t('flash.bookmarks.destroy.notice')
     else
-      flash[:alert] = 'ブックマークの解除に失敗しました'
+      flash[:alert] = I18n.t('flash.bookmarks.destroy.notice')
     end
     redirect_to spot_path(@spot, from: params[:from]), status: :see_other
   end

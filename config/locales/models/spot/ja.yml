@@ -4,7 +4,7 @@ ja:
       spot:
         name: 'スポット名'
         parking: '駐車場の有無'
-        parking_limitation: '駐車制限'
+        parking_limitation: '駐車場の制限'
         category: 'カテゴリー'
         area: 'エリア'
     enums:

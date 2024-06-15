@@ -12,10 +12,10 @@ class ProfilesController < ApplicationController
     @profile.user_id = current_user.id
     if @profile.save
       @profile.convert_images
-      flash[:notice] = 'プロフィールを登録しました'
+      flash[:notice] = I18n.t('flash.profiles.create.notice')
       redirect_to my_page_path
     else
-      flash.now[:alert] = 'プロフィールの登録に失敗しました'
+      flash.now[:alert] = I18n.t('flash.profiles.create.alert')
       render :new, status: :unprocessable_entity
     end
   end
@@ -24,10 +24,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     if @profile.update(profile_params)
       @profile.convert_images
-      flash[:notice] = 'プロフィールを更新しました'
+      flash[:notice] = I18n.t('flash.profiles.update.notice')
       redirect_to my_page_path
     else
-      flash.now[:alert] = 'プロフィールの更新に失敗しました'
+      flash.now[:alert] = I18n.t('flash.profiles.create.alert')
       render :edit, status: :unprocessable_entity
     end
   end

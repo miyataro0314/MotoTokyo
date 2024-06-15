@@ -3,9 +3,9 @@ class FriendshipsController < ApplicationController
     friendship = current_user.friendships.build(friend_id: params[:id])
 
     if friendship.save
-      redirect_to my_page_path, notice: '相手ユーザーに承認依頼を送信しました。承認され次第友だち登録されます。'
+      redirect_to my_page_path, notice: I18n.t('flash.friendships.send_request.notice')
     else
-      redirect_to my_page_path, alert: 'エラーが発生し、承認依頼を送信できませんでした。'
+      redirect_to my_page_path, alert: I18n.t('flash.friendships.send_request.alert')
     end
   end
 
@@ -17,15 +17,15 @@ class FriendshipsController < ApplicationController
       current_user.friendships.create(friend_id: params[:friend_id], status: 5)
     end
 
-    redirect_to friendships_path(from: params[:from]), notice: '友達申請を承認しました。'
+    redirect_to friendships_path(from: params[:from]), notice: I18n.t('flash.friendships.approve_request.notice')
   end
 
   def deny_request
     friendship = Friendship.find(params[:id])
     if friendship.destroy
-      flash[:notice] = '友達申請を拒否しました'
+      flash[:notice] = I18n.t('flash.friendships.deny_request.notice')
     else
-      flash[:alert] = 'エラーが発生し、友達申請を拒否できませんでした'
+      flash[:alert] = I18n.t('flash.friendships.deny_request.alert')
     end
     redirect_to friendships_path(from: params[:from])
   end
@@ -43,14 +43,7 @@ class FriendshipsController < ApplicationController
     friendship = current_user.friendships.find_by(friend: @user)
     reverse_friendship = Friendship.find_by(user: @user, friend: current_user)
 
-    ActiveRecord::Base.transaction do
-      if friendship.destroy && reverse_friendship.destroy
-        redirect_to user_path(@user, from: params[:from]), notice: '友達を解除しました'
-      else
-        redirect_to user_path(@user, from: params[:from]), alert: 'エラーが発生し、友達の解除に失敗しました'
-        raise ActiveRecord::Rollback
-      end
-    end
+    friendships_destroy(friendship, reverse_friendship)
   end
 
   def add_friend; end
@@ -58,5 +51,16 @@ class FriendshipsController < ApplicationController
   def user_search
     @user = User.find_by(id: params[:id])
     @profile = @user.profile if @user
+  end
+
+  def friendships_destroy(friendship, reverse_friendship)
+    ActiveRecord::Base.transaction do
+      if friendship.destroy && reverse_friendship.destroy
+        redirect_to user_path(@user, from: params[:from]), notice: I18n.t('flash.friendships.destroy.notice')
+      else
+        redirect_to user_path(@user, from: params[:from]), alert: I18n.t('flash.friendships.destroy.notice')
+        raise ActiveRecord::Rollback
+      end
+    end
   end
 end

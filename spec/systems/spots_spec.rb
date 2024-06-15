@@ -157,9 +157,9 @@ RSpec.describe 'Spots', type: :system, js: true do
       click_link '編集'
       select 'あり(無料)', from: 'parking-select'
       select '大型不可', from: 'parking-limitaiton-select'
-      select '交通量が多い', from: 'spot_difficulty_level'
-      select '景色', from: 'spot_category'
-      fill_in 'spot_comment_content', with: '良いところです。(編集済み)'
+      select '交通量が多い', from: 'spot_form_level'
+      select '景色', from: 'spot_form_category'
+      fill_in 'spot_form_content', with: '良いところです。(編集済み)'
       click_button '更新'
 
       Capybara.assert_current_path(my_spots_path, ignore_query: true)

@@ -10,3 +10,9 @@ ja:
           traffic: '交通量が多い'
           direction: '場所が分かりにくい'
           condition: '狭い・坂道が多い'
+    errors:
+      models:
+        comment:
+          attributes:
+            user_id:
+              taken: 'スポットごとに1つの行きやすさしか投票できません'

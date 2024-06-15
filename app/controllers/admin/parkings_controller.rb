@@ -1,6 +1,6 @@
 class Admin::ParkingsController < ApplicationController
   def index
-    @parkings = Parking.all.order(:updated_at)
+    @parkings = Parking.order(:updated_at)
   end
 
   def edit
@@ -10,7 +10,7 @@ class Admin::ParkingsController < ApplicationController
   def update
     @parking = Parking.find(params[:id])
     if @parking.update(parking_params)
-      redirect_to admin_parkings_path, info: '更新しました'
+      redirect_to admin_parkings_path, notice: I18n.t('flash.admin.parkings.update.notice')
     else
       flash.now[:alert] = @parking.error.full_messages
       render :edit

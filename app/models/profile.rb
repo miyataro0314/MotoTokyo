@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  validates :user_id, presence: true, uniqueness: true
+  validates :user_id, uniqueness: true
   validates :user_name, presence: true
 
   has_one_attached :avatar

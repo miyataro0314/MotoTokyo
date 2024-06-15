@@ -17,7 +17,7 @@
     <div class="w-28 h-28 mt-5 mx-auto overflow-hidden content-center
                 rounded-full border bg-base-300 text-xs text-neutral">
       <% if @profile.avatar.attached? %>
-        <%= image_tag @profile.avatar, alt: "\n画像アップロード処理中。画面更新で表示されます。", class: 'w-full h-full text-center' %>
+        <%= image_tag @profile.avatar, alt: "画像アップロード処理中。画面更新で表示されます。", class: 'w-full h-full' %>
       <% else %>
         <%= image_tag 'preview.png', class: "w-full h-full m-auto rounded-2xl" %>
       <% end %>

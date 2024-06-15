@@ -2,7 +2,7 @@ module Api
   module V1
     class SearchesController < BaseController
       def load_map_data
-        @spots = Spot.all.includes(:spot_detail)
+        @spots = Spot.includes(:spot_detail)
         @parkings = Parking.all
         render json: { spots: @spots.as_json(include: :spot_detail), parkings: @parkings }
       end

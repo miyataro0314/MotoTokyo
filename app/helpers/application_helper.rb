@@ -44,7 +44,7 @@ module ApplicationHelper
     end
   end
 
-  def determine_back_link(from, params) # rubocop:disable Metrics/CyclomaticComplexity
+  def determine_back_link(from, params) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/AbcSize
     case from
     when 'home'
       back_link(home_path, 'ホームに戻る')

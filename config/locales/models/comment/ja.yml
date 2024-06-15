@@ -3,3 +3,9 @@ ja:
     attributes:
       comment:
         content: '内容'
+    errors:
+      models:
+        comment:
+          attributes:
+            user_id:
+              taken: 'スポットごとに1つのおすすめポイントしか投稿できません'

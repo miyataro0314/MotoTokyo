@@ -1,0 +1,10 @@
+ja:
+  activemodel:
+    attributes:
+      spot_form:
+        name: 'スポット名'
+        parking: '駐車場の有無'
+        parking_limitation: '駐車場の制限'
+        level: '行きやすさ'
+        category: 'カテゴリー'
+        content: 'おすすめポイント'
