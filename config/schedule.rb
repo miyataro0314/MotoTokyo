@@ -9,5 +9,5 @@ set :output, "#{Rails.root}/log/cron.log"
 job_type :rake, "cd :path && :environment_variable=:environment bundle exec rake :task :output"
 
 every 1.day, at: '3:00 am' do
-  rake 'sitemap:refresh'
+  rake 'sitemap:create'
 end

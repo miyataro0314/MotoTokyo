@@ -1,6 +1,5 @@
 SitemapGenerator::Sitemap.default_host = "https://moto-tokyo.com"
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
-SitemapGenerator::Sitemap.ping_search_engines = false
 
 SitemapGenerator::Sitemap.create do
   add '/', changefreq: 'weekly', priority: 1.0
