@@ -89,12 +89,6 @@ Rails.application.routes.draw do
     end
 
     resources :parkings, only: %i[new create show index edit update destroy] do
-      collection do
-        get 'fee_field', to: 'parking_registrations#add_fee_field'
-        delete 'fee_field', to: 'parking_registrations#delete_fee_field'
-        get 'capacity_field', to: 'parking_registrations#add_capacity_field'
-        delete 'capacity_field', to: 'parking_registrations#delete_capacity_field'
-      end
     end
   end
 
