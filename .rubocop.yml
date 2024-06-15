@@ -1,13 +1,9 @@
 require: rubocop-rails
 
-# RuboCopの全体的な設定
 AllCops:
-  # 対象とするRubyのバージョン
+  NewCops: enable
   TargetRubyVersion: 3.3
-  # 対象外とするファイルやディレクトリ
   Exclude:
-    # /*とするとそのディレクトリのみが対象となる 
-    # /**/*とするとそのディレクトリとサブディレクトリ以下が対象となる。
     - 'db/schema.rb'
     - 'vendor/**/*'
     - 'bin/**/*'
@@ -17,31 +13,33 @@ AllCops:
     - 'db/migrate/*'
     - 'spec/**/*'
 
-# 特定のCopの設定
-
 Metrics/AbcSize:
-  # ABCサイズの設定
   Max: 20
 
 Metrics/MethodLength:
-  # メソッドの行数設定
   Max: 20
 
 Documentation:
-  # すべてのクラスとモジュールの先頭にドキュメントのコメントを要求するルールを無効にする
   Enabled: false
   
 Style/FrozenStringLiteralComment:
-  # frozen_string_literalマジックコメントを要求するルールを無効にする
   Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
 
-# # Rails固有のCopを有効にする
-# Rails:
-#   Enabled: true
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
 
-# # RSpecのCopを有効にする
-# RSpec:
-#   Enabled: false
+Lint/UselessMethodDefinition:
+  Enabled: false
+
+Style/RedundantBegin:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+# Rails固有のCopを有効にする
+Rails:
+  Enabled: true

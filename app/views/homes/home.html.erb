@@ -54,9 +54,9 @@
 
   <%= render partial: 'shared/divider', locals: { heading: '最近登録されたスポット'} %>
 
-  <% if @spots.any? %>
+  <% if @latest_spots.any? %>
     <div class="px-8 flex gap-3.5 overflow-x-scroll whitespace-nowrap no-scroll-bar">
-      <% @spots.each do |spot| %>
+      <% @latest_spots.each do |spot| %>
         <%= render partial: 'spots/spot_card',
                    locals: { spot: spot, spot_detail: spot.spot_detail, from: 'home' } %>
       <% end %>

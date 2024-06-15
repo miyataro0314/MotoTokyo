@@ -1,0 +1,72 @@
+ja:
+  flash:
+    spots:
+      update:
+        notice: 'スポット情報を更新しました'
+        alert: 'スポット情報の更新に失敗しました'
+      destroy:
+        notice: 'スポットを削除しました'
+        alert: 'スポットの削除に失敗しました'
+    profiles:
+      create:
+        notice: 'プロフィールを登録しました'
+        alert: 'プロフィールの登録に失敗しました'
+      update:
+        notice: 'プロフィールを更新しました'
+        alert: 'プロフィールの更新に失敗しました'
+    users:
+      show:
+        alert: 'このユーザーはプロフィール未設定です'
+    bookmarks:
+      create:
+        notice: 'ブックマークしました'
+        alert: 'ブックマークに失敗しました'
+      destroy:
+        notice: 'ブックマークを解除しました'
+        alert: 'ブックマークの解除に失敗しました'
+    comments:
+      create:
+        notice: 'おすすめポイントを投稿しました'
+      update:
+        notice: 'おすすめポイントを更新しました'
+      destroy:
+        notice: 'おすすめポイントを削除しました'
+        alert: 'おすすめポイントの削除に失敗しました'
+    difficulties:
+      show:
+        alert: '続行するにはログインまたはユーザー登録が必要です。'
+      create:
+        notice: '行きやすさ投票を完了しました'
+        alert: 'エラーが発生し、投票が完了しませんでした'
+      update:
+        notice: '行きやすさ投票を完了しました'
+        alert: 'エラーが発生し、投票が完了しませんでした'
+    friendships:
+      send_request:
+        notice: '相手ユーザーに承認依頼を送信しました。承認され次第友だち登録されます。'
+        alert: 'エラーが発生し、承認依頼を送信できませんでした。'
+      approve_request:
+        notice: '友達申請を承認しました。'
+      deny_request:
+        notice: '友達申請を拒否しました'
+        alert: 'エラーが発生し、友達申請の拒否に失敗しました'
+      destroy:
+        notice: '友達を解除しました'
+        alert: 'エラーが発生し、友達の解除に失敗しました'
+    homes:
+      require_profile:
+        alert: 'プロフィールの登録をお願いします'
+    static_pages:
+      send_contact:
+        notice: 'お問い合わせを送信しました。5~10分以内に確認メールが送信されます。'
+        alert: 'お問い合わせの送信に失敗しました。恐れ入りますが再度お試しください。'
+    admin:
+      base:
+        authenticate_admin:
+          alert: '管理者権限を持っていません'
+      session:
+        admin_authenticate:
+          alert: '管理者権限を持っていません'
+      parkings:
+        update:
+          notice: '駐車場情報を更新しました'

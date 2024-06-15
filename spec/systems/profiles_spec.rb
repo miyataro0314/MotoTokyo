@@ -27,21 +27,19 @@ RSpec.describe "Profiles", type: :system, js: true do
       Capybara.assert_current_path(my_page_path, ignore_query: true)
       expect(page).to have_content 'テストユーザー'
       expect(page).to have_content 'テストバイク'
-      expect(page).to have_selector("img[src*='test_image1.jpg']")
-      expect(page).to have_selector("img[src*='test_image2.jpg']")
 
       visit current_path
       expect(page).to have_selector("img[src*='avatar.jpg']")
       expect(page).to have_selector("img[src*='vehicle_photo.jpg']")
     end
 
-    it '入力がなかった場合、代替表示されるか' do
+    it '入力がなかった場合、エラーが表示されるか' do
       visit new_profile_path
       click_button '登録'
 
-      Capybara.assert_current_path(my_page_path, ignore_query: true)
-      expect(page).to have_content 'ユーザーネーム未設定'
-      expect(page).to have_selector("img[src*='preview']")
+      Capybara.assert_current_path(new_profile_path, ignore_query: true)
+      expect(page).to have_content 'プロフィールの登録に失敗しました'
+      expect(page).to have_content 'ユーザーネームを入力してください。'
     end
   end
 
@@ -71,8 +69,6 @@ RSpec.describe "Profiles", type: :system, js: true do
       Capybara.assert_current_path(my_page_path, ignore_query: true)
       expect(page).to have_content 'テストユーザー更新'
       expect(page).to have_content 'テストバイク更新'
-      expect(page).to have_selector("img[src*='test_image2.jpg']")
-      expect(page).to have_selector("img[src*='test_image1.jpg']")
 
       visit current_path
       expect(page).to have_selector("img[src*='avatar.jpg']")

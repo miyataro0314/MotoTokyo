@@ -5,7 +5,7 @@ module Admin
 
       return if current_user.admin? && session[:as_admin] == true
 
-      flash[:alert] = 'Invalid admin authenticate.'
+      flash[:alert] = I18n.t('flash.admin.base.authenticate_admin.alert')
       redirect_to root_path
     end
   end

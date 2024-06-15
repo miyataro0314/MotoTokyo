@@ -10,6 +10,6 @@ class UsersController < ApplicationController
     @profile = @user.profile
     return if @profile
 
-    redirect_to spot_path(params[:spot_id]), alert: 'このユーザーはプロフィール未設定です'
+    redirect_to spot_path(params[:spot_id]), alert: I18n.t('flash.users.show.alert')
   end
 end

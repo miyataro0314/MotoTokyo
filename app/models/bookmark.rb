@@ -1,5 +1,5 @@
 class Bookmark < ApplicationRecord
-  validates :user_id, uniqueness: { scope: :spot_id, message: 'should have only one bookmark per spot' }
+  validates :user_id, uniqueness: { scope: :spot_id }
 
   belongs_to :user
   belongs_to :spot

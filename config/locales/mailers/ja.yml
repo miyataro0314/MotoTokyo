@@ -1,0 +1,10 @@
+ja:
+  mailers:
+    contact:
+      mail_to_user:
+        subject: 'お問い合わせ内容の確認'
+      mail_to_admin:
+        subject: 'お問い合わせ'
+    error:
+      registration_error:
+        subject: 'スポット登録時エラー発生'

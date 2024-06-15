@@ -25,10 +25,10 @@ class StaticPagesController < ApplicationController
       ContactMailer.mail_to_user(@contact_form).deliver_now
       ContactMailer.mail_to_admin(@contact_form).deliver_now
 
-      redirect_to home_path, notice: 'お問い合わせを送信しました。5~10分以内に確認メールが送信されます。'
-    rescue => e # rubocop:disable Style/RescueStandardError
+      redirect_to home_path, notice: I18n.t('お問い合わせを送信しました。5~10分以内に確認メールが送信されます。')
+    rescue => e
       logger.error "お問い合わせの送信に失敗しました: #{e.message}"
-      flash.now[:alert] = 'お問い合わせの送信に失敗しました。恐れ入りますが再度お試しください。'
+      flash.now[:alert] = I18n.t('お問い合わせの送信に失敗しました。恐れ入りますが再度お試しください。')
       render :contact
     end
   end

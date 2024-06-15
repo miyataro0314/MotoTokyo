@@ -6,7 +6,7 @@ class DifficultiesController < ApplicationController
     if user_signed_in?
       @difficulty = Difficulty.find_or_initialize_by(user_id: current_user.id, spot_id: @spot.id)
     else
-      redirect_to spot_path(@spot, from: params[:from]), alert: '続行するにはログインまたはユーザー登録が必要です。'
+      redirect_to spot_path(@spot, from: params[:from]), alert: I18n.t('flash.difficulties.show.alert')
     end
   end
 
@@ -18,9 +18,9 @@ class DifficultiesController < ApplicationController
     )
 
     if difficulty.update(difficulty_params)
-      flash[:notice] = '行きやすさ投票を完了しました'
+      flash[:notice] = I18n.t('flash.difficulties.create.notice')
     else
-      flash[:alert] = 'エラーが発生し、投票が完了しませんでした'
+      flash[:alert] = I18n.t('flash.difficulties.show.alert')
     end
     redirect_to spot_path(@spot)
   end
@@ -29,9 +29,9 @@ class DifficultiesController < ApplicationController
     difficulty = current_user.difficulty_for(@spot)
 
     if difficulty.update(difficulty_params)
-      flash[:notice] = '行きやすさ投票を完了しました'
+      flash[:notice] = I18n.t('flash.difficulties.update.notice')
     else
-      flash[:alert] = 'エラーが発生し、投票が完了しませんでした'
+      flash[:alert] = I18n.t('flash.difficulties.update.alert')
     end
     redirect_to spot_path(@spot)
   end

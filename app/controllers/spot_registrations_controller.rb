@@ -54,7 +54,7 @@ class SpotRegistrationsController < ApplicationController
 
   def success
     @spot = Spot.find(params[:id])
-    @count = Spot.all.count
+    @count = Spot.count
     tweet_new_spot
   end
 

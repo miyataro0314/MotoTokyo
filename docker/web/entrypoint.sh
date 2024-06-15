@@ -25,6 +25,10 @@ if [ "$RAILS_ENV" = "production" ]; then
   echo "Precompiling assets..."
   bundle exec rails assets:precompile
 
+  # cronジョブの更新とcronの起動
+  bundle exec whenever --update-crontab
+  service cron start
+
   # サーバーを起動
   echo "Starting server..."
   rails server  # 'bundle exec puma -C config/puma.rb'だとうまく行かない"

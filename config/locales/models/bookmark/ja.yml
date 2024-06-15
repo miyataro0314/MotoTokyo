@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        bookmark:
+          attributes:
+            user_id:
+              taken: 'スポットごとに1つのブックマークしか登録できません'

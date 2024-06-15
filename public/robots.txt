@@ -1,1 +1,20 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+
+Disallow: /admin
+Disallow: /api
+Disallow: /users
+Disallow: /account
+Disallow: /home
+Disallow: /mypage
+Disallow: /myspot
+Disallow: /profiles
+Disallow: /friendships
+Disallow: /weather_detail
+Disallow: /spot_registrations
+Disallow: /spots/new
+Disallow: /spots/*/edit
+Disallow: /spots/*/bookmarks
+Disallow: /spots/*/comments
+Disallow: /map_views/spot_mini_card
+
+Sitemap: https://moto-tokyo.com/sitemaps/sitemap.xml.gz

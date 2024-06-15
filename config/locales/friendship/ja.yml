@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        comment:
+          attributes:
+            user_id:
+              taken: 'この相手は既に友達登録されています'

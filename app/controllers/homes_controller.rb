@@ -2,15 +2,15 @@ class HomesController < ApplicationController
   before_action :require_profile, only: :my_page
 
   def home
-    set_spot_by_access_history
-    set_query_by_search_history
-    set_weather_data
-    set_latest_spots(5)
-    set_recommend_spots(5)
+    prepare_last_access_spot
+    prepare_query_by_search_history
+    fetch_weather_data
+    @latest_spots = latest_spots(5)
+    @recommended_spots = recommend_spots(5)
   end
 
   def weather_detail
-    set_weather_data
+    fetch_weather_data
   end
 
   def my_page
@@ -36,14 +36,14 @@ class HomesController < ApplicationController
   def require_profile
     return if current_user.profile
 
-    redirect_to new_profile_path, alert: 'プロフィールの登録をお願いします'
+    redirect_to new_profile_path, alert: I18n.t('flash.homes.require_profile.alert')
   end
 
-  def set_latest_spots(limit)
-    @spots = Spot.includes(:spot_detail).order(created_at: :desc).limit(limit)
+  def latest_spots(limit)
+    Spot.includes(:spot_detail).order(created_at: :desc).limit(limit)
   end
 
-  def set_weather_data
+  def fetch_weather_data
     response = HTTP.get('https://weather.tsukumijima.net/api/forecast/city/130010')
     @data = JSON.parse(response.body)
     forecasts = @data['forecasts']
@@ -53,12 +53,12 @@ class HomesController < ApplicationController
     @third = forecasts[2]
   end
 
-  def set_spot_by_access_history
+  def prepare_last_access_spot
     @last_access_spot = current_user.access_histories.last&.spot
     @last_access_spot_detail = @last_access_spot.spot_detail unless @last_access_spot.nil?
   end
 
-  def set_query_by_search_history
+  def prepare_query_by_search_history
     @last_search_query = current_user.search_histories.last
     return unless @last_search_query
 
@@ -67,7 +67,7 @@ class HomesController < ApplicationController
     session[:parking] = @last_search_query.parking
   end
 
-  def set_recommend_spots(limit)
+  def recommend_spots(limit)
     search_histories = recent_search_histories
     accessed_spots = recent_access_spots
 
@@ -76,15 +76,13 @@ class HomesController < ApplicationController
 
     recommend_score_weights = merge_score_weights(search_score_weights, access_score_weights)
 
-    spots_with_scores = Spot.all.includes(:spot_detail).map do |spot|
+    spots_with_scores = Spot.includes(:spot_detail).map do |spot|
       score = calculate_score(spot, recommend_score_weights)
       score *= 0.7 if accessed_spots.include?(spot) # 閲覧済みのスポットはスコア3割減
       { spot:, score: }
     end
 
-    @recommended_spots = spots_with_scores.sort_by { |spot_with_score| -spot_with_score[:score] }
-                                          .take(limit)
-                                          .map { |hash| hash[:spot] }
+    spots_with_scores.sort_by { |spot_with_score| -spot_with_score[:score] }.take(limit).pluck(:spot)
   end
 
   def recent_search_histories(limit = 10)

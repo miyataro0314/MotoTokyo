@@ -31,8 +31,7 @@ class Admin::SessionsController < Devise::SessionsController
       session[:as_admin] = true
       true
     else
-      flash[:alert] = 'Invalid admin authenticate.'
-      redirect_to root_path
+      redirect_to root_path, alert: I18n.t('flash.admin.parkings.update.notice')
       false
     end
   end
