@@ -1,4 +1,7 @@
 # [MotoTokyo](https://moto-tokyo.com)
+
+![OGP](https://github.com/miyataro0314/MotoTokyo/assets/125170964/8d353014-767f-4926-8c15-d0fc07cf6a7b)
+
 東京を走るライダーの皆さん集まれ〜〜〜！
 
 MotoTokyoは東京特化のバイクツーリングサポートサービスです。
