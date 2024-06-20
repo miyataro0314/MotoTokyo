@@ -4,7 +4,7 @@
   
   <div class="daisy-navbar-start">
     <%= link_to side_menu_path, class: 'w-fit h-fit',
-                               data: { turbo_frame: 'side_menu' } do %>
+                                data: { turbo_frame: 'side_menu' } do %>
       <%= svg_tag 'vuesax/linear/menu.svg',
           css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-7 h-7 min-h-7 ml-3 stroke-primary-content' %>
     <% end %>
@@ -21,12 +21,12 @@
     <% end %>
   </div>
   <div class="daisy-navbar-end">
-    <!-- 通知機能実装時に表示 -->
-    <!--<% if user_signed_in? %>
-      <%= link_to '#', class: 'w-fit h-fit' do %>
-        <%= svg_tag 'vuesax/linear/notification.svg',
+    <% if user_signed_in? %>
+      <%= link_to latest_notifications_notifications_path, class: 'w-fit h-fit',
+                                                           data: { turbo_frame: 'side_menu' } do %>
+        <%= svg_tag @notification_icon_path,
             css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-7 h-7 min-h-7 mr-3 stroke-primary-content' %>
       <% end %>
-    <% end %>-->
+    <% end %>
   </div>
 </header>

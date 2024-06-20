@@ -1,0 +1,25 @@
+<%= turbo_frame_tag 'side_menu' do %>
+
+  <%= stylesheet_link_tag 'animations/side_menu', data: { turbolinks_track: 'reload' } %>
+
+  <div class='background'
+       data-controller="side-menu"
+       data-side-menu-target="background"
+       data-action="click->side-menu#closeMenuRight">
+    <div class="side-menu-right text-center"
+         data-side-menu-target="menuRight">
+      <div class="flex h-16 items-center justify-end">
+        <div data-action="click->side-menu#closeMenuRightByButton">
+          <%= svg_tag 'vuesax/linear/cross.svg',
+              css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-11 h-11 mr-3 stroke-primary-content' %>    
+        </div>
+      </div>
+      <!-- ここから通知表示3件程度 -->
+      <% if @notifications %>
+        <% @notifications.each do |notification| %>
+          <%= render partial: 'notifications/notification_card', locals: { notification: notification } %>
+        <% end %>
+      <% end %>
+      <!-- -->
+      <%= link_to '通知一覧', notifications_path, class: 'btn-secondary' %>
+<% end %>

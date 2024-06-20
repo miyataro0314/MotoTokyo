@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    attributes:
+      notification:
+        title: 'タイトル'
+        message: 'メッセージ'
+        notification_type: '通知の種類'
+        priority: '優先度'
+        read: '既読'
+    enums:
+      notification:
+        notification_type:
+          announcement: 'お知らせ'
+          info: '通知'
+          alert: '警告'

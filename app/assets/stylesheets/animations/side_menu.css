@@ -1,13 +1,36 @@
-@keyframes start-menu {
+@keyframes start-menu-left {
   0% {
-    /* transform: scale(0.0, 0.0);
-    transform-origin: top left; */
     clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   }
   100% {
-    /* transform: scale(1.0, 1.0);
-    transform-origin: top left; */
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes end-menu-left {
+  0% {
+    clip-path: circle(100% at left top)
+  }
+  100% {
+    clip-path: circle(0% at left top);
+  }
+}
+
+@keyframes start-menu-right {
+  0% {
+    clip-path: polygon(100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes end-menu-right {
+  0% {
+    clip-path: circle(100% at right top)
+  }
+  100% {
+    clip-path: circle(0% at right top);
   }
 }
 
@@ -23,16 +46,6 @@
   }
 }
 
-
-@keyframes end-menu {
-  0% {
-    clip-path: circle(100% at left top)
-  }
-  100% {
-    clip-path: circle(0% at left top);
-  }
-}
-
 @keyframes end-bg {
   0% {
     opacity: 100%;
@@ -42,9 +55,29 @@
   }
 }
 
-.start-menu-animation {
-  animation-name: start-menu;
+.start-menu-left-animation {
+  animation-name: start-menu-left;
   animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+}
+
+.end-menu-left-animation {
+  animation-name: end-menu-left;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+}
+
+.start-menu-right-animation {
+  animation-name: start-menu-right;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+}
+
+.end-menu-right-animation {
+  animation-name: end-menu-right;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
 }
 
@@ -52,13 +85,6 @@
   animation-name: start-bg;
   animation-duration: 300ms;
   animation-timing-function: ease-in;
-}
-
-.end-menu-animation {
-  animation-name: end-menu;
-  animation-duration: 300ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
 }
 
 .end-bg-animation {

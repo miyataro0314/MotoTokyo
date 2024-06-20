@@ -65,6 +65,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: %i[index show] do
+    collection do
+      get 'latest_notifications'
+    end
+  end
+
   namespace :api do
     namespace :v1 do
       namespace :user_registrations do

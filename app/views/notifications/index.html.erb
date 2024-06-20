@@ -1,0 +1,9 @@
+<div class="base-container">
+  <h1 class="h1">通知一覧</h1>
+
+  <div class="base-l">
+    <% @notifications.each do |notification| %>
+      <%= render 'notifications/notification_card' %>
+    <% end %>
+  </div>
+</div>

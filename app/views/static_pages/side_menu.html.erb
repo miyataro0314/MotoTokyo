@@ -5,12 +5,12 @@
   <div class='background'
        data-controller="side-menu"
        data-side-menu-target="background"
-       data-action="click->side-menu#closeMenu">
-    <div class="side-menu text-center"
-         data-side-menu-target="menu">
+       data-action="click->side-menu#closeMenuLeft">
+    <div class="side-menu-left text-center"
+         data-side-menu-target="menuLeft">
       <div class="flex h-16 items-center">
-        <div data-action="click->side-menu#closeMenuByButton">
-          <%= svg_tag 'vuesax/linear/add.svg',
+        <div data-action="click->side-menu#closeMenuLeftByButton">
+          <%= svg_tag 'vuesax/linear/cross.svg',
               css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-11 h-11 ml-3 stroke-primary-content' %>      
         </div>
       </div>

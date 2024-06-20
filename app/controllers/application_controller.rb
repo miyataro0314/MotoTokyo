@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :check_unread_notifications, if: :user_signed_in?
 
   def tweet(message)
     json = { text: message }.to_json
@@ -13,5 +14,15 @@ class ApplicationController < ActionController::Base
 
     x_client = X::Client.new(**x_credentials)
     x_client.post('tweets', json)
+  end
+
+  private
+
+  def check_unread_notifications
+    @notification_icon_path = if current_user.notifications.unread.any?
+                                'vuesax/linear/unread_notification.svg'
+                              else
+                                'vuesax/linear/notification.svg'
+                              end
   end
 end

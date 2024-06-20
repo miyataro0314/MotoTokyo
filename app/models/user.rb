@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :edit_histories, dependent: :destroy
   has_many :access_histories, dependent: :destroy
   has_many :search_histories, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_one :profile, dependent: :destroy
 
   enum role: { general: 0, admin: 10 }
