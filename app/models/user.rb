@@ -34,15 +34,12 @@ class User < ApplicationRecord
   end
 
   def friendship_status_with(other_user)
-    friendship = friendships.find_by(friend: other_user)
-    return 'false' unless friendship
+    friendship = Friendship.find_by(user: self, friend: other_user)
+    reverse_friendship = Friendship.find_by(user: other_user, friend: self)
+    return 'false' if !friendship && !reverse_friendship
+    return 'received' if reverse_friendship&.status == 'pending'
 
-    case friendship.status
-    when 'approved'
-      'approved'
-    when 'pending'
-      'pending'
-    end
+    friendship.status
   end
 
   def approved_friends

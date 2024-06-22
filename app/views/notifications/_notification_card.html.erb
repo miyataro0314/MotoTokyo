@@ -1,9 +1,10 @@
-<%= link_to notification.url, data: { turbo_frame: '_top' } do %>
+<%= link_to notification_path(notification), data: { turbo_frame: '_top' } do %>
   <div class="pane-a w-4/5 mb-3 border-2 drop-shadow-md">
     <div class="font-semibold">
       <span>【<%= t_enum('notification', 'notification_type', notification.notification_type ) %>】</span>
       <span><%= notification.title %></span>
     </div>
     <div><%= notification.message %></div>
+    <div class="text-xs text-right"><%= notification.created_at.strftime('%F %H:%M') %></div>
   </div>
 <% end %>

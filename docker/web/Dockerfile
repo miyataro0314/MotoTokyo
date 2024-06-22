@@ -16,7 +16,7 @@ ENV LANG C.UTF-8 \
 # 必要なパッケージをインストール
 RUN apt-get update -qq && \
     apt-get install -y ca-certificates curl gnupg &&\
-    apt-get install -y build-essential default-libmysqlclient-dev libvips pkg-config python3 cron vim
+    apt-get install -y build-essential libvips pkg-config python3 cron vim
 
 # Node.js 環境のセットアップ
 ARG NODE_VERSION=20.13.1

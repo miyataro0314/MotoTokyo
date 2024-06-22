@@ -1,12 +1,9 @@
 class FriendshipsController < ApplicationController
   def send_request
     friendship = current_user.friendships.build(friend_id: params[:id])
+    notification = Notification.friend_request(params[:id], friendships_path(tab: 'requests'))
 
-    if friendship.save
-      redirect_to my_page_path, notice: I18n.t('flash.friendships.send_request.notice')
-    else
-      redirect_to my_page_path, alert: I18n.t('flash.friendships.send_request.alert')
-    end
+    save_requests(friendship, notification)
   end
 
   def approve_request
@@ -56,11 +53,26 @@ class FriendshipsController < ApplicationController
   def friendships_destroy(friendship, reverse_friendship)
     ActiveRecord::Base.transaction do
       if friendship.destroy && reverse_friendship.destroy
-        redirect_to user_path(@user, from: params[:from]), notice: I18n.t('flash.friendships.destroy.notice')
+        flash[:notice] = I18n.t('flash.friendships.destroy.notice')
       else
-        redirect_to user_path(@user, from: params[:from]), alert: I18n.t('flash.friendships.destroy.notice')
+        flash[:alert] = I18n.t('flash.friendships.destroy.notice')
+        raise ActiveRecord::Rollback
+      end
+      redirect_to user_path(@user, from: params[:from])
+    end
+  end
+
+  private
+
+  def save_requests(friendship, notification)
+    ActiveRecord::Base.transaction do
+      if friendship.save && notification.save
+        flash[:notice] = I18n.t('flash.friendships.send_request.notice')
+      else
+        flash[:alert] = I18n.t('flash.friendships.send_request.alert')
         raise ActiveRecord::Rollback
       end
     end
+    redirect_to my_page_path
   end
 end
