@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_14_050833) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_112807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -101,6 +101,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_050833) do
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
     t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
     t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "title", null: false
+    t.text "message", null: false
+    t.string "url", null: false
+    t.integer "notification_type", null: false
+    t.integer "priority", default: 0, null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notification_type"], name: "index_notifications_on_notification_type"
+    t.index ["read"], name: "index_notifications_on_read"
   end
 
   create_table "parkings", force: :cascade do |t|
@@ -212,6 +226,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_050833) do
   add_foreign_key "edit_histories", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "search_histories", "users"
   add_foreign_key "spot_details", "spots"

@@ -1,0 +1,31 @@
+<%= turbo_frame_tag 'side_menu' do %>
+
+  <%= stylesheet_link_tag 'animations/side_menu', data: { turbolinks_track: 'reload' } %>
+
+  <div class='background'
+       data-controller="side-menu"
+       data-side-menu-target="background"
+       data-action="click->side-menu#closeMenuRight">
+    <div class="side-menu-right text-center"
+         data-side-menu-target="menuRight">
+      <div class="flex h-16 items-center justify-between">
+        <div class="w-11 h-11 ml-3"></div>
+        <% if @notifications.any? %>
+          <p class="my-3 font-semibold text-base text-primary-content"><%= "未読の通知 全#{@count}件" %></p>
+        <% end %>
+        <div data-action="click->side-menu#closeMenuRightByButton">
+          <%= svg_tag 'vuesax/linear/cross.svg',
+              css_class: 'daisy-btn daisy-btn-square daisy-btn-ghost w-11 h-11 mr-3 stroke-primary-content' %>    
+        </div>
+      </div>
+      <!-- ここから通知表示3件程度 -->
+      <% if @notifications.any? %>
+        <% @notifications.each do |notification| %>
+          <%= render partial: 'notifications/notification_card', locals: { notification: notification } %>
+        <% end %>
+      <% else %>
+        <p class="my-3 font-semibold text-base text-primary-content">未読の通知はありませんでした</p>
+      <% end %>
+      <!-- -->
+      <%= link_to '通知一覧', notifications_path, class: 'btn-secondary' %>
+<% end %>

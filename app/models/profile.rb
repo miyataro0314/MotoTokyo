@@ -9,7 +9,7 @@ class Profile < ApplicationRecord
   enum vehicle_type: { big: 0, regular: 5, small: 10, moped: 15 }
 
   def convert_images
-    raise if !avatar.attached? && !vehicle_photo.attached?
+    return if !avatar.attached? && !vehicle_photo.attached?
 
     ConvertToJpegJob.perform_later(self, :avatar) if avatar.attached?
     ConvertToJpegJob.perform_later(self, :vehicle_photo) if vehicle_photo.attached?

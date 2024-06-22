@@ -106,8 +106,12 @@ footer {
   @apply w-80 h-fit max-h-120 p-3 drop-shadow-2xl rounded-3xl
 }
 
-.side-menu {
+.side-menu-left {
   @apply fixed top-0 left-0 top-0 w-80 h-fit pb-20 drop-shadow-2xl rounded-br-[270px] bg-primary
+}
+
+.side-menu-right {
+  @apply fixed top-0 right-0 top-0 w-80 h-fit max-h-128 pb-8 drop-shadow-2xl rounded-bl-[100px] bg-primary
 }
 
 .link {

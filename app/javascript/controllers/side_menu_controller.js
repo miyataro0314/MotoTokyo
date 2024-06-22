@@ -1,26 +1,35 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['background', 'menu'];
+  static targets = ['background', 'menuLeft', 'menuRight'];
 
   connect() {
     document.body.classList.add('no-scroll')
-    this.openMenu();
+    if (this.hasMenuLeftTarget) {
+      this.openMenuLeft();
+    } else if (this.hasMenuRightTarget) {
+      this.openMenuRight();
+    }
   }
 
-  openMenu() {
-    this.menuTarget.classList.add('start-menu-animation');
+  openMenuLeft() {
+    this.menuLeftTarget.classList.add('start-menu-left-animation');
     this.backgroundTarget.classList.add('start-bg-animation');
   }
 
-  closeMenu(event) {
+  openMenuRight() {
+    this.menuRightTarget.classList.add('start-menu-right-animation');
+    this.backgroundTarget.classList.add('start-bg-animation');
+  }
+  
+  closeMenuLeft(event) {
     if (event.target === this.backgroundTarget) {
-      this.menuTarget.classList.add('end-menu-animation');
+      this.menuLeftTarget.classList.add('end-menu-left-animation');
       this.backgroundTarget.classList.add('end-bg-animation');
       this.backgroundTarget.classList.remove('z-50');
 
-      this.menuTarget.addEventListener('animationend', () => {
-        this.menuTarget.style.display = 'none';
+      this.menuLeftTarget.addEventListener('animationend', () => {
+        this.menuLeftTarget.style.display = 'none';
       }, { once: true });
       this.backgroundTarget.addEventListener('animationend', () => {
         this.backgroundTarget.style.display = 'none';
@@ -30,13 +39,45 @@ export default class extends Controller {
     }
   }
 
-  closeMenuByButton() {
-    this.menuTarget.classList.add('end-menu-animation');
+  closeMenuLeftByButton() {
+    this.menuLeftTarget.classList.add('end-menu-left-animation');
     this.backgroundTarget.classList.add('end-bg-animation');
     this.backgroundTarget.classList.remove('z-50');
 
-    this.menuTarget.addEventListener('animationend', () => {
-      this.menuTarget.style.display = 'none';
+    this.menuLeftTarget.addEventListener('animationend', () => {
+      this.menuLeftTarget.style.display = 'none';
+    }, { once: true });
+    this.backgroundTarget.addEventListener('animationend', () => {
+      this.backgroundTarget.style.display = 'none';
+    }, { once: true });
+
+    document.body.classList.remove('no-scroll')
+  }
+
+  closeMenuRight(event) {
+    if (event.target === this.backgroundTarget) {
+      this.menuRightTarget.classList.add('end-menu-right-animation');
+      this.backgroundTarget.classList.add('end-bg-animation');
+      this.backgroundTarget.classList.remove('z-50');
+
+      this.menuRightTarget.addEventListener('animationend', () => {
+        this.menuRightTarget.style.display = 'none';
+      }, { once: true });
+      this.backgroundTarget.addEventListener('animationend', () => {
+        this.backgroundTarget.style.display = 'none';
+      }, { once: true });
+
+      document.body.classList.remove('no-scroll')
+    }
+  }
+
+  closeMenuRightByButton() {
+    this.menuRightTarget.classList.add('end-menu-right-animation');
+    this.backgroundTarget.classList.add('end-bg-animation');
+    this.backgroundTarget.classList.remove('z-50');
+
+    this.menuRightTarget.addEventListener('animationend', () => {
+      this.menuRightTarget.style.display = 'none';
     }, { once: true });
     this.backgroundTarget.addEventListener('animationend', () => {
       this.backgroundTarget.style.display = 'none';

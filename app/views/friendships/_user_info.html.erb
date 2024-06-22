@@ -8,7 +8,7 @@
       <div class="h-7 max-w-48 whitespace-nowrap overflow-hidden font-semibold text-base">
         <%= profile.try(:user_name).presence || 'ユーザーネーム未設定' %>
       </div>
-      <div class="h-5 max-w-32 whitespace-nowrap overflow-hidden text-xs">
+      <div class="h-8 max-w-24 break-words overflow-hidden text-xs text-left">
         <%= "ID:#{user.id}" %>
       </div>
     </div>
@@ -22,6 +22,10 @@
     <div class="btn-s absolute z-10 right-3 bottom-3", disabled="true">
       友達申請中
     </div>
+  <% when 'received' %>
+    <%= link_to '友達申請受信中', friendships_path(tab: 'requests'),
+      class: 'btn-s absolute z-10 right-3 bottom-3',
+      data: { turbo_frame: '_top' } %>
   <% else %>
     <%= button_to '友達申請', send_request_friendships_path(id: user.id),
       class: 'btn-s absolute z-10 right-3 bottom-3',
