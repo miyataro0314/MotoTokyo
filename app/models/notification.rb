@@ -16,7 +16,7 @@ class Notification < ApplicationRecord
     Notification.new(
       user_id: friend_id,
       title: '友達申請が届きました！',
-      message: '通知をタップしてを内容を確認してください',
+      message: '友達申請内容を確認し、『承認』もしくは『否認』をしてください',
       url:,
       notification_type: 5
     )

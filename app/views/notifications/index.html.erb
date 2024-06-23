@@ -1,9 +1,19 @@
 <div class="base-container">
   <h1 class="h1">通知一覧</h1>
 
+  <p class="w-80 h-fit mx-auto mt-8 pr-3 text-right text-sm">
+    <%= "未読:#{@unread_count}件 / #{@all_count}件" %>
+  </p>
   <div class="base-l">
-    <% @notifications.each do |notification| %>
-      <%= render 'notifications/notification_card' %>
+    <% unless @notifications.any? %>
+      <div class="pane-a flex flex-col my-2 text-sm">
+        通知はありません
+      </div>
     <% end %>
+
+    <% @notifications.each do |notification| %>
+      <%= render partial: 'notifications/notification_card', locals: { notification: notification } %>
+    <% end %>
+    <%= paginate @notifications %>
   </div>
 </div>

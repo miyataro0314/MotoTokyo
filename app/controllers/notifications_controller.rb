@@ -1,6 +1,8 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = current_user.notifications
+    @all_count = current_user.notifications.count
+    @unread_count = current_user.notifications.unread.count
+    @notifications = current_user.notifications.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -11,7 +13,7 @@ class NotificationsController < ApplicationController
   end
 
   def latest_notifications
-    @count = current_user.notifications.unread.count
+    @unread_count = current_user.notifications.unread.count
     @notifications = current_user.notifications.unread.order(created_at: :desc).limit(3)
   end
 end

@@ -11,7 +11,7 @@
       <div class="flex h-16 items-center justify-between">
         <div class="w-11 h-11 ml-3"></div>
         <% if @notifications.any? %>
-          <p class="my-3 font-semibold text-base text-primary-content"><%= "未読の通知 全#{@count}件" %></p>
+          <p class="my-3 font-semibold text-base text-primary-content"><%= "未読の通知 全#{@unread_count}件" %></p>
         <% end %>
         <div data-action="click->side-menu#closeMenuRightByButton">
           <%= svg_tag 'vuesax/linear/cross.svg',
@@ -27,5 +27,6 @@
         <p class="my-3 font-semibold text-base text-primary-content">未読の通知はありませんでした</p>
       <% end %>
       <!-- -->
-      <%= link_to '通知一覧', notifications_path, class: 'btn-secondary' %>
+      <%= link_to '通知一覧', notifications_path, class: 'btn-secondary',
+                                                 data: { turbo_frame: '_top' } %>
 <% end %>
