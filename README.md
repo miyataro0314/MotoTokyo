@@ -78,6 +78,33 @@ MotoTokyoは東京特化のバイクツーリングサポートサービスで�
 - マップビューのアップデート（動的な絞り込み機能）
 
 
+## 各画面
+| 新規登録 | ホーム画面 |
+| --- | --- |
+| [![Image from Gyazo](https://i.gyazo.com/8dec8731f9f9c4f1c74adb46c7eb525b.gif)](https://gyazo.com/8dec8731f9f9c4f1c74adb46c7eb525b) | [![Image from Gyazo](https://i.gyazo.com/2d4dbff3279b06fef7a3400e6e1ae545.gif)](https://gyazo.com/2d4dbff3279b06fef7a3400e6e1ae545) |
+| リアルタイムバリデーションを用いて実装 | ユーザーに応じたおすすめスポットの表示 |
+
+| スポット検索 | マップビュー |
+| --- | --- |
+| [![Image from Gyazo](https://i.gyazo.com/82b4a79fb266330b2a8ccbdff79ffa62.gif)](https://gyazo.com/82b4a79fb266330b2a8ccbdff79ffa62) | [![Image from Gyazo](https://i.gyazo.com/fd1d1b4ccc1893e2b88798224bb2b584.gif)](https://gyazo.com/fd1d1b4ccc1893e2b88798224bb2b584) |
+| 3項目のOR検索 | 動的なスポット表示 |
+
+| スポット詳細 | 駐車場詳細 |
+| --- | --- |
+| [![Image from Gyazo](https://i.gyazo.com/d5eb9f31a1c4d44e7dd44ce3bccee3b2.gif)](https://gyazo.com/d5eb9f31a1c4d44e7dd44ce3bccee3b2) | [![Image from Gyazo](https://i.gyazo.com/373360c4e7f533ff73c1b43bae49f664.gif)](https://gyazo.com/373360c4e7f533ff73c1b43bae49f664) |
+| 付近の駐車場も同時に取得 | 収容台数、営業時間などの詳細情報 |
+
+| 行きやすさ投票 | ブックマーク |
+| --- | --- |
+| [![Image from Gyazo](https://i.gyazo.com/696b12568274455b5a7daa3c25c20ae5.gif)](https://gyazo.com/696b12568274455b5a7daa3c25c20ae5) | [![Image from Gyazo](https://i.gyazo.com/3ebedb2354b238bf97ce5ac3c5fcda23.gif)](https://gyazo.com/3ebedb2354b238bf97ce5ac3c5fcda23) |
+| 投票状況に応じてグラフが変化 | 行きたいスポットの保存に使用 |
+
+| 友だち追加 | 通知機能 |
+| --- | --- |
+| [![Image from Gyazo](https://i.gyazo.com/c9e00ff0632326a8e0b9d21e7450ddc6.gif)](https://gyazo.com/c9e00ff0632326a8e0b9d21e7450ddc6) | [![Image from Gyazo](https://i.gyazo.com/b58bf80e91bcc8114ef650ca1b2315c3.gif)](https://gyazo.com/b58bf80e91bcc8114ef650ca1b2315c3) |
+| ユーザーIDを知っている場合のみ追加可能 | 収容台数、営業時間などの詳細情報 |
+
+
 ## 外部API
 - スポットオートコンプリート・詳細取得・マップ埋め込み
   - [GoogleMapApi](https://developers.google.com/maps?hl=ja)
@@ -85,7 +112,8 @@ MotoTokyoは東京特化のバイクツーリングサポートサービスで�
   - [天気予報API](https://weather.tsukumijima.net)
 - 公式Xへの自動ポスト
   - [TwitterAPI V2](https://developer.x.com/ja/docs/twitter-api)
- 
+
+
 ## 使用技術
 | カテゴリ | 使用技術 |
 | --- | --- |
@@ -98,6 +126,10 @@ MotoTokyoは東京特化のバイクツーリングサポートサービスで�
 | CI/CD | GithubActions |
 | CSSライブラリ | TailwindCSS, DaisyUI |
 | その他 | Swiper, GoogleAnalytics, GoogleSearchConsole |
+
+
+## インフラ構成図
+![インフラ構成図](https://github.com/miyataro0314/MotoTokyo/assets/125170964/ca75e18e-b8d9-4605-8ed8-4e07f6f2a7bf)
 
 
 ## ER図
