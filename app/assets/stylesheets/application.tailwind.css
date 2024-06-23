@@ -111,7 +111,7 @@ footer {
 }
 
 .side-menu-right {
-  @apply fixed top-0 right-0 top-0 w-80 h-fit max-h-128 pb-8 drop-shadow-2xl rounded-bl-[100px] bg-primary
+  @apply fixed top-0 right-0 top-0 w-80 h-fit max-h-128 px-3 pb-8 drop-shadow-2xl rounded-bl-[100px] bg-primary
 }
 
 .link {
