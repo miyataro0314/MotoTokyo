@@ -87,7 +87,7 @@ MotoTokyoは東京特化のバイクツーリングサポートサービスで�
 | スポット検索 | マップビュー |
 | --- | --- |
 | [![Image from Gyazo](https://i.gyazo.com/82b4a79fb266330b2a8ccbdff79ffa62.gif)](https://gyazo.com/82b4a79fb266330b2a8ccbdff79ffa62) | [![Image from Gyazo](https://i.gyazo.com/fd1d1b4ccc1893e2b88798224bb2b584.gif)](https://gyazo.com/fd1d1b4ccc1893e2b88798224bb2b584) |
-| 3項目のOR検索 | 動的なスポット表示 |
+| 3項目のAND検索 | 動的なスポット表示 |
 
 | スポット詳細 | 駐車場詳細 |
 | --- | --- |
@@ -102,7 +102,7 @@ MotoTokyoは東京特化のバイクツーリングサポートサービスで�
 | 友だち追加 | 通知機能 |
 | --- | --- |
 | [![Image from Gyazo](https://i.gyazo.com/c9e00ff0632326a8e0b9d21e7450ddc6.gif)](https://gyazo.com/c9e00ff0632326a8e0b9d21e7450ddc6) | [![Image from Gyazo](https://i.gyazo.com/b58bf80e91bcc8114ef650ca1b2315c3.gif)](https://gyazo.com/b58bf80e91bcc8114ef650ca1b2315c3) |
-| ユーザーIDを知っている場合のみ追加可能 | 収容台数、営業時間などの詳細情報 |
+| ユーザーIDを知っている場合のみ追加可能 | 未読の通知がある場合、アイコンが変化 |
 
 
 ## 外部API
