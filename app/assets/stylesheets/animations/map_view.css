@@ -1,4 +1,4 @@
-@keyframes slide-in {
+@keyframes slide-up {
   0% {
     transform: translateX(-50%) translateY(200%);
   }
@@ -7,7 +7,7 @@
   }
 }
 
-@keyframes slide-out {
+@keyframes slide-down {
   0% {
     transform: translateX(-50%) translateY(0);
   }
@@ -16,15 +16,47 @@
   }
 }
 
-.slide-in-animation {
-  animation-name: slide-in;
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.slide-up-animation {
+  animation-name: slide-up;
   animation-duration: 300ms;
   animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
   animation-fill-mode: forwards;
 }
 
-.slide-out-animation {
-  animation-name: slide-out;
+.slide-down-animation {
+  animation-name: slide-down;
+  animation-duration: 200ms;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+  animation-fill-mode: forwards;
+}
+
+.slide-left-animation {
+  animation-name: slide-left;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
+  animation-fill-mode: forwards;
+}
+
+.slide-right-animation {
+  animation-name: slide-right;
   animation-duration: 200ms;
   animation-timing-function: cubic-bezier(0.685, 0.085, 0.355, 1.420);
   animation-fill-mode: forwards;
