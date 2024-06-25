@@ -1,6 +1,6 @@
 <%= turbo_stream.append 'map' do %>
   <div id="mini-card"
-       class="slide-up-animation absolute bottom-8 left-1/2 -translate-x-1/2">
+       class="slide-in-up-animation absolute bottom-8 left-1/2 -translate-x-1/2">
     <%= link_to parking_path(@parking), class: 'w-fit h-fit',
                                         data: { turbo_frame: 'modal' } do %>
       <div class="w-72 h-fit p-2 drop-shadow-md rounded-2xl border-2 bg-secondary">
