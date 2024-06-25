@@ -77,7 +77,8 @@ function setSpotMarkers(spots, infoWindow) {
                           lng: parseFloat(match[1]) };
     const spotMarker = new google.maps.marker.AdvancedMarkerElement({
       position: spotPosition,
-      title: spot.name
+      title: spot.name,
+      zIndex: 100
     });
 
     spotMarker.addListener('gmp-click', (function(id, name, marker) {
@@ -134,7 +135,7 @@ function closeMiniCard(callback) {
       }
     };
 
-    miniCard.classList.add('slide-down-animation');
+    miniCard.classList.add('slide-out-down-animation');
     miniCard.addEventListener('animationend', removeMiniCard);
   } else {
     if (typeof callback === 'function') {
@@ -187,15 +188,15 @@ function initSearchComponents() {
   const searchForm = document.getElementById('search-form');
 
   searchButton.addEventListener('click', () => {
-    if (searchBoard.classList.contains('slide-up-animation')) {
-      searchBoard.classList.remove('slide-up-animation');
+    if (searchBoard.classList.contains('slide-out-up-animation')) {
+      searchBoard.classList.remove('slide-out-up-animation');
     }
-    searchBoard.classList.add('slide-down-animation');
+    searchBoard.classList.add('slide-in-down-animation');
     
-    if (searchButton.classList.contains('slide-right-animation')) {
-      searchButton.classList.remove('slide-right-animation');
+    if (searchButton.classList.contains('fade-in-animation')) {
+      searchButton.classList.remove('fade-in-animation');
     }
-    searchButton.classList.add('slide-left-animation');
+    searchButton.classList.add('fade-out-animation');
   })
 
   searchForm.addEventListener('input', () => {
@@ -211,10 +212,10 @@ function initSearchComponents() {
 }
 
 function animateSearchComponents() {
-  if (searchBoard.classList.contains('slide-down-animation')) {
-    searchBoard.classList.remove('slide-down-animation')
-    searchBoard.classList.add('slide-up-animation')
-    searchButton.classList.remove('slide-left-animation')
-    searchButton.classList.add('slide-right-animation')
+  if (searchBoard.classList.contains('slide-in-down-animation')) {
+    searchBoard.classList.remove('slide-in-down-animation')
+    searchBoard.classList.add('slide-out-up-animation')
+    searchButton.classList.remove('fade-out-animation')
+    searchButton.classList.add('fade-in-animation')
   }
 }
