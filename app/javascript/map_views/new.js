@@ -1,27 +1,37 @@
 let markers = []
+const searchButton = document.getElementById('search-button')
+const searchBoard = document.getElementById('search-board')
 
-initMap(markers);
+const centerPosition = { lat: 35.6895, lng: 139.6917 };
+const map = new google.maps.Map(document.getElementById('map'), {
+  mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>', 
+  center: centerPosition,
+  zoom: 14,
+  gestureHandling: 'greedy',
+  disableDefaultUI: true,
+  clickableIcons: false
+});
 
-function initMap(markers) {
-  const centerPosition = { lat: 35.6895, lng: 139.6917 };
-  const map = new google.maps.Map(document.getElementById('map'), {
-    mapId: '<%= Rails.application.credentials.google_maps[:map_id] %>', 
-    center: centerPosition,
-    zoom: 14,
-    gestureHandling: 'greedy',
-    disableDefaultUI: true,
-    clickableIcons: false
+initSearchComponents();
+
+loadMarkers();
+map.addListener('idle', () => {
+  animateSearchComponents();
+  updateMarkersDisplay(map);
+});
+
+
+function loadMarkers(query) {
+  clearMarkers();
+
+  const requestBody = JSON.stringify({
+    query: query ? query : { query: false }
   });
 
-  loadMarkers(map, centerPosition, markers);
-  map.addListener('idle', () => updateMarkersDisplay(map));
-}
-
-function loadMarkers(map, position, markers) {
-  fetch('/api/v1/searches/load_map_data',{
+  fetch('/api/v1/map_views/fetch_map_data',{
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(position)
+    body: requestBody
   }).then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -33,15 +43,23 @@ function loadMarkers(map, position, markers) {
       const infoWindow = new google.maps.InfoWindow();
       infoWindow.addListener('closeclick', closeMiniCard);
 
-      setSpotMarkers(map, spots, infoWindow, markers);
-      setParkingMarkers(map, parkings, infoWindow, markers);
+      setSpotMarkers(spots, infoWindow);
+      setParkingMarkers(parkings, infoWindow);
       updateMarkersDisplay(map);
   }).catch(error => {
     console.log(error);
   })
 }
 
-function updateMarkersDisplay(map) {
+function clearMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+
+  markers = [];
+}
+
+function updateMarkersDisplay() {
   markers.forEach(function(marker){
     if(map.getBounds().contains(marker.position)){
       marker.setMap(map);
@@ -51,7 +69,7 @@ function updateMarkersDisplay(map) {
   });
 }
 
-function setSpotMarkers(map, spots, infoWindow, markers) {
+function setSpotMarkers(spots, infoWindow) {
   spots.forEach((spot, i) => {
     const regex = /POINT \(([0-9]+.[0-9]+) ([0-9]+.[0-9]+)\)/;
     const match = spot.spot_detail.coordinate.match(regex);
@@ -74,7 +92,7 @@ function setSpotMarkers(map, spots, infoWindow, markers) {
   });
 }
 
-function setParkingMarkers(map, parkings, infoWindow, markers) {
+function setParkingMarkers(parkings, infoWindow) {
   
   parkings.forEach((parking, i) => {
     const regex = /POINT \(([0-9]+.[0-9]+) ([0-9]+.[0-9]+)\)/;
@@ -86,7 +104,7 @@ function setParkingMarkers(map, parkings, infoWindow, markers) {
       borderColor: "#0b4087",
       glyphColor: "#0b4087"
     });
-    
+
     parkingMarker = new google.maps.marker.AdvancedMarkerElement({
       position: parkingPosition,
       content: blueMarker.element
@@ -116,7 +134,7 @@ function closeMiniCard(callback) {
       }
     };
 
-    miniCard.classList.add('slide-out-animation');
+    miniCard.classList.add('slide-down-animation');
     miniCard.addEventListener('animationend', removeMiniCard);
   } else {
     if (typeof callback === 'function') {
@@ -163,4 +181,40 @@ function fetchParking(id) {
   .catch(error => {
     console.error('Fetch operation failed:', error);
   });
+}
+
+function initSearchComponents() {
+  const searchForm = document.getElementById('search-form');
+
+  searchButton.addEventListener('click', () => {
+    if (searchBoard.classList.contains('slide-up-animation')) {
+      searchBoard.classList.remove('slide-up-animation');
+    }
+    searchBoard.classList.add('slide-down-animation');
+    
+    if (searchButton.classList.contains('slide-right-animation')) {
+      searchButton.classList.remove('slide-right-animation');
+    }
+    searchButton.classList.add('slide-left-animation');
+  })
+
+  searchForm.addEventListener('input', () => {
+    const formData = new FormData(searchForm)
+    const queryObject = {}
+    
+    for (const [key, value] of formData.entries()) {
+      queryObject[key] = value;
+    }
+  
+    loadMarkers(queryObject);
+  })
+}
+
+function animateSearchComponents() {
+  if (searchBoard.classList.contains('slide-down-animation')) {
+    searchBoard.classList.remove('slide-down-animation')
+    searchBoard.classList.add('slide-up-animation')
+    searchButton.classList.remove('slide-left-animation')
+    searchButton.classList.add('slide-right-animation')
+  }
 }
